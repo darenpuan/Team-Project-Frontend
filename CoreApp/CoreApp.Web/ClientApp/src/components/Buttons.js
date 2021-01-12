@@ -7,9 +7,9 @@ import { withStyles } from '@material-ui/core/styles';
 export const OkButton = withStyles((theme) => ({
   root: {
     color: colors.common.white,
-    backgroundColor: colors.teal[400],
+    backgroundColor: colors.green[600],
     '&:hover': {
-      backgroundColor: colors.teal[800]
+      backgroundColor: colors.green[800]
     },
   },
 }))(Button);
@@ -18,7 +18,7 @@ export const OkButton = withStyles((theme) => ({
 export const CancelButton = withStyles((theme) => ({
   root: {
     color: colors.common.white,
-    backgroundColor: colors.red[400],
+    backgroundColor: colors.red[600],
     '&:hover': {
       backgroundColor: colors.red[800]
     },
@@ -29,9 +29,9 @@ export const CancelButton = withStyles((theme) => ({
 export const ActionButton = withStyles((theme) => ({
   root: {
     color: colors.common.white,
-    backgroundColor: colors.orange[400],
+    backgroundColor: colors.blue[600],
     '&:hover': {
-      backgroundColor: colors.orange[800]
+      backgroundColor: colors.blue[800]
     },
   },
 }))(Button);
