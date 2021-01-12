@@ -58,7 +58,7 @@ const RegisterView = () => {
               })
             }
             onSubmit={() => {
-              navigate('/app/dashboard', { replace: true });
+              navigate('/app/analytics', { replace: true });
             }}
           >
             {({
