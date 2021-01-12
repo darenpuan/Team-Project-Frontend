@@ -38,7 +38,7 @@ const items = [
     title: 'Dashboard'
   },
   {
-    href: '/app/dashboard',
+    href: '/app/dashboardView',
     icon: EventNoteIcon,
     title: 'Booking'
   },

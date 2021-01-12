@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
+import { Link as RouterLink } from 'react-router-dom';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import { Divider } from '@material-ui/core';
 
@@ -28,9 +29,13 @@ export default function CustomSeparator() {
   return (
     <div className={classes.root}>
       <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
+        <Link color="inherit" component={RouterLink} to="/app/analytics" onClick={handleClick}>
+          Dashboard
+        </Link>
         <Link
           color="textPrimary"
-          href=""
+          component={RouterLink}
+          to=""
           onClick={handleClick}
           aria-current="page"
         >
