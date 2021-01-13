@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import DashboardLayout from 'src/layouts/DashboardLayoutAdmin';
+import DashboardLayout from 'src/layouts/DashboardLayoutCustomer';
 import MainLayout from 'src/layouts/MainLayout';
 import AccountView from 'src/views/account/AccountView';
 import CustomerListView from 'src/views/customer/CustomerListView';
@@ -19,6 +19,7 @@ const routes = [
     element: <DashboardLayout />,
     children: [
       { path: 'account', element: <AccountView /> },
+      { path: 'home', element: <Dashboard /> },
       { path: 'customers', element: <CustomerListView /> },
       { path: 'dashboardView', element: <DashboardView /> },
       { path: 'products', element: <ProductListView /> },
@@ -34,7 +35,15 @@ const routes = [
       { path: 'login', element: <LoginView /> },
       { path: 'register', element: <RegisterView /> },
       { path: '404', element: <NotFoundView /> },
-      { path: '/', element: <Navigate to="/app/analytics" /> },
+
+      //Uncomment below for admin menu
+      //{ path: '/', element: <Navigate to="/app/analytics" /> },
+
+      //Uncomment below for customer menu
+      { path: '/', element: <Navigate to="/app/home" /> },
+
+      //Uncomment below for staff menu
+      //{ path: '/', element: <Navigate to="/app/dashboardView" /> },
       { path: '*', element: <Navigate to="/404" /> }
     ]
   }
