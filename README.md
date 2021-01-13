@@ -1,38 +1,29 @@
-# Module 5 Smart Weighing Scale (T7 & T18)
-## New files:
+Hi Guys,
 
+Please provide me your github id so that I can add you to the git repository. 
 
-Barcode.cs : New table, BarcodeId will be included in Cargo & Operation table as FK.
+Please refer to this Figma (https://www.figma.com/file/UhwcfRnhyu0Y0kOOoCyGZy/Booking-System-V2-Customer?node-id=0%3A1) for the latest UI. Do not make any edits or comment directly on the file. Please focus only on the Customer and Administrator pages. We would appreciate if most of the codes can be done by friday night so that we have ample time to look through the codes and ensure that they are working as well as prepare for customer day. 
 
-Category.cs : New table to link to Unit (no changes to base ERD)
+Code files to note: 
+1. route.js 
+	- For all your routing needs.
+2. DashboardLayoutAdmin
+	- For admin menu 
+	- Ensure that you have in line 3 or else replace it accordingly "import DashboardLayout from 'src/layouts/DashboardLayoutAdmin';" 
+	- index.js is where you set the side menu links
+3. DashboardLayoutCustomer
+	- For Customer menu
+	- Ensure that you have in line 3 or else replace it accordingly "import DashboardLayout from 'src/layouts/DashboardLayoutCustomer';" 
+	- index.js is where you set the side menu links
+4. Components
+	- Refer to this page for any components that you might use
+	- Button.js
+	- StatusChips.js
+	
+Files for your Reference:
+1. DashboardLayout
+2. account
+3. dashboardView (Administrator)
+4. customer
+5. home
 
-Department.cs : New table, DepartmentId will be included in Employee table as FK
-
-Status.cs : New table, StatusId will be included in Operation & OperationItem table as FK
-
-OperationItem.cs : New Joining table for Operation and Item table
-
-Unit.cs : New table, UnitId will be included in Item table as FK
-
-
-
-## Modified files: (Foreign keys are added inside)
-
-Cargo.cs
-
-Employee.cs
-
-Item.cs
-
-Operation.cs
-
-## Modified Database (Team7ERD(PNG).png)
-<a href="https://ibb.co/kcmmnkV"><img src="https://i.ibb.co/s3WWSkp/Team7-ERD-PNG.png" alt="Team7-ERD-PNG" border="0"></a>
-### CoreDatabase.db compiled and generated. 
-
-
-## Sample Data 
-<a href="https://ibb.co/vDs9CVT"><img src="https://i.ibb.co/st57pbN/sample-data.png" alt="sample-data" border="0"></a>
-
-### Any issue find Qi Qi. She will find me :)
--Gid
