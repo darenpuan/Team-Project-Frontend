@@ -1,6 +1,15 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
+
+//Uncomment below for admin menu
 import DashboardLayout from 'src/layouts/DashboardLayoutCustomer';
+
+//Uncomment below for admin menu
+//import DashboardLayout from 'src/layouts/DashboardLayoutAdmin';
+
+//Uncomment below for admin menu
+//import DashboardLayout from 'src/layouts/DashboardLayoutStaff';
+
 import MainLayout from 'src/layouts/MainLayout';
 import AccountView from 'src/views/account/AccountView';
 import CustomerListView from 'src/views/customer/CustomerListView';
@@ -44,6 +53,7 @@ const routes = [
 
       //Uncomment below for staff menu
       //{ path: '/', element: <Navigate to="/app/dashboardView" /> },
+
       { path: '*', element: <Navigate to="/404" /> }
     ]
   }
