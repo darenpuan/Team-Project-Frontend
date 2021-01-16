@@ -33,7 +33,7 @@ const user = {
 
 const items = [
   {
-    href: '/app/analytics',
+    href: '/app/adminSummary',
     icon: DashboardIcon,
     title: 'Dashboard'
   },
@@ -48,7 +48,7 @@ const items = [
     title: 'Cargo Summary'
   },
   {
-    href: '/app/product',
+    href: '/app/adminViewOrder',
     icon: ListAltIcon,
     title: 'Order List'
   },

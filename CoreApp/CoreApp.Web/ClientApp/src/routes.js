@@ -24,6 +24,9 @@ import DashboardView from 'src/views/dashboardView/DashboardView';
 import AdminViewBooking from 'src/views/admin/AdminViewBooking';
 import AdminCargo from 'src/views/admin2/AdminCargo';
 import AdminViewAcc from 'src/views/admin3/AdminViewAcc';
+import AdminSummary from 'src/views/adminSummary/AdminSummary';
+import AdminViewOrder from 'src/views/adminViewOrder/AdminViewOrder';
+
 
 const routes = [
   {
@@ -40,6 +43,8 @@ const routes = [
       { path: 'admin', element: <AdminViewBooking /> },
       { path: 'admin2', element: <AdminCargo /> },
       { path: 'admin3', element: <AdminViewAcc /> },
+      { path: 'adminSummary', element: <AdminSummary /> },
+      { path: 'adminViewOrder', element: <AdminViewOrder /> },
       { path: '*', element: <Navigate to="/404" /> }
     ]
   },
