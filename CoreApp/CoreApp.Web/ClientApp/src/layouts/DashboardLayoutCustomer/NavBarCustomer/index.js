@@ -31,12 +31,12 @@ const user = {
 
 const items = [
   {
-    href: '/app/home',
+    href: '/app/customerBooking',
     icon: EventNoteIcon,
     title: 'Booking'
   },
   {
-    href: '/app/customers',
+    href: '/app/customerCargo',
     icon: LocalShippingIcon,
     title: 'Cargo Summary'
   },
