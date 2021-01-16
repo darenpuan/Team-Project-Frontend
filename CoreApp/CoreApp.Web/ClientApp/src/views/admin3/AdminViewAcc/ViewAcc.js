@@ -7,6 +7,7 @@ import { ViewAgenda } from '@material-ui/icons';
 import Controls from "src/components/controls/Controls";
 import Popup from 'src/components/Popup';
 import AddIcon from '@material-ui/icons/Add';
+import AccForm from './AccForm';
 
 import {
   Box,
@@ -27,8 +28,7 @@ import {
 } from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import { Search as SearchIcon } from 'react-feather';
-import { CompletedChip, PendingChip, UnCompletedChip } from 'src/components/StatusChips';
-import AccForm from './AccForm';
+import { ActiveChip, PendingChip, SuspendedChip } from 'src/components/StatusChips';
 
 const data = [
   {
@@ -260,7 +260,7 @@ const ViewAcc = ({ className, ...rest }) => {
                   </TableCell>
                   <TableCell>
                     {view.status === 'Active' ? (
-                      <CompletedChip
+                      <ActiveChip
                         label={view.status}
                         size="small"
                         variant="outlined"
@@ -279,17 +279,7 @@ const ViewAcc = ({ className, ...rest }) => {
                     }
                     {
                       view.status === 'Suspended' ? (
-                        <UnCompletedChip
-                          label={view.status}
-                          size="small"
-                          variant="outlined"
-                        />
-                      )
-                        : null
-                    }
-                    {
-                      view.status === 'In Transit' ? (
-                        <UnCompletedChip
+                        <SuspendedChip
                           label={view.status}
                           size="small"
                           variant="outlined"

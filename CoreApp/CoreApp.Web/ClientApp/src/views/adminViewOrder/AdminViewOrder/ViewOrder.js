@@ -24,7 +24,7 @@ import {
 } from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import { Search as SearchIcon } from 'react-feather';
-import { CompletedChip, PendingChip, UnCompletedChip } from 'src/components/StatusChips';
+import { ApprovedChip, ProgressChip, RejectedChip } from 'src/components/StatusChips';
 
 const data = [
   {
@@ -175,7 +175,7 @@ const Viewbooking = ({ className, ...rest }) => {
                   </TableCell>
                   <TableCell>
                     {view.status === 'Approved' ? (
-                      <CompletedChip
+                      <ApprovedChip
                         label={view.status}
                         size="small"
                         variant="outlined"
@@ -184,7 +184,7 @@ const Viewbooking = ({ className, ...rest }) => {
                       : null}
                     {
                       view.status === 'In Progress' ? (
-                        <PendingChip
+                        <ProgressChip
                           label={view.status}
                           size="small"
                           variant="outlined"
@@ -194,17 +194,7 @@ const Viewbooking = ({ className, ...rest }) => {
                     }
                     {
                       view.status === 'Rejected' ? (
-                        <UnCompletedChip
-                          label={view.status}
-                          size="small"
-                          variant="outlined"
-                        />
-                      )
-                        : null
-                    }
-                    {
-                      view.status === 'In Transit' ? (
-                        <UnCompletedChip
+                        <RejectedChip
                           label={view.status}
                           size="small"
                           variant="outlined"
