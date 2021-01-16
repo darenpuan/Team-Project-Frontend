@@ -38,22 +38,22 @@ const items = [
     title: 'Dashboard'
   },
   {
-    href: '/app/dashboardView',
+    href: '/app/admin',
     icon: EventNoteIcon,
     title: 'Booking'
   },
   {
-    href: '/app/customers',
+    href: '/app/admin2',
     icon: LocalShippingIcon,
     title: 'Cargo Summary'
   },
   {
-    href: '/app/products',
+    href: '/app/product',
     icon: ListAltIcon,
     title: 'Order List'
   },
   {
-    href: '/app/settings',
+    href: '/app/admin3',
     icon: PeopleIcon,
     title: 'Account Management'
   },
