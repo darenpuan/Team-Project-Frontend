@@ -31,6 +31,8 @@ const DialogContent = withStyles((theme) => ({
   root: {
     padding: theme.spacing(8),
     textAlign: "center",
+    width: '600px',
+    height: '360px'
   },
 }))(MuiDialogContent);
 

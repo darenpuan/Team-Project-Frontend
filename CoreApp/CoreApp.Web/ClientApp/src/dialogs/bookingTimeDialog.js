@@ -13,7 +13,12 @@ import TextField from '@material-ui/core/TextField';
 import SuccessDialog from 'src/dialogs/successDialog'
 import Box from '@material-ui/core/Box';
 import ToggleButton from '@material-ui/lab/ToggleButton';
+import DateFnsUtils from "@date-io/date-fns";
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker
+} from "@material-ui/pickers";
 
 const StyledToggleButtonGroup = withStyles((theme) => ({
   grouped: {
@@ -36,7 +41,7 @@ const StyledToggleButtonGroup = withStyles((theme) => ({
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    margin:'10px',
+    margin: '10px',
     align: 'center',
   },
   textField: {
@@ -79,7 +84,7 @@ const DialogTitle = withStyles(styles)((props) => {
 const DialogContent = withStyles((theme) => ({
   root: {
     padding: theme.spacing(1),
-    width:'500px',
+    width: '500px',
   },
 }))(MuiDialogContent);
 
@@ -93,6 +98,11 @@ const DialogActions = withStyles((theme) => ({
 
 export default function BookingTimeDialog() {
   const [open, setOpen] = React.useState(false);
+  const [selectedDate, setSelectedDate] = React.useState(new Date());
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -122,19 +132,27 @@ export default function BookingTimeDialog() {
         </Typography>
         </DialogTitle>
         <DialogContent dividers>
-          <DialogActions align='center'>
+          <DialogActions>
             <div>
-              <form className={classes.container} noValidate>
-                <TextField
-                  id="date"
-                  type="date"
-                  defaultValue="2020-01-16"
-                  className={classes.textField}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-              </form>
+              <div align="center">
+                <form className={classes.container} noValidate >
+                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <KeyboardDatePicker
+                      disableToolbar
+                      variant="inline"
+                      format="MM/dd/yyyy"
+                      margin="normal"
+                      id="date-picker-inline"
+                      label="Date picker inline"
+                      value={selectedDate}
+                      onChange={handleDateChange}
+                      KeyboardButtonProps={{
+                        "aria-label": "change date"
+                      }}
+                    />
+                  </MuiPickersUtilsProvider>
+                </form>
+              </div>
               <div>
                 Morning
               </div>
@@ -259,16 +277,16 @@ export default function BookingTimeDialog() {
               </StyledToggleButtonGroup>
             </div>
           </DialogActions>
-              <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
-                <Box p={1}>
-                  <SuccessDialog />
-                </Box>
-                <Box p={1}>
-                  <Button variant="outlined" onClick={handleClose} color="primary">
-                    Cancel
+          <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
+            <Box p={1}>
+              <SuccessDialog />
+            </Box>
+            <Box p={1}>
+              <Button variant="outlined" onClick={handleClose} color="primary">
+                Cancel
                   </Button>
-                </Box>
-              </Box>
+            </Box>
+          </Box>
         </DialogContent>
       </Dialog>
     </div>

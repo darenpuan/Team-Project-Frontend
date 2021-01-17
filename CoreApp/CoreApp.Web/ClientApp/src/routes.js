@@ -7,7 +7,7 @@ import DashboardLayout from 'src/layouts/DashboardLayoutCustomer';
 //Uncomment below for admin menu
 //import DashboardLayout from 'src/layouts/DashboardLayoutAdmin';
 
-//Uncomment below for admin menu
+//Uncomment below for staff menu
 //import DashboardLayout from 'src/layouts/DashboardLayoutStaff';
 
 import MainLayout from 'src/layouts/MainLayout';
@@ -18,6 +18,8 @@ import LoginView from 'src/views/auth/LoginView';
 import NotFoundView from 'src/views/errors/NotFoundView';
 import ProductListView from 'src/views/product/ProductListView';
 import RegisterView from 'src/views/auth/RegisterView';
+import RegisterCompany from 'src/views/auth/RegisterCompany';
+import RegisterAfter from 'src/views/auth/RegisterAfter';
 import SettingsView from 'src/views/settings/SettingsView';
 import AnalyticsView from 'src/views/analytics/AnalyticsView';
 import DashboardView from 'src/views/dashboardView/DashboardView';
@@ -58,13 +60,15 @@ const routes = [
     children: [
       { path: 'login', element: <LoginView /> },
       { path: 'register', element: <RegisterView /> },
+      { path: 'registerCompany', element: <RegisterCompany /> },
+      { path: 'registerAfter', element: <RegisterAfter /> },
       { path: '404', element: <NotFoundView /> },
 
       //Uncomment below for admin menu
-      //{ path: '/', element: <Navigate to="/app/analytics" /> },
+      { path: '/', element: <Navigate to="/app/adminSummary" /> },
 
       //Uncomment below for customer menu
-      { path: '/', element: <Navigate to="/app/customerBooking" /> },
+      //{ path: '/', element: <Navigate to="/app/customerBooking" /> },
 
       //Uncomment below for staff menu
       //{ path: '/', element: <Navigate to="/app/dashboardView" /> },

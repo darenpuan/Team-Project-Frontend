@@ -4,6 +4,7 @@ import moment from 'moment';
 import { v4 as uuid } from 'uuid';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
+
 import {
   Box,
   Button,
@@ -15,13 +16,23 @@ import {
   TableCell,
   TableHead,
   TableRow,
+  TablePagination,
   TableSortLabel,
   Tooltip,
-  makeStyles
+  makeStyles,
+  TextField,
+  SvgIcon,
+  Grid,
+  colors
 } from '@material-ui/core';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import {
+  Search as SearchIcon,
+  Filter as FilterIcon
+} from 'react-feather';
 
 import { CompletedChip, PendingChip, UnCompletedChip } from 'src/components/StatusChips';
+import { FilterButton } from 'src/components/Buttons';
+
 
 const data = [
   {
@@ -90,12 +101,28 @@ const useStyles = makeStyles(() => ({
   root: {},
   actions: {
     justifyContent: 'flex-end'
+  },
+  filterButton: {
+    '&:hover': {
+      color: colors.common.white
+    }
   }
+
 }));
 
 const LatestOrders = ({ className, ...rest }) => {
   const classes = useStyles();
   const [orders] = useState(data);
+  const [limit, setLimit] = useState(10);
+  const [page, setPage] = useState(0);
+
+  const handleLimitChange = (event) => {
+    setLimit(event.target.value);
+  };
+
+  const handlePageChange = (event, newPage) => {
+    setPage(newPage);
+  };
 
   return (
     <Card
@@ -103,6 +130,31 @@ const LatestOrders = ({ className, ...rest }) => {
       {...rest}
     >
       <CardHeader title="Latest Orders" />
+      <Box maxWidth={800} mb={3} ml={1}>
+        <Grid container spacing={1} alignItems="flex-end">
+          <Grid item>
+            <SvgIcon
+              fontSize="small"
+              color="action"
+            >
+              <SearchIcon />
+            </SvgIcon>
+          </Grid>
+          <Grid item >
+            <TextField id="input-with-icon-grid" label="Search for all columns" />
+          </Grid>
+          <Grid item >
+            <FilterButton variant="contained">
+              <SvgIcon
+                fontSize="small"
+                color="action"
+              >
+                <FilterIcon className={classes.filterButton} />
+              </SvgIcon>&nbsp;&nbsp;Filter
+              </FilterButton>
+          </Grid>
+        </Grid>
+      </Box>
       <Divider />
       <PerfectScrollbar>
         <Box minWidth={800}>
@@ -134,7 +186,7 @@ const LatestOrders = ({ className, ...rest }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {orders.map((order) => (
+              {orders.slice(page * limit, page * limit + limit).map((order) => (
 
                 <TableRow
                   hover
@@ -185,20 +237,15 @@ const LatestOrders = ({ className, ...rest }) => {
           </Table>
         </Box>
       </PerfectScrollbar>
-      <Box
-        display="flex"
-        justifyContent="flex-end"
-        p={2}
-      >
-        <Button
-          color="primary"
-          endIcon={<ArrowRightIcon />}
-          size="small"
-          variant="text"
-        >
-          View all
-        </Button>
-      </Box>
+      <TablePagination
+        component="div"
+        count={orders.length}
+        onChangePage={handlePageChange}
+        onChangeRowsPerPage={handleLimitChange}
+        page={page}
+        rowsPerPage={limit}
+        rowsPerPageOptions={[5, 10, 25]}
+      />
     </Card>
   );
 };

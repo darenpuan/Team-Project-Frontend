@@ -55,9 +55,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 3,
     marginBottom: 3
   },
-  gridNoPad:{
-    padding:0
-}
+  gridNoPad: {
+    padding: 0
+  }
 }));
 
 const RegisterView = () => {
@@ -118,19 +118,13 @@ const RegisterView = () => {
                 className={classes.contentWrapper}>
                 <Formik
                   initialValues={{
-                    
+
                   }}
-                  //validationSchema={Yup.object().shape({
-                  //  firstName: Yup.string().required('First Name is required'),
-                  //  lastName: Yup.string().required('Last Name is required'),
-                  //  hpContact: Yup.string().required('Contact Number (HP) is required'),
-                  //  officeContact: Yup.string().required('Contact Number (Office) is required'),
-                  //  email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-                  //  companyName: Yup.string().max(255).required('Company Name is required'),
-                  //  //password: Yup.string().max(255).required('Password is required')
-                  //})}
+                  validationSchema={Yup.object().shape({
+                   
+                  })}
                   onSubmit={() => {
-                    navigate('/registerCompany', { replace: true });
+                    navigate('/registerAfter', { replace: true });
                   }}
                 >
                   {({
@@ -147,16 +141,67 @@ const RegisterView = () => {
                           mt={3}
                           mb={3}
                         />
+                            <TextField
+                              error={Boolean(touched.addressNickname && errors.addressNickname)}
+                              className={classes.tbCustom}
+                              fullWidth
+                              helperText={touched.addressNickname && errors.addressNickname}
+                              label="Address Nickname"
+                              name="addressNickname"
+                              onBlur={handleBlur}
+                              onChange={handleChange}
+                              type="text"
+                              variant="outlined"
+                              required
+                            />
+                            <TextField
+                              error={Boolean(touched.street && errors.street)}
+                              className={classes.tbCustom}
+                              fullWidth
+                              helperText={touched.street && errors.street}
+                              label="Street"
+                              name="street"
+                              onBlur={handleBlur}
+                              onChange={handleChange}
+                              type="text"
+                              variant="outlined"
+                              required
+                            />
+                            <TextField
+                              error={Boolean(touched.apartment && errors.apartment)}
+                              fullWidth
+                              helperText={touched.apartment && errors.apartment}
+                              label="Apartment"
+                              className={classes.tbCustom}
+                              name="apartment"
+                              onBlur={handleBlur}
+                              onChange={handleChange}
+                              type="text"
+                              variant="outlined"
+                              required
+                            />
+                            <TextField
+                              error={Boolean(touched.town && errors.town)}
+                              fullWidth
+                              helperText={touched.town && errors.town}
+                              label="Town"
+                              className={classes.tbCustom}
+                              name="town"
+                              onBlur={handleBlur}
+                              onChange={handleChange}
+                              type="text"
+                              variant="outlined"
+                              required
+                        />
                         <Grid container spacing={1}>
-                          <RadioButtonsGroup/>
-                          <Grid item xs={6}>
-                            <TextField 
-                              error={Boolean(touched.firstName && errors.firstName)}
-                              className={classes.tbCustom}
+                          <Grid item xs>
+                            <TextField
+                              error={Boolean(touched.country && errors.country)}
                               fullWidth
-                              helperText={touched.firstName && errors.firstName}
-                              label="First Name"
-                              name="firstName"
+                              helperText={touched.country && errors.country}
+                              label="Country"
+                              className={classes.tbCustom}
+                              name="country"
                               onBlur={handleBlur}
                               onChange={handleChange}
                               type="text"
@@ -164,77 +209,17 @@ const RegisterView = () => {
                               required
                             />
                           </Grid>
-                          <Grid item xs={6}>
+                          <Grid item xs>
                             <TextField
-                              error={Boolean(touched.lastName && errors.lastName)}
-                              className={classes.tbCustom}
+                              error={Boolean(touched.postal && errors.postal)}
                               fullWidth
-                              helperText={touched.lastName && errors.lastName}
-                              label="Last Name"
-                              name="lastName"
-                              onBlur={handleBlur}
-                              onChange={handleChange}
-                              type="text"
-                              variant="outlined"
-                              required
-                            />
-                          </Grid>
-                          <Grid item xs={6}>
-                            <TextField
-                              error={Boolean(touched.hpContact && errors.hpContact)}
-                              fullWidth
-                              helperText={touched.hpContact && errors.hpContact}
-                              label="Contact Number (HP)"
-                              className={classes.tbCustom}
-                              name="hpContact"
-                              onBlur={handleBlur}
-                              onChange={handleChange}
-                              type="text"
-                              variant="outlined"
-                              required
-                            />
-                          </Grid>
-                          <Grid item xs={6}>
-                            <TextField
-                              error={Boolean(touched.officeContact && errors.officeContact)}
-                              fullWidth
-                              helperText={touched.officeContact && errors.officeContact}
-                              label="Contact Number (Office)"
-                              className={classes.tbCustom}
-                              name="officeContact"
-                              onBlur={handleBlur}
-                              onChange={handleChange}
-                              type="text"
-                              variant="outlined"
-                              required
-                            />
-                          </Grid>
-                          <Grid item xs={12}>
-                            <TextField
-                              error={Boolean(touched.email && errors.email)}
-                              fullWidth
-                              helperText={touched.email && errors.email}
-                              label="Email Address"
-                              className={classes.tbCustom}
-                              name="email"
-                              onBlur={handleBlur}
-                              onChange={handleChange}
-                              type="email"
-                              variant="outlined"
-                              required
-                            />
-                          </Grid>
-                          <Grid item xs={12}>
-                            <TextField
-                              error={Boolean(touched.companyName && errors.companyName)}
-                              fullWidth
-                              helperText={touched.companyName && errors.companyName}
-                              label="Company Name"
+                              helperText={touched.postal && errors.postal}
+                              label="Postal Code"
                               className={classes.tbCustom}
                               name="companyName"
                               onBlur={handleBlur}
                               onChange={handleChange}
-                              type="text"
+                              type="number"
                               variant="outlined"
                               required
                             />
@@ -250,7 +235,7 @@ const RegisterView = () => {
                             type="submit"
                             variant="contained"
                           >
-                            Next
+                            Register
                   </Button>
                         </Box>
                         <Box

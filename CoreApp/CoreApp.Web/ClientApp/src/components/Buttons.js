@@ -35,3 +35,16 @@ export const ActionButton = withStyles((theme) => ({
     },
   },
 }))(Button);
+
+// Standardised  Filter button e.g. Filter
+export const FilterButton = withStyles((theme) => ({
+  root: {
+    color: colors.common.black,
+    backgroundColor: colors.grey[300],
+
+    '&:hover': {
+      color: colors.common.white,
+      backgroundColor: colors.grey[600]
+    },
+  },
+}))(Button);

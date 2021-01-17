@@ -31,17 +31,6 @@ const Dashboard = () => {
     >
       <Container maxWidth={false}>
         <BreadCrumb />
-        <Box
-          display="flex"
-          justifyContent="flex-end"
-          mb={3}
-        >
-          <Link to="/app/analytics">
-            <Button variant="contained" color="primary">
-              Analytics
-            </Button>
-          </Link>
-        </Box>
         <Grid
           container
         >
