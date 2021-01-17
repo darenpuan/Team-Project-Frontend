@@ -65,10 +65,10 @@ const routes = [
       { path: '404', element: <NotFoundView /> },
 
       //Uncomment below for admin menu
-      { path: '/', element: <Navigate to="/app/adminSummary" /> },
+      //{ path: '/', element: <Navigate to="/app/adminSummary" /> },
 
       //Uncomment below for customer menu
-      //{ path: '/', element: <Navigate to="/app/customerBooking" /> },
+      { path: '/', element: <Navigate to="/app/customerBooking" /> },
 
       //Uncomment below for staff menu
       //{ path: '/', element: <Navigate to="/app/dashboardView" /> },

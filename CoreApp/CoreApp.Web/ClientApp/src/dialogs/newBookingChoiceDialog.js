@@ -1,4 +1,5 @@
 import React from 'react';
+import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -7,15 +8,24 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import Typography from '@material-ui/core/Typography';
-import BookingTimeDialog from 'src/dialogs/bookingTimeDialog'
+import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import DateFnsUtils from "@date-io/date-fns";
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import { green } from '@material-ui/core/colors';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker
+} from "@material-ui/pickers";
 
 const styles = (theme) => ({
   root: {
     margin: 0,
     padding: theme.spacing(1.5),
     backgroundColor: theme.palette.info.main,
-    color:'white',
+    color: 'white',
   },
   closeButton: {
     position: 'absolute',
@@ -25,13 +35,46 @@ const styles = (theme) => ({
   },
 });
 
+const StyledToggleButtonGroup = withStyles((theme) => ({
+  grouped: {
+    margin: theme.spacing(1),
+    border: '1px solid black',
+    '&:not(:first-child)': {
+      width: '100px',
+      color: 'black',
+      borderRadius: '5px',
+      borderLeft: '1px solid black',
+    },
+    '&:first-child': {
+      width: '100px',
+      color: 'black',
+      borderRadius: '5px',
+
+    },
+  },
+}))(ToggleButtonGroup);
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    margin: '10px',
+    align: 'center',
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
+}));
+
+
+{/*Choose Booking Dialog Styles*/}
 const DialogTitle = withStyles(styles)((props) => {
   const { children, classes, onClose, ...other } = props;
   return (
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
       <Typography variant="h6">{children}</Typography>
       {onClose ? (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose} style={{ color: "white" }}>
           <CloseIcon />
         </IconButton>
       ) : null}
@@ -53,37 +96,305 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-export default function NewBookingChoice() {
-  const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
+{/*Date/Time Picker Dialog Styles*/ }
+const DialogTitle1 = withStyles(styles)((props) => {
+  const { children, classes, onClose, ...other } = props;
+  return (
+    <MuiDialogTitle disableTypography className={classes.root} {...other}>
+      <Typography variant="h6">{children}</Typography>
+      {onClose ? (
+        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose} style={{ color: "white" }}>
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+    </MuiDialogTitle>
+  );
+});
+
+const DialogContent1 = withStyles((theme) => ({
+  root: {
+    padding: theme.spacing(0),
+    width: '360px',
+  },
+}))(MuiDialogContent);
+
+const DialogActions1 = withStyles((theme) => ({
+  root: {
+    margin: '10px',
+    padding: theme.spacing(0),
+    alignContent: 'center',
+  },
+}))(MuiDialogActions);
+
+
+{/*Success Dialog Styles*/ }
+const DialogTitle2 = withStyles(styles)((props) => {
+  const { children, classes, onClose, ...other } = props;
+  return (
+    <MuiDialogTitle disableTypography className={classes.root} {...other}>
+      <Typography variant="h6">{children}</Typography>
+    </MuiDialogTitle>
+  );
+});
+
+const DialogContent2 = withStyles((theme) => ({
+  root: {
+    padding: theme.spacing(8),
+    textAlign: "center",
+    width: '600px',
+    height: '360px'
+  },
+}))(MuiDialogContent);
+
+export default function NewBookingChoiceDialog() {
+  {/*Choose Booking Dialog State*/ }
+  const [openBookingChoice, setOpenBookingChoice] = React.useState(false);
+  {/*Date/Time Picker Dialog State*/ }
+  const [openTimePicker, setOpenTimePicker] = React.useState(false);
+  {/*Success Dialog State*/ }
+  const [openSuccess, setOpenSuccess] = React.useState(false);
+  const handleOpenBookingChoice = () => {
+    setOpenBookingChoice(true);
   };
-  const handleClose = () => {
-    setOpen(false);
+  const handleCloseBookingChoice = () => {
+    setOpenBookingChoice(false);
   };
+  const [selectedDate, setSelectedDate] = React.useState(new Date());
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+  const handleOpenTimePicker = () => {
+    setOpenTimePicker(true);
+  };
+  const handleCloseTimePicker = () => {
+    setOpenTimePicker(false);
+  };
+  const handleChangeBookingTimeDialog = () => {
+    setOpenBookingChoice(false);
+    setOpenTimePicker(true);
+  };
+  const handleOpenSuccessDialog = () => {
+    setOpenSuccess(true);
+  };
+  const handleCloseSuccessDialog = () => {
+    setOpenSuccess(false);
+  };
+  const handleChangeSuccessDialog = () => {
+    setOpenTimePicker(false);
+    setOpenSuccess(true);
+  };
+  const [alignment, setAlignment] = React.useState('0800');
+  const handleAlignment = (event, newAlignment) => {
+    if (newAlignment !== null) {
+      setAlignment(newAlignment);
+    }
+  };
+  const classes = useStyles();
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      {/*Choose Booking Dialog*/}
+      <Button variant="outlined" color="primary" onClick={handleOpenBookingChoice}>
         New Booking
       </Button>
-      <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+      <Dialog onClose={handleCloseBookingChoice} aria-labelledby="customized-dialog-title" open={openBookingChoice}>
+        <DialogTitle id="customized-dialog-title" onClose={handleCloseBookingChoice}>
           <Typography align='center'>
             Choose Booking Form
         </Typography>
         </DialogTitle>
         <DialogContent dividers>
           <DialogActions>
-            <BookingTimeDialog />
+            <Button style={{ width: '200px', height: '40px' }} variant="outlined" color="primary" onClick={handleChangeBookingTimeDialog}>
+              New Booking Form
+             </Button>
           </DialogActions>
           <DialogActions>
             <Button style={{ width: '200px', height: '40px' }} variant='outlined' color="primary">
-                New Order List
+              New Order List
             </Button>
           </DialogActions>
         </DialogContent>
+      </Dialog>
+
+      {/*Time/Date Picker Dialog*/}
+      <Dialog onClose={handleCloseTimePicker} aria-labelledby="customized-dialog-title" open={openTimePicker}>
+        <DialogTitle1 id="customized-dialog-title" onClose={handleCloseTimePicker}>
+          <Typography align='center'>
+            Booking Slot
+        </Typography>
+        </DialogTitle1>
+        <DialogContent1 dividers>
+          <DialogActions1>
+            <div>
+              <div align="center">
+                <form className={classes.container} noValidate >
+                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <KeyboardDatePicker
+                      disableToolbar
+                      variant="inline"
+                      format="MM/dd/yyyy"
+                      margin="normal"
+                      value={selectedDate}
+                      onChange={handleDateChange}
+                      KeyboardButtonProps={{
+                        "aria-label": "change date"
+                      }}
+                    />
+                  </MuiPickersUtilsProvider>
+                </form>
+              </div>
+              <div>
+                Morning
+              </div>
+              <StyledToggleButtonGroup
+                size="small"
+                value={alignment}
+                exclusive
+                onChange={handleAlignment}
+                aria-label="text alignment"
+              >
+                <ToggleButton value="0800" default>
+                  08:00
+                </ToggleButton>
+                <ToggleButton value="0830">
+                  08:30
+                </ToggleButton>
+                <ToggleButton value="0900">
+                  09:00
+                </ToggleButton>
+              </StyledToggleButtonGroup>
+              <StyledToggleButtonGroup
+                size="small"
+                value={alignment}
+                exclusive
+                onChange={handleAlignment}
+                aria-label="text alignment"
+              >
+                <ToggleButton value="0930">
+                  09:30
+                </ToggleButton>
+                <ToggleButton value="1000">
+                  10:00
+                </ToggleButton>
+                <ToggleButton value="1030">
+                  10:30
+                </ToggleButton>
+              </StyledToggleButtonGroup>
+              <StyledToggleButtonGroup
+                size="small"
+                value={alignment}
+                exclusive
+                onChange={handleAlignment}
+                aria-label="text alignment"
+              >
+                <ToggleButton value="1100">
+                  11:00
+                </ToggleButton>
+                <ToggleButton value="1130">
+                  11:30
+                </ToggleButton>
+              </StyledToggleButtonGroup>
+              <div>
+                Afternoon
+              </div>
+              <StyledToggleButtonGroup
+                size="small"
+                value={alignment}
+                exclusive
+                onChange={handleAlignment}
+                aria-label="text alignment"
+              >
+                <ToggleButton value="1200">
+                  12:00
+                </ToggleButton>
+                <ToggleButton value="1230">
+                  12:30
+                </ToggleButton>
+                <ToggleButton value="1300">
+                  13:00
+                </ToggleButton>
+              </StyledToggleButtonGroup>
+              <StyledToggleButtonGroup
+                size="small"
+                value={alignment}
+                exclusive
+                onChange={handleAlignment}
+                aria-label="text alignment"
+              >
+                <ToggleButton value="1330">
+                  13:30
+                </ToggleButton>
+                <ToggleButton value="1400">
+                  14:00
+                </ToggleButton>
+                <ToggleButton value="1430">
+                  14:30
+                </ToggleButton>
+              </StyledToggleButtonGroup>
+              <StyledToggleButtonGroup
+                size="small"
+                value={alignment}
+                exclusive
+                onChange={handleAlignment}
+                aria-label="text alignment"
+              >
+                <ToggleButton value="1500">
+                  15:00
+                </ToggleButton>
+                <ToggleButton value="1530">
+                  15:30
+                </ToggleButton>
+                <ToggleButton value="1600">
+                  16:00
+                </ToggleButton>
+              </StyledToggleButtonGroup>
+              <StyledToggleButtonGroup
+                size="small"
+                value={alignment}
+                exclusive
+                onChange={handleAlignment}
+                aria-label="text alignment"
+              >
+                <ToggleButton value="1630">
+                  16:30
+                </ToggleButton>
+                <ToggleButton value="1700">
+                  17:00
+                </ToggleButton>
+                <ToggleButton value="1730">
+                  17:30
+                </ToggleButton>
+              </StyledToggleButtonGroup>
+            </div>
+          </DialogActions1>
+          <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
+            <Box p={1}>
+              <Button variant="outlined" color="primary" onClick={handleChangeSuccessDialog}>
+                Next
+              </Button>
+            </Box>
+            <Box p={1}>
+              <Button variant="outlined" onClick={handleCloseTimePicker} color="primary">
+                Cancel
+                  </Button>
+            </Box>
+          </Box>
+        </DialogContent1>
+      </Dialog>
+
+      {/*Success Dialog*/}
+      <Dialog onClose={handleCloseSuccessDialog} aria-labelledby="customized-dialog-title" open={openSuccess} >
+        <DialogTitle2 align='center' id="customized-dialog-title" onClose={handleCloseSuccessDialog} style={{ backgroundColor: green[500] }}>
+          SUCCESS
+        </DialogTitle2>
+        <DialogContent2 dividers>
+          <CheckCircleIcon style={{ fontSize: 200, color: green[500] }} />
+          <Typography>
+            Your Booking Reference No. is: 738410
+          </Typography>
+        </DialogContent2>
       </Dialog>
     </div>
   );
