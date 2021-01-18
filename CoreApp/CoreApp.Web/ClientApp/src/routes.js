@@ -1,11 +1,11 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 
-//Uncomment below for admin menu
-import DashboardLayout from 'src/layouts/DashboardLayoutCustomer';
+//Uncomment below for customer menu
+//import DashboardLayout from 'src/layouts/DashboardLayoutCustomer';
 
 //Uncomment below for admin menu
-//import DashboardLayout from 'src/layouts/DashboardLayoutAdmin';
+import DashboardLayout from 'src/layouts/DashboardLayoutAdmin';
 
 //Uncomment below for staff menu
 //import DashboardLayout from 'src/layouts/DashboardLayoutStaff';
@@ -30,7 +30,7 @@ import AdminSummary from 'src/views/adminSummary/AdminSummary';
 import AdminViewOrder from 'src/views/adminViewOrder/AdminViewOrder';
 import CustomerBookingView from 'src/views/bookingLayoutCustomer/BookingLayoutView/index.js';
 import CustomerCargoView from 'src/views/cargoSummaryCustomer/CargoSummaryView/index.js';
-
+import AdminViewPH from 'src/views/admin4/AdminViewPH';
 
 const routes = [
   {
@@ -51,6 +51,7 @@ const routes = [
       { path: 'adminViewOrder', element: <AdminViewOrder /> },
       { path: 'customerBooking', element: <CustomerBookingView /> },
       { path: 'customerCargo', element: <CustomerCargoView /> },
+      { path: 'admin4', element: <AdminViewPH /> },
       { path: '*', element: <Navigate to="/404" /> }
     ]
   },

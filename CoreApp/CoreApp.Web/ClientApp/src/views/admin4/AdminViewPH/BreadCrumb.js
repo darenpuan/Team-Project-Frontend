@@ -39,7 +39,7 @@ export default function CustomSeparator() {
           onClick={handleClick}
           aria-current="page"
         >
-          Account Management
+          Public Holidays
         </Link>
       </Breadcrumbs>
       <Divider />

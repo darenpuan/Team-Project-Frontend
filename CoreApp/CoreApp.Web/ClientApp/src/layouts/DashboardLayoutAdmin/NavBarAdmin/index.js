@@ -58,7 +58,7 @@ const items = [
     title: 'Account Management'
   },
   {
-    href: '/app/settings',
+    href: '/app/admin4',
     icon: EventIcon,
     title: 'Public Holiday'
   }
