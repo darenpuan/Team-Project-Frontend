@@ -2,10 +2,10 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 
 //Uncomment below for customer menu
-//import DashboardLayout from 'src/layouts/DashboardLayoutCustomer';
+import DashboardLayout from 'src/layouts/DashboardLayoutCustomer';
 
 //Uncomment below for admin menu
-import DashboardLayout from 'src/layouts/DashboardLayoutAdmin';
+//import DashboardLayout from 'src/layouts/DashboardLayoutAdmin';
 
 //Uncomment below for staff menu
 //import DashboardLayout from 'src/layouts/DashboardLayoutStaff';
