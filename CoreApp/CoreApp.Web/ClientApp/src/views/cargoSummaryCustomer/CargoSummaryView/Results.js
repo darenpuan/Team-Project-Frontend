@@ -23,6 +23,7 @@ import {
 } from '@material-ui/core';
 import { CompletedChip, PendingChip, UnCompletedChip } from 'src/components/StatusChips';
 import getInitials from 'src/utils/getInitials';
+import TransferWarehouseDialog from 'src/dialogs/transferWarehouseDialog'
 
 const data = [
   {
@@ -127,9 +128,7 @@ const Results = ({ className, customers, ...rest }) => {
               </Grid>
             </Box>
             <Box p={1}>
-              <Button variant="outlined" color="primary">
-                Transfer
-                </Button>
+              <TransferWarehouseDialog/>
             </Box>
           </Box>
         </div>

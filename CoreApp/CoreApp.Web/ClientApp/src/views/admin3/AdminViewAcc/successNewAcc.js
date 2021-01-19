@@ -14,7 +14,7 @@ const styles = (theme) => ({
     margin: 0,
     padding: theme.spacing(2),
     backgroundColor: theme.palette.success.main,
-    color: 'white', 
+    color: 'white',
   },
 });
 
@@ -31,12 +31,10 @@ const DialogContent = withStyles((theme) => ({
   root: {
     padding: theme.spacing(8),
     textAlign: "center",
-    width: '600px',
-    height: '360px'
   },
 }))(MuiDialogContent);
 
-export default function SuccessDialog() {
+export default function SuccessReset() {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -48,20 +46,18 @@ export default function SuccessDialog() {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Next
-      </Button>
-      <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-        <DialogTitle align='center' id="customized-dialog-title" onClose={handleClose}>
-          SUCCESS
+
+      <DialogTitle align='center' id="customized-dialog-title" onClose={handleClose}>
+        SUCCESS
         </DialogTitle>
-        <DialogContent dividers>
-          <CheckCircleIcon style={{ fontSize: 200, color: green[500] }} />
-          <Typography>
-            Your Booking Reference No. is: 738410
+      <DialogContent dividers>
+        <CheckCircleIcon style={{ fontSize: 200, color: green[500] }} />
+        <Typography>
+          Email has been sent to employee
           </Typography>
-        </DialogContent>
-      </Dialog>
+      </DialogContent>
+
     </div>
   );
 }
+

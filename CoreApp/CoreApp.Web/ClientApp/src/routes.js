@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 
-//Uncomment below for admin menu
+//Uncomment below for customer menu
 import DashboardLayout from 'src/layouts/DashboardLayoutCustomer';
 
 //Uncomment below for admin menu
@@ -32,7 +32,7 @@ import CustomerBookingView from 'src/views/bookingLayoutCustomer/BookingLayoutVi
 import CustomerCargoView from 'src/views/cargoSummaryCustomer/CargoSummaryView/index.js';
 import ProfileCustomer from 'src/views/profile/ProfileCustomer/index.js';
 import FreqAskQns from 'src/views/faq/FreqAskQns/index.js';
-
+import AdminViewPH from 'src/views/admin4/AdminViewPH';
 
 const routes = [
   {
@@ -55,6 +55,7 @@ const routes = [
       { path: 'customerCargo', element: <CustomerCargoView /> },
       { path: 'profile', element: <ProfileCustomer /> },
       { path: 'faq', element: <FreqAskQns /> },
+      { path: 'admin4', element: <AdminViewPH /> },
       { path: '*', element: <Navigate to="/404" /> }
     ]
   },
@@ -69,10 +70,10 @@ const routes = [
       { path: '404', element: <NotFoundView /> },
 
       //Uncomment below for admin menu
-      { path: '/', element: <Navigate to="/app/adminSummary" /> },
+      //{ path: '/', element: <Navigate to="/app/adminSummary" /> },
 
       //Uncomment below for customer menu
-      //{ path: '/', element: <Navigate to="/app/customerBooking" /> },
+      { path: '/', element: <Navigate to="/app/customerBooking" /> },
 
       //Uncomment below for staff menu
       //{ path: '/', element: <Navigate to="/app/dashboardView" /> },

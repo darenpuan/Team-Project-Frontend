@@ -6,9 +6,7 @@ import PropTypes from 'prop-types';
 import { ViewAgenda } from '@material-ui/icons';
 import Controls from "src/components/controls/Controls";
 import Popup from 'src/components/Popup';
-import AddIcon from '@material-ui/icons/Add';
-import AccForm from './AccForm';
-import AccConfi from './AccConfi';
+import AddPH from './AddPH';
 
 import {
   Box,
@@ -29,68 +27,31 @@ import {
 } from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import { Search as SearchIcon } from 'react-feather';
-import { ActiveChip, PendingChip, SuspendedChip } from 'src/components/StatusChips';
 
 const data = [
   {
-    user: 'Patrick Newman',
-    role: 'Customer',
-    email: 'patrick@soft.com',
-    phone: '9123 4567',
-    company: "Soft Pte Ltd",
-    verified: "Email",
-    lastLogin: 1603000800000,
-    status: 'Pending'
+    phName: 'New Year 2021',
+    startDate: '31/12/2020',
+    endDate: '01/01/2021',
+    remove: 'Remove'
   },
   {
-    user: 'Muhammad Ali',
-    role: 'Adminstrator',
-    email: 'ali@medhub.com',
-    phone: '9123 4567',
-    company: "Medhub Pte Ltd",
-    verified: "Email",
-    lastLogin: 1603000800000,
-    status: 'Active'
+    phName: 'Christmas Day 2021',
+    startDate: '25/12/2021',
+    endDate: '25/12/2021',
+    remove: 'Remove'
   },
   {
-    user: 'Teo Teck Meng, Benjamin',
-    role: 'Staff',
-    email: 'benjamin@medhub.com',
-    phone: '9123 4567',
-    company: "Medhub Pte Ltd",
-    verified: "Email",
-    lastLogin: 1603000800000,
-    status: 'Suspended'
+    phName: 'Thanksgiving Day 2021',
+    startDate: '15/10/2021',
+    endDate: '15/10/2021',
+    remove: 'Remove'
   },
   {
-    user: 'Saravanan S/O Thirumasan',
-    role: 'Customer',
-    email: 'thirumasan@infosys.com',
-    phone: '9123 4567',
-    company: "Infomation Systems Pte Ltd",
-    verified: "Email",
-    lastLogin: 1603000800000,
-    status: 'Pending'
-  },
-  {
-    user: 'Alexander Mc',
-    role: 'Customer',
-    email: 'alexander@git.com',
-    phone: '9123 4567',
-    company: "Git Pte Ltd",
-    verified: "Email",
-    lastLogin: 1603000800000,
-    status: 'Active'
-  },
-  {
-    user: 'Brad Pit',
-    role: 'Customer',
-    email: 'brad@kpmg.com',
-    phone: '9123 4567',
-    company: "KPMG Pte Ltd",
-    verified: "Email",
-    lastLogin: 1603000800000,
-    status: 'Pending'
+    phName: 'Hari Raya Haji 2021',
+    startDate: '10/06/2021',
+    endDate: '10/06/2021',
+    remove: 'Remove'
   },
 ];
 
@@ -143,15 +104,13 @@ const Header = ({ headers, onSorting }) => {
 };
 //end of sort
 
-const ViewAcc = ({ className, ...rest }) => {
+const AdminPH = ({ className, ...rest }) => {
   const classes = useStyles();
   const [views] = useState(data);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
   const [sorting, setSorting] = useState({ field: "", order: "" }); //sort
-  const [recordForEdit, setRecordForEdit] = useState(null)
   const [openPopup, setOpenPopup] = useState(false);
-  const [openPopup2, setOpenPopup2] = useState(false);
 
 
   const handlePageChange = (event, newPage) => {
@@ -166,7 +125,7 @@ const ViewAcc = ({ className, ...rest }) => {
   //sorting
   if (sorting.field) {
     const reversed = sorting.order === "asc" ? 1 : -1;
-    ViewAcc = ViewAcc.sort(
+    AdminPH = AdminPH.sort(
       (a, b) => reversed * a[sorting.field].localeCompare(b[sorting.field])
     );
   }
@@ -177,8 +136,9 @@ const ViewAcc = ({ className, ...rest }) => {
       className={clsx(classes.root, className)}
       {...rest}
     >
-      <CardHeader title="View Account" />
-      <Box maxWidth={800} mb={3} ml={1}>
+
+      <CardHeader title="Public Holidays" />
+      <Box maxWidth={1000} mb={3} ml={1}>
         <Grid container spacing={1} alignItems="flex-end">
           <Grid item>
             <SvgIcon
@@ -190,12 +150,10 @@ const ViewAcc = ({ className, ...rest }) => {
           </Grid>
           <Grid item >
             <TextField id="input-with-icon-grid" label="Search for all columns" />
-            </Grid>
-
-          <Controls.Button text="New Account" 
+          </Grid>
+          <Controls.Button text="Add Public Holiday"
             variant="outlined"
             justifyContent="flex-end"
-            startIcon={<AddIcon />}
             className={classes.newButton}
             onClick={() => setOpenPopup(true)}
           />
@@ -209,28 +167,16 @@ const ViewAcc = ({ className, ...rest }) => {
             <TableHead headers={headers} onSorting={(field, order) => setSorting({field, order}) }>
               <TableRow>
                 <TableCell>
-                  User
+                  Public Holiday Name
                  </TableCell>
                 <TableCell>
-                  Role
+                  Start Date
                 </TableCell>
                 <TableCell>
-                  Email
+                  End Date
                 </TableCell>
                 <TableCell>
-                  Phone
-                </TableCell>
-                <TableCell>
-                  Company
-                </TableCell>
-                <TableCell>
-                  Verified
-                </TableCell>
-                <TableCell>
-                  Last Login
-                </TableCell>
-                <TableCell>
-                  Status
+                   
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -241,59 +187,16 @@ const ViewAcc = ({ className, ...rest }) => {
                   key={view.id}
                 >
                   <TableCell>
-                    <Controls.Button text={view.user}
-                      variant="outlined"
-                      className={classes.newButton}
-                      onClick={() => setOpenPopup2(true)}
-                    />
+                    {view.phName}
                   </TableCell>
                   <TableCell>
-                    {view.role}
+                    {moment(view.startDate).format('DD/MM/YYYY')}
                   </TableCell>
                   <TableCell>
-                    {view.email}
+                    {moment(view.endDate).format('DD/MM/YYYY')}
                   </TableCell>
                   <TableCell>
-                    {view.phone}
-                  </TableCell>
-                  <TableCell>
-                    {view.company}
-                  </TableCell>
-                  <TableCell>
-                    {view.verified}
-                  </TableCell>
-                  <TableCell>
-                    {moment(view.lastLogin).format('DD/MM/YYYY')}
-                  </TableCell>
-                  <TableCell>
-                    {view.status === 'Active' ? (
-                      <ActiveChip
-                        label={view.status}
-                        size="small"
-                        variant="outlined"
-                      />
-                    )
-                      : null}
-                    {
-                      view.status === 'Pending' ? (
-                        <PendingChip
-                          label={view.status}
-                          size="small"
-                          variant="outlined"
-                        />
-                      )
-                        : null
-                    }
-                    {
-                      view.status === 'Suspended' ? (
-                        <SuspendedChip
-                          label={view.status}
-                          size="small"
-                          variant="outlined"
-                        />
-                      )
-                        : null
-                    }
+                    {view.remove}
                   </TableCell>
                 </TableRow>
               ))}
@@ -312,27 +215,18 @@ const ViewAcc = ({ className, ...rest }) => {
       />
     </Card>
     <Popup
-      title="New Account"
+      title="Public Holiday"
       openPopup = {openPopup}
       setOpenPopup = {setOpenPopup}
     >
-      <AccForm />
-      </Popup>
-      <Popup
-        title="Account Configuration"
-        openPopup={openPopup2}
-        setOpenPopup={setOpenPopup2}
-      >
-        <AccConfi />
-      </Popup>
+     <AddPH />
+     </Popup>
     </>
   );
 };
 
-ViewAcc.propTypes = {
+AdminPH.propTypes = {
   className: PropTypes.string
 };
 
-export default ViewAcc;
-
-
+export default AdminPH;
