@@ -117,13 +117,14 @@ const RegisterAfter = () => {
                 display="flex"
                 justifyContent="center">
                 <Button
+                  component={RouterLink} to="/login"
                   color="primary"
                   size="large"
                   type="submit"
                   variant="contained"
                   align="center"
                 >
-                  Register
+                  Back to Login
                   </Button>
               </Box>
             </CardContent>
