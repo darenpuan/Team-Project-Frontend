@@ -50,13 +50,13 @@ const TopBar = ({
           </IconButton>
         </Hidden>
         <Hidden mdDown>
-          <RouterLink to="/">
+          <RouterLink to="/app/customerBooking">
             <Logo />
           </RouterLink>
         </Hidden>
         <Hidden lgUp>
           <Box flexGrow={1} />
-          <RouterLink to="/">
+          <RouterLink to="/app/customerBooking">
             <Logo />
           </RouterLink>
         </Hidden>

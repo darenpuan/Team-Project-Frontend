@@ -30,6 +30,8 @@ import AdminSummary from 'src/views/adminSummary/AdminSummary';
 import AdminViewOrder from 'src/views/adminViewOrder/AdminViewOrder';
 import CustomerBookingView from 'src/views/bookingLayoutCustomer/BookingLayoutView/index.js';
 import CustomerCargoView from 'src/views/cargoSummaryCustomer/CargoSummaryView/index.js';
+import ProfileCustomer from 'src/views/profile/ProfileCustomer/index.js';
+import FreqAskQns from 'src/views/faq/FreqAskQns/index.js';
 
 
 const routes = [
@@ -51,6 +53,8 @@ const routes = [
       { path: 'adminViewOrder', element: <AdminViewOrder /> },
       { path: 'customerBooking', element: <CustomerBookingView /> },
       { path: 'customerCargo', element: <CustomerCargoView /> },
+      { path: 'profile', element: <ProfileCustomer /> },
+      { path: 'faq', element: <FreqAskQns /> },
       { path: '*', element: <Navigate to="/404" /> }
     ]
   },

@@ -46,7 +46,7 @@ const items = [
     title: 'Order List'
   },
   {
-    href: '/app/settings',
+    href: '/app/faq',
     icon: HelpOutlineIcon,
     title: 'F.A.Q'
   }
