@@ -122,7 +122,7 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-
+{/*Table Styles*/ }
 const tableStyles = makeStyles({
   table: {
     minWidth: 650,
@@ -141,7 +141,7 @@ const rows = [
   createData('Item A', 'Batch No. 123', 50, 'DD/MM//YY'),
 ];
 
-
+{/*Success Dialog Styles*/ }
 const DialogTitle1 = withStyles(styles)((props) => {
   const { children, classes, onClose, ...other } = props;
   return (
