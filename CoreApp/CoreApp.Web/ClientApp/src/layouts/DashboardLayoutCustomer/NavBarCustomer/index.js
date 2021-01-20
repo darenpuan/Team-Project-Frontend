@@ -41,7 +41,7 @@ const items = [
     title: 'Cargo Summary'
   },
   {
-    href: '/app/products',
+    href: '/app/orderList',
     icon: ListAltIcon,
     title: 'Order List'
   },
