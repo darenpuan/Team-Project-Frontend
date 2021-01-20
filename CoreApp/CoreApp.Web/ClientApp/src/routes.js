@@ -50,6 +50,7 @@ const routes = [
       { path: 'adminViewBooking', element: <AdminViewBooking /> },
       { path: 'adminCargo', element: <AdminCargo /> },
       { path: 'adminViewAcc', element: <AdminViewAcc /> },
+      { path: 'adminViewPH', element: <AdminViewPH /> },
       { path: 'adminSummary', element: <AdminSummary /> },
       { path: 'adminViewOrder', element: <AdminViewOrder /> },
       { path: 'customerBooking', element: <CustomerBookingView /> },
