@@ -101,6 +101,8 @@ function EnhancedTableHead(props) {
             </TableSortLabel>
           </TableCell>
         ))}
+        <TableCell></TableCell>
+
       </TableRow>
     </TableHead>
   );
