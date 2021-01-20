@@ -6,7 +6,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import PersonIcon from '@material-ui/icons/Person';
-import BusinessIcon from '@material-ui/icons/Business';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import SecurityIcon from '@material-ui/icons/Security';
 import Profile from './Profile';
 import ProfileDetails from './ProfileDetails'
@@ -82,7 +82,7 @@ export default function VerticalTabs() {
         <Profile />
         <Tab label={<div style={{ alignItems:'left' }}><PersonIcon style={{ verticalAlign: 'middle', fontSize: 'small'}} /> Personal Info </div>} {...a11yProps(1)} />
         <Tab label={<div><SecurityIcon style={{ verticalAlign: 'middle', fontSize: 'small' }} /> Password Change </div>} {...a11yProps(2)} />
-        <Tab label={<div><SecurityIcon style={{ verticalAlign: 'middle', fontSize: 'small'}} /> Pin Change </div>} {...a11yProps(3)} />
+        <Tab label={<div><VpnKeyIcon style={{ verticalAlign: 'middle', fontSize: 'small'}} /> Pin Change </div>} {...a11yProps(3)} />
       </Tabs>
       <TabPanel value={value} index={0}>
         <ProfileDetails />
