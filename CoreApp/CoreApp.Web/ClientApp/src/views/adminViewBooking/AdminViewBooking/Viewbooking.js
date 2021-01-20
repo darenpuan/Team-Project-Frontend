@@ -7,6 +7,7 @@ import { ViewAgenda } from '@material-ui/icons';
 import IconButton from '@material-ui/core/IconButton';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import Popup from 'src/components/Popup';
+import SearchBar from "material-ui-search-bar";
 
 import {
   Box,
@@ -23,11 +24,16 @@ import {
   InputAdornment,
   SvgIcon,
   Grid,
-  TextField
+  TextField,
+  colors
 } from '@material-ui/core';
+import {
+  Search as SearchIcon,
+  Filter as FilterIcon
+} from 'react-feather';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
-import { Search as SearchIcon } from 'react-feather';
 import { ApprovedChip, PendingChip, RejectedChip, TransitChip } from 'src/components/StatusChips';
+import { FilterButton } from 'src/components/Buttons';
 import BillOfLanding from '../../../dialogs/bookingSystemForm/billOfLanding';
 
 const data = [
@@ -85,7 +91,13 @@ const useStyles = makeStyles(() => ({
   root: {},
   actions: {
     justifyContent: 'flex-end'
+  },
+  filterButton: {
+    '&:hover': {
+      color: colors.common.white
+    }
   }
+
 }));
 
 const headers = [
@@ -170,7 +182,6 @@ const Viewbooking = ({ className, ...rest }) => {
       className={clsx(classes.root, className)}
       {...rest}
     >
-
       <CardHeader title="View Booking" />
       <Box maxWidth={800} mb={3} ml={1}>
         <Grid container spacing={1} alignItems="flex-end">
@@ -184,7 +195,17 @@ const Viewbooking = ({ className, ...rest }) => {
           </Grid>
           <Grid item >
             <TextField id="input-with-icon-grid" label="Search for all columns" />
-          </Grid>
+            </Grid>
+            <Grid item >
+              <FilterButton variant="contained">
+                <SvgIcon
+                  fontSize="small"
+                  color="action"
+                >
+                  <FilterIcon className={classes.filterButton} />
+                </SvgIcon>&nbsp;&nbsp;Filter
+              </FilterButton>
+            </Grid>
         </Grid>
       </Box>
 
@@ -192,7 +213,7 @@ const Viewbooking = ({ className, ...rest }) => {
       <PerfectScrollbar>
         <Box minWidth={800}>
           <Table>
-            <TableHead headers={headers} onSorting={(field, order) => setSorting({field, order}) }>
+            <TableHead headers={headers}>
               <TableRow>
                 <TableCell>
                   Email
@@ -216,7 +237,9 @@ const Viewbooking = ({ className, ...rest }) => {
                   </TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
+              <TableBody>
+                <div>
+                </div>
               {views.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((view) => (
                 <TableRow
                   hover

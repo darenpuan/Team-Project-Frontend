@@ -64,6 +64,11 @@ function StyledRadio(props) {
 export default function RadioGroup(props) {
 
   const { name, label, value, onChange, items } = props;
+  /*
+  onChange(field, value) {
+    localStorage.setItem({ selectedOption: "adminRadioSelect", value });
+    console.log(this.state.selectedOption)
+  }*/
 
   return (
     <FormControl>

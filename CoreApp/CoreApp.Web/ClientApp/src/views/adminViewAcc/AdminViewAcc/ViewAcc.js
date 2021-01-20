@@ -41,7 +41,7 @@ const data = [
     phone: '9123 4567',
     company: "Soft Pte Ltd",
     verified: "Email",
-    lastLogin: 1603000800000,
+    lastLogin: "12/22/2020",
     status: 'Pending'
   },
   {
@@ -51,7 +51,7 @@ const data = [
     phone: '9123 4567',
     company: "Medhub Pte Ltd",
     verified: "Email",
-    lastLogin: 1603000800000,
+    lastLogin: "12/22'2020",
     status: 'Active'
   },
   {
@@ -61,7 +61,7 @@ const data = [
     phone: '9123 4567',
     company: "Medhub Pte Ltd",
     verified: "Email",
-    lastLogin: 1603000800000,
+    lastLogin: "10/24/2020",
     status: 'Suspended'
   },
   {
@@ -71,7 +71,7 @@ const data = [
     phone: '9123 4567',
     company: "Infomation Pte Ltd",
     verified: "Email",
-    lastLogin: 1603000800000,
+    lastLogin: "12/22/2020",
     status: 'Pending'
   },
   {
@@ -210,7 +210,7 @@ const ViewAcc = ({ className, ...rest }) => {
         <PerfectScrollbar>
           <Box minWidth={1100}>
             <Table>
-              <TableHead headers={headers} onSorting={(field, order) => setSorting({ field, order })}>
+              <TableHead headers={headers} >
                 <TableRow>
                   <TableCell>
                     User
