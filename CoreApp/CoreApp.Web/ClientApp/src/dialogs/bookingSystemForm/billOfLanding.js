@@ -26,9 +26,9 @@ function createData(name, size, view, download, print) {
 }
 
 const rows = [
-  createData("1) Bill_of_landing_01.pdf", "25MB", "View", "Download", "Print"),
-  createData("2) Bill_of_landing_02.pdf", "25MB", "View", "Download", "Print"),
-  createData("3) Bill_of_landing_03.pdf", "25MB", "View", "Download", "Print")
+  createData("1) Bill_of_lading_01.pdf", "25MB", "View", "Download", "Print"),
+  createData("2) Bill_of_lading_02.pdf", "25MB", "View", "Download", "Print"),
+  createData("3) Bill_of_lading_03.pdf", "25MB", "View", "Download", "Print")
 ];
 
 const rows2 = [
