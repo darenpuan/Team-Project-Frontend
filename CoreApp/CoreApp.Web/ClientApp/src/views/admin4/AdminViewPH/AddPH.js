@@ -20,11 +20,17 @@ const useStyles = makeStyles((theme) => ({
       width: '25ch',
     },
   },
+  pad: {
+    padding: 0,
+    '&:first-child': {
+      padding: 0,
+    },
+  },
 }));
 
 export default function MaterialUIPickers() {
-  const [startDate, setStartDate] = React.useState(new Date('2014-08-18T21:11:54'));
-  const [endDate, setEndDate] = React.useState(new Date('2014-08-18T21:11:54'));
+  const [startDate, setStartDate] = React.useState(new Date('2020-01-21T15:20:54'));
+  const [endDate, setEndDate] = React.useState(new Date('2020-01-21T15:20:54'));
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
 
@@ -96,7 +102,7 @@ export default function MaterialUIPickers() {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogContent>
+          <DialogContent className={classes.pad}>
             <SuccessAddPH />
           </DialogContent>
         </Dialog>

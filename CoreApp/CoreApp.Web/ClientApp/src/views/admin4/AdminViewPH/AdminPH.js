@@ -31,26 +31,26 @@ import { Search as SearchIcon } from 'react-feather';
 const data = [
   {
     phName: 'New Year 2021',
-    startDate: '31/12/2020',
+    startDate: '12/31/2020',
     endDate: '01/01/2021',
     remove: 'Remove'
   },
   {
     phName: 'Christmas Day 2021',
-    startDate: '25/12/2021',
-    endDate: '25/12/2021',
+    startDate: '12/25/2021',
+    endDate: '12/25/2021',
     remove: 'Remove'
   },
   {
     phName: 'Thanksgiving Day 2021',
-    startDate: '15/10/2021',
-    endDate: '15/10/2021',
+    startDate: '10/15/2021',
+    endDate: '10/15/2021',
     remove: 'Remove'
   },
   {
     phName: 'Hari Raya Haji 2021',
-    startDate: '10/06/2021',
-    endDate: '10/06/2021',
+    startDate: '06/10/2021',
+    endDate: '06/10/2021',
     remove: 'Remove'
   },
 ];
@@ -161,7 +161,6 @@ const AdminPH = ({ className, ...rest }) => {
       </Box>
 
       <Divider />
-      <PerfectScrollbar>
         <Box minWidth={1050}>
           <Table>
             <TableHead headers={headers} onSorting={(field, order) => setSorting({field, order}) }>
@@ -203,7 +202,6 @@ const AdminPH = ({ className, ...rest }) => {
             </TableBody>
           </Table>
         </Box>
-      </PerfectScrollbar>
       <TablePagination
         rowsPerPageOptions={[5, 10, 25]}
         component="div"

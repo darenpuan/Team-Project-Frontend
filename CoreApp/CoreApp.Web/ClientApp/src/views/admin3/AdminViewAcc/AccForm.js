@@ -21,6 +21,13 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: 60,
   },
+  pad: {
+    padding: 0,
+    '&:first-child': {
+      padding:0
+
+    },
+  },
 }));
 
 const salutationItems = [
@@ -204,7 +211,7 @@ export default function AccForm(props) {
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
             >
-              <DialogContent>
+              <DialogContent className={classes.pad}>
                 <SuccessNewAcc />
               </DialogContent>
             </Dialog>

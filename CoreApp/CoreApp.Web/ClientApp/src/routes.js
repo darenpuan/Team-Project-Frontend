@@ -2,10 +2,10 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 
 //Uncomment below for customer menu
-import DashboardLayout from 'src/layouts/DashboardLayoutCustomer';
+//import DashboardLayout from 'src/layouts/DashboardLayoutCustomer';
 
 //Uncomment below for admin menu
-//import DashboardLayout from 'src/layouts/DashboardLayoutAdmin';
+import DashboardLayout from 'src/layouts/DashboardLayoutAdmin';
 
 //Uncomment below for staff menu
 //import DashboardLayout from 'src/layouts/DashboardLayoutStaff';
@@ -70,10 +70,10 @@ const routes = [
       { path: '404', element: <NotFoundView /> },
 
       //Uncomment below for admin menu
-      //{ path: '/', element: <Navigate to="/app/adminSummary" /> },
+      { path: '/', element: <Navigate to="/app/adminSummary" /> },
 
       //Uncomment below for customer menu
-      { path: '/', element: <Navigate to="/app/customerBooking" /> },
+      //{ path: '/', element: <Navigate to="/app/customerBooking" /> },
 
       //Uncomment below for staff menu
       //{ path: '/', element: <Navigate to="/app/dashboardView" /> },
