@@ -34,8 +34,8 @@ const data = [
     amount: 30.5,
     cargoName: 'Packet Drinks',
     createdAt: 1555016400000,
-    currentLocation: 'Singapore',
-    destination: 'Malaysia',
+    currentLocation: 'Warehouse B',
+    destination: 'Warehouse A',
     status: 'Pending'
   },
   {
@@ -43,8 +43,8 @@ const data = [
     amount: 25.1,
     cargoName: 'Packet Drinks',
     createdAt: 1555016400000,
-    currentLocation: 'Singapore',
-    destination: 'Malaysia',
+    currentLocation: 'Warehouse A',
+    destination: 'Warehouse B',
     status: 'Completed'
   },
   {
@@ -52,8 +52,8 @@ const data = [
     amount: 10.99,
     cargoName: 'Packet Drinks',
     createdAt: 1554930000000,
-    currentLocation: 'Singapore',
-    destination: 'Malaysia',
+    currentLocation: 'Warehouse B',
+    destination: 'Warehouse A',
     status: 'Uncompleted'
   },
   {
@@ -61,8 +61,8 @@ const data = [
     amount: 96.43,
     cargoName: 'Packet Drinks',
     createdAt: 1554757200000,
-    currentLocation: 'Singapore',
-    destination: 'Malaysia',
+    currentLocation: 'Warehouse A',
+    destination: 'Warehouse B',
     status: 'Pending'
   },
   {
@@ -70,8 +70,8 @@ const data = [
     amount: 32.54,
     cargoName: 'Packet Drinks',
     createdAt: 1554670800000,
-    currentLocation: 'Singapore',
-    destination: 'Malaysia',
+    currentLocation: 'Warehouse A',
+    destination: 'Warehouse B',
     status: 'Completed'
   },
   {
@@ -79,8 +79,8 @@ const data = [
     amount: 16.76,
     cargoName: 'Packet Drinks',
     createdAt: 1554670800000,
-    currentLocation: 'Singapore',
-    destination: 'Malaysia',
+    currentLocation: 'Warehouse B',
+    destination: 'Warehouse B',
     status: 'Completed'
   }
 ];

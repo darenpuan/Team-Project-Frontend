@@ -15,6 +15,7 @@ import DateFnsUtils from "@date-io/date-fns";
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { green } from '@material-ui/core/colors';
+import OrderListForm from 'src/views/orderlist/OrderListClient/OrderListForm.js';
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker
@@ -174,6 +175,20 @@ export default function NewBookingChoiceDialog() {
     setOpenBookingChoice(false);
     setOpenTimePicker(true);
   };
+
+  const [openOrder, setOpenOrder] = React.useState(false);
+
+  const handleOpenOrder = () => {
+    setOpenOrder(true);
+  };
+  const handleCloseOrder = () => {
+    setOpenOrder(false);
+  };
+  const handleChangeOrder = () => {
+    setOpenBookingChoice(false);
+    setOpenOrder(true);
+  };
+
   const handleOpenSuccessDialog = () => {
     setOpenSuccess(true);
   };
@@ -211,7 +226,7 @@ export default function NewBookingChoiceDialog() {
              </Button>
           </DialogActions>
           <DialogActions>
-            <Button style={{ width: '200px', height: '40px' }} variant='outlined' color="primary">
+            <Button style={{ width: '200px', height: '40px' }} variant='outlined' color="primary" onClick={handleChangeOrder}>
               New Order List
             </Button>
           </DialogActions>
@@ -383,6 +398,26 @@ export default function NewBookingChoiceDialog() {
           </Box>
         </DialogContent1>
       </Dialog>
+
+
+      {/*New Order List Dialog*/}
+      <Dialog maxWidth="md" onClose={handleCloseOrder} aria-labelledby="customized-dialog-title" open={openOrder}>
+        <DialogTitle id="customized-dialog-title" style={{ textAlign: "center" }} onClose={handleCloseOrder}>
+          Order List Form
+        </DialogTitle>
+        <DialogContent dividers>
+          <OrderListForm />
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleCloseOrder} color="primary">
+            Save & Submit
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+
+
+
 
       {/*Success Dialog*/}
       <Dialog onClose={handleCloseSuccessDialog} aria-labelledby="customized-dialog-title" open={openSuccess} >
