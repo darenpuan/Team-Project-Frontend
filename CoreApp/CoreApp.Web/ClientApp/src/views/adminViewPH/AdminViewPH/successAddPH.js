@@ -32,10 +32,6 @@ const DialogContent = withStyles((theme) => ({
     padding: theme.spacing(8),
     textAlign: "center",
   },
-  pad: {
-    padding: 0,
-    backgroundColor: green[500]
-  },
 }))(MuiDialogContent);
 
 export default function SuccessAddPH() {
@@ -50,7 +46,7 @@ export default function SuccessAddPH() {
 
   return (
     <div>
-      <DialogTitle className={DialogContent.pad} align='center' id="customized-dialog-title" onClose={handleClose} >
+      <DialogTitle align='center' id="customized-dialog-title" onClose={handleClose} >
         SUCCESS
         </DialogTitle>
         <DialogContent>
