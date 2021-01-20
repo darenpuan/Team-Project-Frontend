@@ -183,27 +183,25 @@ const ViewAcc = ({ className, ...rest }) => {
         {...rest}
       >
         <CardHeader title="View Account" />
-        <Box maxWidth={800} mb={3} ml={1}>
-          <Grid container spacing={1} alignItems="flex-end">
-            <Grid item>
-              <SvgIcon
-                fontSize="small"
-                color="action"
-              >
-                <SearchIcon />
-              </SvgIcon>
+        <Box display="flex" p={1}>
+          <Box p={1} flexGrow={1}>
+            <Grid container spacing={1} alignItems="flex-end">
+              <Grid item>
+                <SvgIcon
+                  fontSize="small"
+                  color="action"
+                >
+                  <SearchIcon />
+                </SvgIcon>
+              </Grid>
+              <Grid item >
+                <TextField id="input-with-icon-grid" label="Search for all columns" />
+              </Grid>
             </Grid>
-            <Grid item >
-              <TextField id="input-with-icon-grid" label="Search for all columns" />
-            </Grid>
-
-            <Controls.Button text="New Account"
-              variant="outlined"
-              justifyContent="flex-end"
-              startIcon={<AddIcon />}
-              onClick={() => setOpenPopup(true)}
-            />
-          </Grid>
+          </Box>
+          <Box p={1}>
+            <AccForm/>
+          </Box>
         </Box>
 
         <Divider />
@@ -292,9 +290,7 @@ const ViewAcc = ({ className, ...rest }) => {
                       }
                     </TableCell>
                     <TableCell>
-                    <IconButton color="primary">
-                      <OpenInNewIcon style={{ color: "black" }} onClick={() => setOpenPopup2(true)} />
-                      </IconButton>
+                      <AccConfi />
                     </TableCell>
                   </TableRow>
                 ))}
@@ -312,20 +308,6 @@ const ViewAcc = ({ className, ...rest }) => {
           onChangeRowsPerPage={handleLimitChange}
         />
       </Card>
-      <Popup
-        title="New Account"
-        openPopup={openPopup}
-        setOpenPopup={setOpenPopup}
-      >
-        <AccForm />
-      </Popup>
-      <Popup
-        title="Account Configuration"
-        openPopup={openPopup2}
-        setOpenPopup={setOpenPopup2}
-      >
-        <AccConfi />
-      </Popup>
     </>
   );
 };

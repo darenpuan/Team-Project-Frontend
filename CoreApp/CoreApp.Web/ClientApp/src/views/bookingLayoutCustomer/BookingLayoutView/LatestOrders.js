@@ -8,6 +8,7 @@ import { Search as SearchIcon } from 'react-feather';
 import NewBookingChoiceDialog from 'src/dialogs/newBookingChoiceDialog';
 import IconButton from '@material-ui/core/IconButton';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
+import Button from '@material-ui/core/Button';
 import {
   Box,
   Card,
@@ -23,7 +24,8 @@ import {
   TablePagination,
   Grid,
   Tooltip,
-  makeStyles
+  makeStyles,
+  Typography
 } from '@material-ui/core';
 
 import { CompletedChip, PendingChip, UnCompletedChip } from 'src/components/StatusChips';
@@ -180,7 +182,9 @@ const LatestOrders = ({ className, ...rest }) => {
                     {moment(order.createdAt).format('DD/MM/YYYY')}
                   </TableCell>
                   <TableCell>
-                    Download
+                    <Button style={{ textTransform: 'none'}}>
+                      Download
+                    </Button>
                   </TableCell>
                   <TableCell>
                     {order.status === 'Completed' ? (

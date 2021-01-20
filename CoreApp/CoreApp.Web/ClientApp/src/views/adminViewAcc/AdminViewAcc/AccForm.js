@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Grid, } from '@material-ui/core';
 import Controls from "src/components/controls/Controls";
 import { useForm, Form } from 'src/components/useForm';
@@ -8,9 +8,16 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import SuccessNewAcc from './successNewAcc';
 import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import MuiDialogTitle from '@material-ui/core/DialogTitle';
+import MuiDialogContent from '@material-ui/core/DialogContent';
+import MuiDialogActions from '@material-ui/core/DialogActions';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import { green } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -30,6 +37,54 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
+
+const styles = (theme) => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(1.5),
+    backgroundColor: theme.palette.info.main,
+    color: 'white',
+  },
+  closeButton: {
+    position: 'absolute',
+    right: theme.spacing(0),
+    top: theme.spacing(0),
+    color: 'white',
+  },
+});
+
+const DialogTitle = withStyles(styles)((props) => {
+  const { children, classes, onClose, ...other } = props;
+  return (
+    <MuiDialogTitle disableTypography className={classes.root} {...other}>
+      <Typography variant="h6">{children}</Typography>
+      {onClose ? (
+        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+    </MuiDialogTitle>
+  );
+});
+
+const DialogContent = withStyles((theme) => ({
+  root: {
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(5),
+    paddingRight: theme.spacing(5),
+    paddingLeft: theme.spacing(5),
+  },
+}))(MuiDialogContent);
+
+const DialogActions = withStyles((theme) => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(1),
+    alignContent: 'center',
+  },
+}))(MuiDialogActions);
+
+
 
 const salutationItems = [
   { id: 'mr', title: 'Mr' },
@@ -51,10 +106,40 @@ const initialFValues = {
   department: ''
 }
 
+
+const DialogTitle1 = withStyles(styles)((props) => {
+  const { children, classes, onClose, ...other } = props;
+  return (
+    <MuiDialogTitle disableTypography className={classes.root} {...other}>
+      <Typography variant="h6">{children}</Typography>
+    </MuiDialogTitle>
+  );
+});
+
+const DialogContent1 = withStyles((theme) => ({
+  root: {
+    padding: theme.spacing(8),
+    textAlign: "center",
+    width: '600px',
+    height: '360px'
+  },
+}))(MuiDialogContent);
+
 export default function AccForm(props) {
   const classes = useStyles();
   const { addOrEdit, recordForEdit } = props
   const [open, setOpen] = React.useState(false);
+  const [openSuccess, setOpenSuccess] = React.useState(false);
+  const handleOpenSuccessDialog = () => {
+    setOpenSuccess(true);
+  };
+  const handleCloseSuccessDialog = () => {
+    setOpenSuccess(false);
+  };
+  const handleChangeSuccessDialog = () => {
+    setOpen(false);
+    setOpenSuccess(true);
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -119,6 +204,16 @@ export default function AccForm(props) {
   }, [recordForEdit])
 
   return (
+    <div>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      NEW ACCOUNT
+      </Button>
+      <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} fullWidth={'true'} maxWidth={'md'}>
+        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+          <Typography align='center'>
+          NEW ACCOUNT
+        </Typography>
+        </DialogTitle>
     <Form onSubmit={handleSubmit}>
       <Grid container justify="center">
         <FormControl required className={classes.formControl}>
@@ -206,27 +301,28 @@ export default function AccForm(props) {
 
           <Grid container justify="center">
             <Controls.Button
-              text="Reset"
-              color="default"
-              onClick={resetForm} />
-            <Controls.Button
               type="submit"
               text="Submit"
-              onClick={handleClickOpen}
+              onClick={handleChangeSuccessDialog}
             />
-            <Dialog
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-            >
-              <DialogContent className={classes.pad}>
-                <SuccessNewAcc />
-              </DialogContent>
-            </Dialog>
           </Grid>
         </Grid>
       </Grid>
     </Form>
+      </Dialog>
+
+
+      <Dialog onClose={handleCloseSuccessDialog} aria-labelledby="customized-dialog-title" open={openSuccess} >
+        <DialogTitle1 align='center' id="customized-dialog-title" onClose={handleCloseSuccessDialog} style={{ backgroundColor: green[500] }}>
+        SUCCESS
+        </DialogTitle1>
+        <DialogContent1 dividers>
+          <CheckCircleIcon style={{ fontSize: 200, color: green[500] }} />
+          <Typography>
+          Your Booking Reference No. is: 627301
+          </Typography>
+        </DialogContent1>
+      </Dialog>
+      </div>
   )
 }
