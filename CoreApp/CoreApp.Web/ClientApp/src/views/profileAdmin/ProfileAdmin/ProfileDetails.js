@@ -73,7 +73,6 @@ const ProfileDetails = ({ className, ...rest }) => {
         aria-labelledby="nested-list-subheader"
         subheader={
           <ListSubheader component="div" id="nested-list-subheader">
-            BASICS
       </ListSubheader>
         }
         className={classes.mylist}
