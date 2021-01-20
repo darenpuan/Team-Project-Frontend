@@ -4,8 +4,6 @@ import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
 import { ViewAgenda } from '@material-ui/icons';
-import Controls from "src/components/controls/Controls";
-import Popup from 'src/components/Popup';
 import AddPH from './AddPH';
 
 import {
@@ -110,8 +108,6 @@ const AdminPH = ({ className, ...rest }) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
   const [sorting, setSorting] = useState({ field: "", order: "" }); //sort
-  const [openPopup, setOpenPopup] = useState(false);
-
 
   const handlePageChange = (event, newPage) => {
     setPage(newPage);
@@ -138,27 +134,28 @@ const AdminPH = ({ className, ...rest }) => {
     >
 
       <CardHeader title="Public Holidays" />
-      <Box maxWidth={800} mb={3} ml={1}>
-        <Grid container spacing={1} alignItems="flex-end">
-          <Grid item>
-            <SvgIcon
-              fontSize="small"
-              color="action"
-            >
-              <SearchIcon />
-            </SvgIcon>
-          </Grid>
-          <Grid item >
-            <TextField id="input-with-icon-grid" label="Search for all columns" />
-          </Grid>
-          <Controls.Button text="Add Public Holiday"
-            variant="outlined"
-            justifyContent="flex-end"
-            className={classes.newButton}
-            onClick={() => setOpenPopup(true)}
-          />
-        </Grid>
-      </Box>
+        <div style={{ width: '100%' }}>
+          <Box display="flex" p={1}>
+            <Box p={1} flexGrow={1}>
+              <Grid container spacing={1} alignItems="flex-end">
+                <Grid item>
+                  <SvgIcon
+                    fontSize="small"
+                    color="action"
+                  >
+                    <SearchIcon />
+                  </SvgIcon>
+                </Grid>
+                <Grid item >
+                  <TextField id="input-with-icon-grid" label="Search for all columns" />
+                </Grid>
+              </Grid>
+            </Box>
+            <Box p={1}>
+              <AddPH />
+            </Box>
+          </Box>
+        </div>
 
       <Divider />
         <Box minWidth={800}>
@@ -212,13 +209,6 @@ const AdminPH = ({ className, ...rest }) => {
         onChangeRowsPerPage={handleLimitChange}
       />
     </Card>
-    <Popup
-      title="Public Holiday"
-      openPopup = {openPopup}
-      setOpenPopup = {setOpenPopup}
-    >
-     <AddPH />
-     </Popup>
     </>
   );
 };

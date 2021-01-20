@@ -1,23 +1,28 @@
-import 'date-fns';
 import React from 'react';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import MuiDialogTitle from '@material-ui/core/DialogTitle';
+import MuiDialogContent from '@material-ui/core/DialogContent';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core/styles';
+import DateFnsUtils from "@date-io/date-fns";
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import { green } from '@material-ui/core/colors';
 import Grid from '@material-ui/core/Grid';
-import DateFnsUtils from '@date-io/date-fns';
+import TextField from '@material-ui/core/TextField';
 import {
   MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
-import SuccessAddPH from './successAddPH';
-import Controls from "src/components/controls/Controls";
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import TextField from '@material-ui/core/TextField';
+  KeyboardDatePicker
+} from "@material-ui/pickers";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
-      width: '25ch',
+      width: '30ch',
     },
   },
   pad: {
@@ -27,11 +32,63 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
+const styles = (theme) => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(1.5),
+    backgroundColor: theme.palette.info.main,
+    color: 'white',
+  },
+  closeButton: {
+    position: 'absolute',
+    right: theme.spacing(0),
+    top: theme.spacing(0),
+    color: 'white',
+  },
+});
+const DialogTitle = withStyles(styles)((props) => {
+  const { children, classes, onClose, ...other } = props;
+  return (
+    <MuiDialogTitle disableTypography className={classes.root} {...other}>
+      <Typography variant="h6">{children}</Typography>
+      {onClose ? (
+        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose} style={{ color: "white" }}>
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+    </MuiDialogTitle>
+  );
+});
+
+const DialogContent = withStyles((theme) => ({
+  root: {
+    padding: theme.spacing(5),
+  },
+}))(MuiDialogContent);
+
+const DialogTitle1 = withStyles(styles)((props) => {
+  const { children, classes, onClose, ...other } = props;
+  return (
+    <MuiDialogTitle disableTypography className={classes.root} {...other}>
+      <Typography variant="h6">{children}</Typography>
+    </MuiDialogTitle>
+  );
+});
+
+const DialogContent1 = withStyles((theme) => ({
+  root: {
+    padding: theme.spacing(8),
+    textAlign: "center",
+    width: '600px',
+    height: '360px'
+  },
+}))(MuiDialogContent);
 
 export default function MaterialUIPickers() {
   const [startDate, setStartDate] = React.useState(new Date('2020-01-21T15:20:54'));
   const [endDate, setEndDate] = React.useState(new Date('2020-01-21T15:20:54'));
   const [open, setOpen] = React.useState(false);
+  const [openSuccess, setOpenSuccess] = React.useState(false);
   const classes = useStyles();
 
   const handleClickOpen = () => {
@@ -40,6 +97,16 @@ export default function MaterialUIPickers() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+  const handleOpenSuccessDialog = () => {
+    setOpenSuccess(true);
+  };
+  const handleCloseSuccessDialog = () => {
+    setOpenSuccess(false);
+  };
+  const handleChangeSuccessDialog = () => {
+    setOpen(false);
+    setOpenSuccess(true);
   };
 
   const handleDateChange = (date) => {
@@ -53,12 +120,24 @@ export default function MaterialUIPickers() {
 
 
   return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils} >
+    <div>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        Add Public Holiday
+      </Button>
+      <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+          <Typography align='center'>
+            Public Holiday
+        </Typography>
+        </DialogTitle>
+        <DialogContent>
+
       <Grid container justify="center">
       <form className={classes.root} noValidate autoComplete="off">
           <TextField id="outlined-basic" label="Public Holiday Name" variant="outlined" />
         </form>
       </Grid>
+        <MuiPickersUtilsProvider utils={DateFnsUtils} >
       <Grid container justify="center">
         <KeyboardDatePicker
           disableToolbar
@@ -88,27 +167,31 @@ export default function MaterialUIPickers() {
           KeyboardButtonProps={{
             'aria-label': 'change date',
           }}
-        />
-      </Grid>
+              />
+          </Grid>
+            </MuiPickersUtilsProvider>
+            </DialogContent>
 
       <Grid container justify="center">
-        <Controls.Button
-          type="submit"
-          text="Submit"
-          onClick={handleClickOpen}
-        />
-        <Dialog
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogContent className={classes.pad}>
-            <SuccessAddPH />
-          </DialogContent>
+           <Button style={{marginBottom:"20px", width:"200px"}} size="large" onClick={handleChangeSuccessDialog} variant='contained' color="primary">
+              Submit
+            </Button>
+            </Grid>
         </Dialog>
-      </Grid>
-    </MuiPickersUtilsProvider>
+         <Dialog onClose={handleCloseSuccessDialog} aria-labelledby="customized-dialog-title" open={openSuccess} >
+        <DialogTitle1 align='center' id="customized-dialog-title" onClose={handleCloseSuccessDialog} style={{ backgroundColor: green[500] }}>
+          SUCCESS
+        </DialogTitle1>
+        <DialogContent1 dividers>
+          <CheckCircleIcon style={{ fontSize: 200, color: green[500] }} />
+          <Typography>
+            Public Holiday Successfully added
+          </Typography>
+        </DialogContent1>
+      </Dialog>
+
+
+    </div>
 
   );
 }
