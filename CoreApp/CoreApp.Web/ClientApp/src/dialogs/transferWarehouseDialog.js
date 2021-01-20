@@ -134,11 +134,11 @@ function createData(name, batch, quantity, expiry) {
 }
 
 const rows = [
-  createData('Item A', 'Batch No. 123', 20, 'DD/MM//YY'),
-  createData('Item B', 'Batch No. 123', 17, 'DD/MM//YY'),
-  createData('Item A', 'Batch No. 123', 42, 'DD/MM//YY'),
-  createData('Item A', 'Batch No. 123', 16, 'DD/MM//YY'),
-  createData('Item A', 'Batch No. 123', 50, 'DD/MM//YY'),
+  createData('Item A', '123', 20, 'DD/MM//YY'),
+  createData('Item B', '123', 17, 'DD/MM//YY'),
+  createData('Item A', '123', 42, 'DD/MM//YY'),
+  createData('Item A', '123', 16, 'DD/MM//YY'),
+  createData('Item A', '123', 50, 'DD/MM//YY'),
 ];
 
 {/*Success Dialog Styles*/ }
