@@ -2,13 +2,11 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 
 //Uncomment below for customer menu
-//import DashboardLayout from 'src/layouts/DashboardLayoutCustomer';
-
-//Uncomment below for admin menu
-import DashboardLayout from 'src/layouts/DashboardLayoutAdmin';
+import DashboardLayoutCustomer from 'src/layouts/DashboardLayoutCustomer';
+import DashboardLayoutAdmin from 'src/layouts/DashboardLayoutAdmin';
 
 //Uncomment below for staff menu
-//import DashboardLayout from 'src/layouts/DashboardLayoutStaff';
+//import {DashboardLayout as DashboardLayoutStaff} from 'src/layouts/DashboardLayoutStaff';
 
 import MainLayout from 'src/layouts/MainLayout';
 import AccountView from 'src/views/account/AccountView';
@@ -38,29 +36,30 @@ import OrderListClient from 'src/views/orderlist/OrderListClient';
 
 const routes = [
   {
-    path: 'app',
-    element: <DashboardLayout />,
+    path: 'admin',
+    element: <DashboardLayoutAdmin />,
     children: [
-      { path: 'account', element: <AccountView /> },
-      { path: 'home', element: <Dashboard /> },
-      { path: 'customers', element: <CustomerListView /> },
-      { path: 'dashboardView', element: <DashboardView /> },
-      { path: 'products', element: <ProductListView /> },
-      { path: 'settings', element: <SettingsView /> },
-      { path: 'analytics', element: <AnalyticsView /> },
       { path: 'adminViewBooking', element: <AdminViewBooking /> },
       { path: 'adminCargo', element: <AdminCargo /> },
       { path: 'adminViewAcc', element: <AdminViewAcc /> },
       { path: 'adminViewPH', element: <AdminViewPH /> },
       { path: 'adminSummary', element: <AdminSummary /> },
       { path: 'adminViewOrder', element: <AdminViewOrder /> },
-      { path: 'customerBooking', element: <CustomerBookingView /> },
-      { path: 'customerCargo', element: <CustomerCargoView /> },
-      { path: 'orderlist', element: <OrderListClient /> },
-      { path: 'profile', element: <ProfileCustomer /> },
-      { path: 'faq', element: <FreqAskQns /> },
       { path: 'profileAdmin', element: <ProfileAdmin /> },
       { path: '*', element: <Navigate to="/404" /> }
+    ]
+  },
+  {
+    path: 'customer',
+    element: < DashboardLayoutCustomer />,
+    children: [
+      { path: 'customerBooking', element: <CustomerBookingView />},
+      { path: 'customerCargo', element: <CustomerCargoView />},
+      { path: 'orderlist', element: <OrderListClient /> },
+      { path: 'faq', element: <FreqAskQns /> },
+      { path: 'profileCustomer', element: <ProfileCustomer /> },
+      { path: '*', element: <Navigate to="/404" /> }
+
     ]
   },
   {
@@ -72,6 +71,8 @@ const routes = [
       { path: 'registerCompany', element: <RegisterCompany /> },
       { path: 'registerAfter', element: <RegisterAfter /> },
       { path: '404', element: <NotFoundView /> },
+
+      { path: '/', element: <Navigate to="/login" /> },
 
       //Uncomment below for admin menu
       //{ path: '/', element: <Navigate to="/app/adminSummary" /> },

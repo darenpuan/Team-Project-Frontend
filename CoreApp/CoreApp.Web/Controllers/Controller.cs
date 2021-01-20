@@ -28,9 +28,9 @@ namespace CoreApp.Web.Controllers
 
         [HttpPost]
         [ActionName("Authenticate")]
-        public IActionResult Authenticate([FromBody] LoginModel model)
+        public IActionResult Authenticate(string email, string password)
         {
-            var user = _dataAccessProvider.Authenticate(model.Email, model.Password);
+            var user = _dataAccessProvider.Authenticate(email, password);
             if(user != null)
             {
                 return Redirect("/api/User/LoginRedirect/" + user.UserId);
@@ -118,33 +118,33 @@ namespace CoreApp.Web.Controllers
                 {
                     if (user.IsFirstLogin == true)
                     {
-                        return Redirect("/firstloginadmin");
+                        return Ok(new {to = "/firstloginadmin"});
                     }
                     else
                     {
-                        return Redirect("/admin");
+                        return Ok(new { to = "/admin/adminViewBooking" });
                     }
                 }
                 else if (user.RoleId == 2)
                 {
                     if (user.IsFirstLogin == true)
                     {
-                        return Redirect("/firstloginclient");
+                        return Ok(new { to = "/firstloginclient" });
                     }
                     else
                     {
-                        return Redirect("/customer");
+                        return Ok(new { to = "/customer/customerBooking" });
                     }
                 }
                 else if (user.RoleId == 3)
                 {
                     if (user.IsFirstLogin == true)
                     {
-                        return Redirect("/firstloginstaff");
+                        return Ok(new { to = "/firstloginstaff" });
                     }
                     else
                     {
-                        return Redirect("/staff");
+                        return Ok(new { to = "/staff/dashboardView" });
                     }
                 }
                 else

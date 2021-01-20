@@ -65,7 +65,7 @@ export function AccountMenu() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} component={Link} to="/app/profileAdmin" color="textPrimary">
+        <MenuItem onClick={handleClose} component={Link} to="/admin/profileAdmin" color="textPrimary">
           <ListItemIcon>
             <UserIcon fontSize="small" />
           </ListItemIcon>
