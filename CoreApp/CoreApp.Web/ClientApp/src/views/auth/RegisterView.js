@@ -63,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
 const RegisterView = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  
 
   return (
     <Page
@@ -130,7 +131,7 @@ const RegisterView = () => {
                   //  //password: Yup.string().max(255).required('Password is required')
                   //})}
                   onSubmit={() => {
-                    navigate('/registerCompany', { replace: true });
+                    navigate('/registerCompany', { user: 'Lucy' });
                   }}
                 >
                   {({

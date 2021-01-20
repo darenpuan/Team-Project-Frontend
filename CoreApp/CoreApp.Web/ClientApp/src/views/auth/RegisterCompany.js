@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const RegisterView = () => {
+const RegisterCompany = () => {
   const classes = useStyles();
   const navigate = useNavigate();
 
@@ -124,6 +124,7 @@ const RegisterView = () => {
                    
                   })}
                   onSubmit={() => {
+                    
                     navigate('/registerAfter', { replace: true });
                   }}
                 >
@@ -263,4 +264,4 @@ const RegisterView = () => {
   );
 };
 
-export default RegisterView;
+export default RegisterCompany;
