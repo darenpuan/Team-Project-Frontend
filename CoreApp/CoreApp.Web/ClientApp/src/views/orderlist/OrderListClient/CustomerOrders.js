@@ -13,8 +13,6 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
@@ -23,6 +21,8 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import { CompletedChip, PendingChip, UnCompletedChip } from 'src/components/StatusChips';
 import OrderListDetailEdit from './OrderListDetailEdit';
 import Dialog from '@material-ui/core/Dialog';
+import ButtonOrderEdit from './ButtonOrderEdit';
+import ButtonOrderConfirm from './ButtonOrderConfirm'
 
 function createData(orderid, orderdate, ordertime, status) {
   return { orderid, orderdate, ordertime, status };
@@ -79,19 +79,12 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
-          <Checkbox
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
-            onChange={onSelectAllClick}
-            inputProps={{ 'aria-label': 'select all desserts' }}
-          />
-        </TableCell>
+        
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
-            padding={headCell.disablePadding ? 'none' : 'default'}
+            padding={headCell.disablePadding ? '3px' : 'default'}
             sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
@@ -153,29 +146,9 @@ const EnhancedTableToolbar = (props) => {
         [classes.highlight]: numSelected > 0,
       })}
     >
-      {numSelected > 0 ? (
-        <Typography className={classes.title} color="inherit" variant="subtitle1" component="div">
-          {numSelected} selected
-        </Typography>
-      ) : (
-          <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-            Customer Order List Summary
-          </Typography>
-        )}
-
-      {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton aria-label="delete">
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
-      ) : (
-          <Tooltip title="Filter list">
-            <IconButton aria-label="filter list">
-              <FilterListIcon />
-            </IconButton>
-          </Tooltip>
-        )}
+      <Typography className={classes.title} id="tableTitle" component="div">
+        Customer Order List Summary
+      </Typography>
     </Toolbar>
   );
 };
@@ -301,19 +274,12 @@ export default function EnhancedTable() {
                     <TableRow
                       hover
                       onClick={(event) => handleClick(event, row.orderid)}
-                      role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
                       key={row.orderid}
                       selected={isItemSelected}
                     >
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          checked={isItemSelected}
-                          inputProps={{ 'aria-labelledby': labelId }}
-                        />
-                      </TableCell>
-                      <TableCell component="th" id={labelId} scope="row" padding="none">
+                      <TableCell component="th" id={labelId} scope="row" padding="3px">
                         {row.orderid}
                       </TableCell>
                       <TableCell align="right">{row.orderdate}</TableCell>
@@ -324,7 +290,6 @@ export default function EnhancedTable() {
                             label={row.status}
                             size="medium"
                             variant="outlined"
-                            clickable
                             component="a"
                           />
                         )
@@ -335,11 +300,21 @@ export default function EnhancedTable() {
                               label={row.status}
                               size="small"
                               variant="outlined"
-                              clickable
                               component="a"
                             />
                           )
                             : null
+                        }
+                      </TableCell>
+                      <TableCell align="right">
+                        {row.status === 'Completed' ? (
+                          < ButtonOrderConfirm />
+                        )
+                          : null}
+                        {row.status == 'In Progress' ? (
+                          < ButtonOrderEdit />
+                        )
+                          : null
                         }
                       </TableCell>
                     </TableRow>

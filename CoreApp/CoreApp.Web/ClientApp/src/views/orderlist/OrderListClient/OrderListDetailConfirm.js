@@ -7,8 +7,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
-import DeleteIcon from '@material-ui/icons/Delete';
+import Typography from '@material-ui/core/Typography';
+import { SuspendedChip } from 'src/components/StatusChips';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -50,15 +50,15 @@ export default function CustomizedTables() {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="customized table">
+    <TableContainer>
+      <Typography style={{ marginBottom:"10px" }}> Order Reference Number </Typography>
+      <Table className={classes.table} aria-label="customized table" style={{ marginBottom: "20px" }}>
         <TableHead>
           <TableRow>
             <StyledTableCell>Type</StyledTableCell>
             <StyledTableCell align="left">Category</StyledTableCell>
             <StyledTableCell align="left">Name</StyledTableCell>
             <StyledTableCell align="left">Total Weight (Kg)</StyledTableCell>
-            <StyledTableCell align="left"></StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -70,19 +70,6 @@ export default function CustomizedTables() {
               <StyledTableCell align="left">{row.category}</StyledTableCell>
               <StyledTableCell align="left">{row.name}</StyledTableCell>
               <StyledTableCell align="left">{row.weight}</StyledTableCell>
-              <StyledTableCell align="left">
-                {row.remove === 'Remove' ? (
-                  <Button
-                    variant="contained"
-                    color="error"
-                    className={classes.button}
-                    startIcon={<DeleteIcon />}
-                  >
-                    Delete
-                  </Button>
-                )
-                  : null}
-              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

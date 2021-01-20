@@ -8,8 +8,8 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-import OrderListForm from './OrderListForm';
-import OrderTableEdit from './OrderTableEdit';
+import OrderListDetailConfirm from './OrderListDetailConfirm';
+import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 
 const styles = (theme) => ({
   root: {
@@ -63,18 +63,16 @@ export default function CustomizedDialogs() {
 
   return (
     <div>
+      <IconButton variant="outlined" color="primary" onClick={handleClickOpen}>
+        <OpenInNewIcon />
+      </IconButton>
       <Dialog maxWidth="md" onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle id="customized-dialog-title" style={{ textAlign: "center" }} onClose={handleClose}>
-          Order List Details
+          Order List Form
         </DialogTitle>
         <DialogContent dividers>
-          <OrderTableEdit />
+          <OrderListDetailConfirm />
         </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose} color="primary">
-            Save
-          </Button>
-        </DialogActions>
       </Dialog>
     </div>
   );
