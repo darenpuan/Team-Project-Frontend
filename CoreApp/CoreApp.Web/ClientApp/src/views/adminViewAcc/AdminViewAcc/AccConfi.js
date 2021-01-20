@@ -15,7 +15,7 @@ import SuccessUpdate from './successUpdate';
 const useStyles = makeStyles((theme) => ({
   button: {
     display: 'block',
-    marginTop: theme.spacing(2),
+    margin: theme.spacing(1)
   },
   formControl: {
     margin: theme.spacing(1),
@@ -83,8 +83,9 @@ export default function AccForm(props) {
     e.preventDefault()
   }
   return (
+
     <Form onSubmit={handleSubmit}>
-      <Grid container>
+      <Grid container justify="center">
         <FormControl className={classes.formControl}>
           <InputLabel id="demo-controlled-select-label">Account Type</InputLabel>
           <Select
@@ -118,42 +119,41 @@ export default function AccForm(props) {
             <MenuItem value={"Suspended"}>Suspended</MenuItem>
           </Select>
         </FormControl>
+      </Grid>
 
-        <Grid item xs={6}>
-          <div>
-            <Button variant="contained" color="primary" onClick={handleClickOpen}>
-              Reset Password
-            </Button>
-            <Dialog
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-            >
-              <DialogContent className={classes.pad}>
-                <SuccessReset />
-              </DialogContent>
-            </Dialog>
-          </div>
-                    </Grid>
-          <Grid item xs={6}>
-            <div>
-            <Button variant="contained" color="primary" onClick={handleClickOpen2}>
-              Submit
-            </Button>
-            <Dialog
-              open={open2}
-              onClose={handleClose2}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-            >
-              <DialogContent className={classes.pad}>
-                <SuccessUpdate />
-              </DialogContent>
-            </Dialog>
 
-            </div>
-          </Grid>
+      <Grid container justify="center">
+        <Grid item>
+          <Button variant="contained" color="dark" onClick={handleClickOpen} className={classes.button} >
+            Reset Password
+            </Button>
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogContent className={classes.pad}>
+              <SuccessReset />
+            </DialogContent>
+          </Dialog>
+        </Grid>
+        <Grid item>
+          <Button variant="contained" color="primary" onClick={handleClickOpen2}  className={classes.button} >
+            Submit
+            </Button>
+          <Dialog
+            open={open2}
+            onClose={handleClose2}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogContent className={classes.pad}>
+              <SuccessUpdate />
+            </DialogContent>
+          </Dialog>
+
+        </Grid>
       </Grid>
     </Form>
   )

@@ -120,7 +120,7 @@ export default function AccForm(props) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Grid container>
+      <Grid container justify="center">
         <FormControl required className={classes.formControl}>
           <InputLabel id="demo-controlled-select-label">Account Type</InputLabel>
           <Select
@@ -157,7 +157,7 @@ export default function AccForm(props) {
           <FormHelperText>Required</FormHelperText>
         </FormControl>
 
-        <Grid item xs={12}>
+        <Grid container xs={12} justify="center">
           <Controls.RadioGroup
             name="salutation"
             label="Salutation *"
@@ -165,7 +165,7 @@ export default function AccForm(props) {
             onChange={handleInputChange}
             items={salutationItems}
           />
-        <Grid item xs={12}>
+          <Grid container xs={12} justify="center">
           <Controls.Input
             name="firstName"
             label="Employee First Name"
@@ -204,7 +204,11 @@ export default function AccForm(props) {
         </Grid>
 
 
-          <div>
+          <Grid container justify="center">
+            <Controls.Button
+              text="Reset"
+              color="default"
+              onClick={resetForm} />
             <Controls.Button
               type="submit"
               text="Submit"
@@ -220,13 +224,7 @@ export default function AccForm(props) {
                 <SuccessNewAcc />
               </DialogContent>
             </Dialog>
-
-
-            <Controls.Button
-              text="Reset"
-              color="default"
-              onClick={resetForm} />
-          </div>
+          </Grid>
         </Grid>
       </Grid>
     </Form>

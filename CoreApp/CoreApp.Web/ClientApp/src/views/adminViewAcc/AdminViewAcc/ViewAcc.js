@@ -96,6 +96,9 @@ const data = [
 
 const useStyles = makeStyles(() => ({
   root: {},
+  newButton: {
+    width:'100%'
+  },
   actions: {
     justifyContent: 'flex-end'
   }
@@ -196,7 +199,6 @@ const ViewAcc = ({ className, ...rest }) => {
               variant="outlined"
               justifyContent="flex-end"
               startIcon={<AddIcon />}
-              className={classes.newButton}
               onClick={() => setOpenPopup(true)}
             />
           </Grid>

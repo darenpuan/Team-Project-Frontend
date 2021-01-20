@@ -34,6 +34,7 @@ import ProfileCustomer from 'src/views/profile/ProfileCustomer/index.js';
 import FreqAskQns from 'src/views/faq/FreqAskQns/index.js';
 import AdminViewPH from 'src/views/adminViewPH/AdminViewPH';
 import ProfileAdmin from 'src/views/profileAdmin/ProfileAdmin';
+import OrderListClient from 'src/views/orderlist/OrderListClient';
 
 const routes = [
   {
@@ -55,6 +56,7 @@ const routes = [
       { path: 'adminViewOrder', element: <AdminViewOrder /> },
       { path: 'customerBooking', element: <CustomerBookingView /> },
       { path: 'customerCargo', element: <CustomerCargoView /> },
+      { path: 'orderlist', element: <OrderListClient /> },
       { path: 'profile', element: <ProfileCustomer /> },
       { path: 'faq', element: <FreqAskQns /> },
       { path: 'profileAdmin', element: <ProfileAdmin /> },
@@ -72,10 +74,10 @@ const routes = [
       { path: '404', element: <NotFoundView /> },
 
       //Uncomment below for admin menu
-      { path: '/', element: <Navigate to="/app/adminSummary" /> },
+      //{ path: '/', element: <Navigate to="/app/adminSummary" /> },
 
       //Uncomment below for customer menu
-      //{ path: '/', element: <Navigate to="/app/customerBooking" /> },
+      { path: '/', element: <Navigate to="/app/customerBooking" /> },
 
       //Uncomment below for staff menu
       //{ path: '/', element: <Navigate to="/app/dashboardView" /> },
