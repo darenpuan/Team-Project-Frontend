@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { Search as SearchIcon } from 'react-feather';
+import IconButton from '@material-ui/core/IconButton';
+import OpenInNewIcon from '@material-ui/icons/OpenInNew';
+import Component3 from 'src/dialogs/component3NoEdit'
 import {
   Box,
   Card,
@@ -97,7 +100,8 @@ const Results = ({ className, customers, ...rest }) => {
   const [orders] = useState(data);
 
   const handleLimitChange = (event) => {
-    setLimit(event.target.value);
+    setLimit(+event.target.value);
+    setPage(0);
   };
 
   const handlePageChange = (event, newPage) => {
@@ -212,7 +216,8 @@ const Results = ({ className, customers, ...rest }) => {
                       )
                         : null
                     }
-                      </TableCell>
+                  </TableCell>
+                  <Component3/>
                     </TableRow>
                   ))
                 }

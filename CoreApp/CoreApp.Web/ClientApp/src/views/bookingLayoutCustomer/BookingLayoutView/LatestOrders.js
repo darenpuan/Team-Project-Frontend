@@ -5,7 +5,9 @@ import { v4 as uuid } from 'uuid';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
 import { Search as SearchIcon } from 'react-feather';
-import NewBookingChoiceDialog from 'src/dialogs/newBookingChoiceDialog'
+import NewBookingChoiceDialog from 'src/dialogs/newBookingChoiceDialog';
+import IconButton from '@material-ui/core/IconButton';
+import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import {
   Box,
   Card,
@@ -91,7 +93,8 @@ const LatestOrders = ({ className, ...rest }) => {
   const [page, setPage] = useState(0);
 
   const handleLimitChange = (event) => {
-    setLimit(event.target.value);
+    setLimit(+event.target.value);
+    setPage(0);
   };
 
   const handlePageChange = (event, newPage) => {
@@ -209,6 +212,9 @@ const LatestOrders = ({ className, ...rest }) => {
                         : null
                     }
                   </TableCell>
+                  <IconButton color="primary">
+                    <OpenInNewIcon style={{ color: "black" }} />
+                  </IconButton>
                 </TableRow>
               ))}
             </TableBody>

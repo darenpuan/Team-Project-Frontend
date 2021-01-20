@@ -54,11 +54,12 @@ export default function MaterialUIPickers() {
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils} >
-
+      <Grid container justify="center">
       <form className={classes.root} noValidate autoComplete="off">
-        <TextField id="outlined-basic" label="Public Holiday Name" variant="outlined" />
-      </form>
-      <Grid container justify="space-around">
+          <TextField id="outlined-basic" label="Public Holiday Name" variant="outlined" />
+        </form>
+      </Grid>
+      <Grid container justify="center">
         <KeyboardDatePicker
           disableToolbar
           variant="inline"
@@ -74,7 +75,7 @@ export default function MaterialUIPickers() {
         />
       </Grid>
 
-      <Grid container justify="space-around">
+      <Grid container justify="center">
         <KeyboardDatePicker
           disableToolbar
           variant="inline"
@@ -90,7 +91,7 @@ export default function MaterialUIPickers() {
         />
       </Grid>
 
-      <div>
+      <Grid container justify="center">
         <Controls.Button
           type="submit"
           text="Submit"
@@ -106,7 +107,7 @@ export default function MaterialUIPickers() {
             <SuccessAddPH />
           </DialogContent>
         </Dialog>
-      </div>
+      </Grid>
     </MuiPickersUtilsProvider>
 
   );
