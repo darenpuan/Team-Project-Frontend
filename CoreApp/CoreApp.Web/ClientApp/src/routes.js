@@ -33,7 +33,7 @@ import CustomerCargoView from 'src/views/cargoSummaryCustomer/CargoSummaryView/i
 import ProfileCustomer from 'src/views/profile/ProfileCustomer/index.js';
 import FreqAskQns from 'src/views/faq/FreqAskQns/index.js';
 import AdminViewPH from 'src/views/adminViewPH/AdminViewPH';
-import OrderListClient from 'src/views/orderlist/OrderListClient';
+import ProfileAdmin from 'src/views/profileAdmin/ProfileAdmin';
 
 const routes = [
   {
@@ -56,8 +56,8 @@ const routes = [
       { path: 'customerCargo', element: <CustomerCargoView /> },
       { path: 'profile', element: <ProfileCustomer /> },
       { path: 'faq', element: <FreqAskQns /> },
-      { path: 'adminViewPH', element: <AdminViewPH /> },
-      { path: 'orderlist', element: <OrderListClient />},
+      { path: 'admin4', element: <AdminViewPH /> },
+      { path: 'profileAdmin', element: <ProfileAdmin /> },
       { path: '*', element: <Navigate to="/404" /> }
     ]
   },
