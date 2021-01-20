@@ -8,6 +8,7 @@ import {
 import Page from 'src/components/Page';
 import Toolbar from './Toolbar';
 import CustomerOrders from './CustomerOrders';
+import BreadCrumb from './BreadCrumb';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -30,8 +31,12 @@ const ProductList = () => {
       className={classes.root}
       title="Customer Order List"
     >
-      <Container maxWidth='lg'>
-        <Toolbar />
+
+      <Container maxWidth={false}>
+              <BreadCrumb />
+        <Grid>
+          <Toolbar />
+          </Grid>
         <Box mt={1}>
           <Grid
             container

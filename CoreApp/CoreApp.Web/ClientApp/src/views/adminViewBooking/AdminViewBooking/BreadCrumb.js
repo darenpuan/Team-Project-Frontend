@@ -29,8 +29,8 @@ export default function CustomSeparator() {
   return (
     <div className={classes.root}>
       <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
-        <Link color="inherit" component={RouterLink} to="/app/analytics" onClick={handleClick}>
-          Home
+        <Link color="inherit" component={RouterLink} to="/admin/adminSummary" onClick={handleClick}>
+          Dashboard
         </Link>
         <Link
           color="textPrimary"

@@ -10,6 +10,7 @@ import ContactList from './ContactList';
 import CardContent from '@material-ui/core/CardContent';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
+import BreadCrumb from './BreadCrumb';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,6 +29,8 @@ const SettingsView = () => {
       className={classes.root}
       title="F.A.Q"
     >
+      <Container maxWidth={false}>
+        <BreadCrumb />
       <Grid container justify="center" alignItems="center">
         <Card style={{ width: "95%" }} >
           <CardContent>
@@ -45,6 +48,7 @@ const SettingsView = () => {
             </CardContent>
         </Card>
         </Grid>
+      </Container>
     </Page>
   );
 };

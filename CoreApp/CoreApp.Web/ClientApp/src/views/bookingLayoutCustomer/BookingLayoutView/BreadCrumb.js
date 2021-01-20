@@ -36,7 +36,7 @@ export default function CustomSeparator() {
           onClick={handleClick}
           aria-current="page"
         >
-          Home
+          Booking
         </Link>
       </Breadcrumbs>
       <Divider />

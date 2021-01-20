@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => createStyles({
     paddingBottom: theme.spacing(3),
     paddingTop: theme.spacing(4)
   },
-}));
+}),);
 
 /**
  * @param {React.MouseEvent<HTMLAnchorElement, MouseEvent>} event
@@ -29,8 +29,8 @@ export default function CustomSeparator() {
   return (
     <div className={classes.root}>
       <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
-        <Link color="inherit" component={RouterLink} to="/admin/adminSummary" onClick={handleClick}>
-          Dashboard
+        <Link color="inherit" component={RouterLink} to="/customer/customerBooking" onClick={handleClick}>
+          Booking
         </Link>
         <Link
           color="textPrimary"
@@ -39,7 +39,7 @@ export default function CustomSeparator() {
           onClick={handleClick}
           aria-current="page"
         >
-          Account Management
+          F&#46;A&#46;Q
         </Link>
       </Breadcrumbs>
       <Divider />

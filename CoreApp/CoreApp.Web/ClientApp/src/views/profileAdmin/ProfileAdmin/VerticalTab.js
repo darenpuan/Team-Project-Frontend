@@ -80,7 +80,7 @@ export default function VerticalTabs() {
         className={classes.tabs}
       >
         <Profile />
-        <Tab label={<div style={{ alignItems:'left' }}><PersonIcon style={{ verticalAlign: 'middle', fontSize: 'small'}} /> Personal Info </div>} {...a11yProps(1)} />
+        <Tab justify="left" label={<div style={{ alignItems:'left' }}><PersonIcon style={{ verticalAlign: 'middle', fontSize: 'small'}} /> Personal Info </div>} {...a11yProps(1)} />
         <Tab label={<div><SecurityIcon style={{ verticalAlign: 'middle', fontSize: 'small' }} /> Password Change </div>} {...a11yProps(2)} />
         <Tab label={<div><VpnKeyIcon style={{ verticalAlign: 'middle', fontSize: 'small'}} /> Pin Change </div>} {...a11yProps(3)} />
       </Tabs>
