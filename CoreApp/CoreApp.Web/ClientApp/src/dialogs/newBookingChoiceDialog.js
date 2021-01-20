@@ -20,6 +20,11 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker
 } from "@material-ui/pickers";
+import component3NoEdit from './component3NoEdit';
+import component3Editable from './component3Editable';
+import ShipperConsignee from './ShipperConsignee';
+import billOfLanding from './bookingSystemForm/billOfLanding';
+import TopComponent from './bookingSystemForm/TopComponent';
 
 const styles = (theme) => ({
   root: {
@@ -189,6 +194,19 @@ export default function NewBookingChoiceDialog() {
     setOpenOrder(true);
   };
 
+  const [openBookingForm, setOpenBookingForm] = React.useState(false);
+
+  const handleBookingForm = () => {
+    setOpenBookingForm(true);
+  };
+  const handleCloseBookingForm = () => {
+    setOpenBookingForm(false);
+  };
+  const handleChangeBookingForm = () => {
+    setOpenTimePicker(false);
+    setOpenBookingForm(true);
+  };
+
   const handleOpenSuccessDialog = () => {
     setOpenSuccess(true);
   };
@@ -196,7 +214,7 @@ export default function NewBookingChoiceDialog() {
     setOpenSuccess(false);
   };
   const handleChangeSuccessDialog = () => {
-    setOpenTimePicker(false);
+    setOpenBookingForm(false);
     setOpenSuccess(true);
   };
   const [alignment, setAlignment] = React.useState('0800');
@@ -386,7 +404,7 @@ export default function NewBookingChoiceDialog() {
           </DialogActions1>
           <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
             <Box p={1}>
-              <Button variant="outlined" color="primary" onClick={handleChangeSuccessDialog}>
+              <Button variant="outlined" color="primary" onClick={handleChangeBookingForm}>
                 Next
               </Button>
             </Box>
@@ -399,6 +417,23 @@ export default function NewBookingChoiceDialog() {
         </DialogContent1>
       </Dialog>
 
+      {/*New Booking Form Dialog*/}
+      <Dialog maxWidth="md" onClose={handleCloseBookingForm} aria-labelledby="customized-dialog-title" open={openBookingForm}>
+        <DialogTitle id="customized-dialog-title" style={{ textAlign: "center" }} onClose={handleCloseBookingForm}>
+          Booking Form
+        </DialogTitle>
+        <DialogContent dividers>
+          <TopComponent />
+          <ShipperConsignee />
+          <component3NoEdit />
+          <billOfLanding />
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleCloseBookingForm} color="primary">
+            Save & Submit
+          </Button>
+        </DialogActions>
+      </Dialog>
 
       {/*New Order List Dialog*/}
       <Dialog maxWidth="md" onClose={handleCloseOrder} aria-labelledby="customized-dialog-title" open={openOrder}>
