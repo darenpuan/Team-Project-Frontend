@@ -32,6 +32,10 @@ const DialogContent = withStyles((theme) => ({
     padding: theme.spacing(8),
     textAlign: "center",
   },
+  pad: {
+    padding: 0,
+    backgroundColor: green[500]
+  },
 }))(MuiDialogContent);
 
 export default function SuccessAddPH() {
@@ -46,17 +50,15 @@ export default function SuccessAddPH() {
 
   return (
     <div>
-
-        <DialogTitle align='center' id="customized-dialog-title" onClose={handleClose}>
-          SUCCESS
+      <DialogTitle className={DialogContent.pad} align='center' id="customized-dialog-title" onClose={handleClose} >
+        SUCCESS
         </DialogTitle>
-        <DialogContent dividers>
+        <DialogContent>
           <CheckCircleIcon style={{ fontSize: 200, color: green[500] }} />
           <Typography>
             Public Holiday successfully added
           </Typography>
         </DialogContent>
-
     </div>
   );
 }

@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
-import moment from 'moment';
+//import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
 import { ViewAgenda } from '@material-ui/icons';
-import Controls from "src/components/controls/Controls";
-import Popup from 'src/components/Popup';
-import AddIcon from '@material-ui/icons/Add';
-import AccForm from './AccForm';
-import AccConfi from './AccConfi';
 
 import {
   Box,
@@ -29,68 +24,56 @@ import {
 } from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import { Search as SearchIcon } from 'react-feather';
-import { ActiveChip, PendingChip, SuspendedChip } from 'src/components/StatusChips';
+import { ApprovedChip, PendingChip, RejectedChip, TransitChip } from 'src/components/StatusChips';
 
 const data = [
   {
-    user: 'Patrick Newman',
-    role: 'Customer',
-    email: 'patrick@soft.com',
-    phone: '9123 4567',
-    company: "Soft Pte Ltd",
-    verified: "Email",
-    lastLogin: 1603000800000,
+    email: 'hyperx66@gmail.com',
+    cargoID: '#19525',
+    cargoName: 'Packet Drinks',
+    currentLocation: '-',
+    destination: 'Warehouse B',
     status: 'Pending'
   },
   {
-    user: 'Muhammad Ali',
-    role: 'Adminstrator',
-    email: 'ali@medhub.com',
-    phone: '9123 4567',
-    company: "Medhub Pte Ltd",
-    verified: "Email",
-    lastLogin: 1603000800000,
-    status: 'Active'
+    email: 'dummy@gmail.com',
+    cargoID: '#19000',
+    cargoName: 'Packet Drinks',
+    currentLocation: 'Warehouse A',
+    destination: '-',
+    status: 'Approved'
   },
   {
-    user: 'Teo Teck Meng, Benjamin',
-    role: 'Staff',
-    email: 'benjamin@medhub.com',
-    phone: '9123 4567',
-    company: "Medhub Pte Ltd",
-    verified: "Email",
-    lastLogin: 1603000800000,
-    status: 'Suspended'
+    email: 'dummy@gmail.com',
+    cargoID: '#19000',
+    cargoName: 'Packet Drinks',
+    currentLocation: '-',
+    destination: 'Warehouse C',
+    status: 'Rejected'
   },
   {
-    user: 'Saravanan S/O Thirumasan',
-    role: 'Customer',
-    email: 'thirumasan@infosys.com',
-    phone: '9123 4567',
-    company: "Infomation Systems Pte Ltd",
-    verified: "Email",
-    lastLogin: 1603000800000,
-    status: 'Pending'
+    email: 'dummy@gmail.com',
+    cargoID: '#19000',
+    cargoName: 'Packet Drinks',
+    currentLocation: '-',
+    destination: 'Warehouse A',
+    status: 'In Transit'
   },
   {
-    user: 'Alexander Mc',
-    role: 'Customer',
-    email: 'alexander@git.com',
-    phone: '9123 4567',
-    company: "Git Pte Ltd",
-    verified: "Email",
-    lastLogin: 1603000800000,
-    status: 'Active'
+    email: 'test1@gmail.com',
+    cargoID: '#19100',
+    cargoName: 'Packet Drinks',
+    currentLocation: 'Warehouse C',
+    destination: 'Warehouse D',
+    status: 'Approved'
   },
   {
-    user: 'Brad Pit',
-    role: 'Customer',
-    email: 'brad@kpmg.com',
-    phone: '9123 4567',
-    company: "KPMG Pte Ltd",
-    verified: "Email",
-    lastLogin: 1603000800000,
-    status: 'Pending'
+    email: 'test2@gmail.com',
+    cargoID: '#19200',
+    cargoName: 'Packet Drinks',
+    currentLocation: 'Warehouse D',
+    destination: 'Warehouse A',
+    status: 'In Transit'
   },
 ];
 
@@ -143,15 +126,12 @@ const Header = ({ headers, onSorting }) => {
 };
 //end of sort
 
-const ViewAcc = ({ className, ...rest }) => {
+const CargoSummary = ({ className, ...rest }) => {
   const classes = useStyles();
   const [views] = useState(data);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
   const [sorting, setSorting] = useState({ field: "", order: "" }); //sort
-  const [recordForEdit, setRecordForEdit] = useState(null)
-  const [openPopup, setOpenPopup] = useState(false);
-  const [openPopup2, setOpenPopup2] = useState(false);
 
 
   const handlePageChange = (event, newPage) => {
@@ -166,18 +146,18 @@ const ViewAcc = ({ className, ...rest }) => {
   //sorting
   if (sorting.field) {
     const reversed = sorting.order === "asc" ? 1 : -1;
-    ViewAcc = ViewAcc.sort(
+    CargoSummary = CargoSummary.sort(
       (a, b) => reversed * a[sorting.field].localeCompare(b[sorting.field])
     );
   }
 
   return (
-    <>
     <Card
       className={clsx(classes.root, className)}
       {...rest}
     >
-      <CardHeader title="View Account" />
+
+      <CardHeader title="Cargo Summary" />
       <Box maxWidth={800} mb={3} ml={1}>
         <Grid container spacing={1} alignItems="flex-end">
           <Grid item>
@@ -190,44 +170,30 @@ const ViewAcc = ({ className, ...rest }) => {
           </Grid>
           <Grid item >
             <TextField id="input-with-icon-grid" label="Search for all columns" />
-            </Grid>
-
-          <Controls.Button text="New Account" 
-            variant="outlined"
-            justifyContent="flex-end"
-            startIcon={<AddIcon />}
-            className={classes.newButton}
-            onClick={() => setOpenPopup(true)}
-          />
+          </Grid>
         </Grid>
       </Box>
 
       <Divider />
       <PerfectScrollbar>
-        <Box minWidth={1050}>
+        <Box minWidth={800}>
           <Table>
             <TableHead headers={headers} onSorting={(field, order) => setSorting({field, order}) }>
               <TableRow>
                 <TableCell>
-                  User
+                  Email
                  </TableCell>
                 <TableCell>
-                  Role
+                  Cargo ID
                 </TableCell>
                 <TableCell>
-                  Email
+                  Cargo Name
                 </TableCell>
                 <TableCell>
-                  Phone
+                  Current Location
                 </TableCell>
                 <TableCell>
-                  Company
-                </TableCell>
-                <TableCell>
-                  Verified
-                </TableCell>
-                <TableCell>
-                  Last Login
+                  Destination
                 </TableCell>
                 <TableCell>
                   Status
@@ -241,33 +207,23 @@ const ViewAcc = ({ className, ...rest }) => {
                   key={view.id}
                 >
                   <TableCell>
-                    <Controls.Button text={view.user}
-                      variant="outlined"
-                      className={classes.newButton}
-                      onClick={() => setOpenPopup2(true)}
-                    />
-                  </TableCell>
-                  <TableCell>
-                    {view.role}
-                  </TableCell>
-                  <TableCell>
                     {view.email}
                   </TableCell>
                   <TableCell>
-                    {view.phone}
+                    {view.cargoID}
                   </TableCell>
                   <TableCell>
-                    {view.company}
+                    {view.cargoName}
                   </TableCell>
                   <TableCell>
-                    {view.verified}
+                    {view.currentLocation}
                   </TableCell>
                   <TableCell>
-                    {moment(view.lastLogin).format('DD/MM/YYYY')}
+                    {view.destination}
                   </TableCell>
                   <TableCell>
-                    {view.status === 'Active' ? (
-                      <ActiveChip
+                    {view.status === 'Approved' ? (
+                      <ApprovedChip
                         label={view.status}
                         size="small"
                         variant="outlined"
@@ -285,8 +241,18 @@ const ViewAcc = ({ className, ...rest }) => {
                         : null
                     }
                     {
-                      view.status === 'Suspended' ? (
-                        <SuspendedChip
+                      view.status === 'Rejected' ? (
+                        <RejectedChip
+                          label={view.status}
+                          size="small"
+                          variant="outlined"
+                        />
+                      )
+                        : null
+                    }
+                    {
+                      view.status === 'In Transit' ? (
+                        <TransitChip
                           label={view.status}
                           size="small"
                           variant="outlined"
@@ -311,28 +277,11 @@ const ViewAcc = ({ className, ...rest }) => {
         onChangeRowsPerPage={handleLimitChange}
       />
     </Card>
-    <Popup
-      title="New Account"
-      openPopup = {openPopup}
-      setOpenPopup = {setOpenPopup}
-    >
-      <AccForm />
-      </Popup>
-      <Popup
-        title="Account Configuration"
-        openPopup={openPopup2}
-        setOpenPopup={setOpenPopup2}
-      >
-        <AccConfi />
-      </Popup>
-    </>
   );
 };
 
-ViewAcc.propTypes = {
+CargoSummary.propTypes = {
   className: PropTypes.string
 };
 
-export default ViewAcc;
-
-
+export default CargoSummary;

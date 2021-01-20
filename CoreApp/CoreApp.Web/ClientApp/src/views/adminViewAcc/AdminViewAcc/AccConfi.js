@@ -19,14 +19,28 @@ const useStyles = makeStyles((theme) => ({
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 60,
+    minWidth: 50,
   },
 }));
 
+const styles = (theme) => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(1.5),
+    backgroundColor: theme.palette.info.main,
+    color: 'white',
+  },
+  closeButton: {
+    position: 'absolute',
+    right: theme.spacing(0),
+    top: theme.spacing(0),
+    color: 'white',
+  },
+});
+
+
 export default function AccForm(props) {
   const classes = useStyles();
-  const [accountType, setAccountType] = React.useState('');
-  const [accountStatus, setAccountStatus] = React.useState('');
   const { addOrEdit, recordForEdit } = props
   const [open, setOpen] = React.useState(false);
   const [open2, setOpen2] = React.useState(false);
@@ -47,10 +61,16 @@ export default function AccForm(props) {
     setOpen2(false);
   };
 
-  const handleChange = (event) => {
+  const [accountType, setAccountType] = React.useState('');
+  const handleAccountChange = (event) => {
     setAccountType(event.target.value);
+  }
+
+  const [accountStatus, setAccountStatus] = React.useState('');
+  const handleAccountStatus = (event) => {
     setAccountStatus(event.target.value);
-  };
+  }
+
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -64,7 +84,7 @@ export default function AccForm(props) {
             labelId="demo-controlled-select-label"
             id="demo-controlled-select"
             value={accountType}
-            onChange={handleChange}
+            onChange={handleAccountChange}
           >
             <MenuItem value="">
               <em>None</em>
@@ -81,7 +101,7 @@ export default function AccForm(props) {
             labelId="demo-controlled-select-label"
             id="demo-controlled-select"
             value={accountStatus}
-            onChange={handleChange}
+            onChange={handleAccountStatus}
           >
             <MenuItem value="">
               <em>None</em>
@@ -92,9 +112,9 @@ export default function AccForm(props) {
           </Select>
         </FormControl>
 
-        <Grid item xs={12}>
+        <Grid item xs={6}>
           <div>
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+            <Button variant="contained" color="primary" onClick={handleClickOpen}>
               Reset Password
             </Button>
             <Dialog
@@ -107,8 +127,11 @@ export default function AccForm(props) {
                 <SuccessReset />
               </DialogContent>
             </Dialog>
-
-            <Button variant="outlined" color="primary" onClick={handleClickOpen2}>
+          </div>
+                    </Grid>
+          <Grid item xs={6}>
+            <div>
+            <Button variant="contained" color="primary" onClick={handleClickOpen2}>
               Submit
             </Button>
             <Dialog
@@ -122,8 +145,8 @@ export default function AccForm(props) {
               </DialogContent>
             </Dialog>
 
-          </div>
-        </Grid>
+            </div>
+          </Grid>
       </Grid>
     </Form>
   )

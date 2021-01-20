@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
-//import moment from 'moment';
+import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
 import { ViewAgenda } from '@material-ui/icons';
@@ -29,50 +29,50 @@ import { ApprovedChip, PendingChip, RejectedChip, TransitChip } from 'src/compon
 const data = [
   {
     email: 'hyperx66@gmail.com',
-    cargoID: '#19525',
+    refNo: '#19525',
     cargoName: 'Packet Drinks',
-    currentLocation: '-',
-    destination: 'Warehouse B',
+    createdAt: 1603000800000,
+    download: 'Download',
     status: 'Pending'
   },
   {
     email: 'dummy@gmail.com',
-    cargoID: '#19000',
+    refNo: '#19000',
     cargoName: 'Packet Drinks',
-    currentLocation: 'Warehouse A',
-    destination: '-',
+    createdAt: 1555016400000,
+    download: 'Download',
     status: 'Approved'
   },
   {
     email: 'dummy@gmail.com',
-    cargoID: '#19000',
+    refNo: '#19000',
     cargoName: 'Packet Drinks',
-    currentLocation: '-',
-    destination: 'Warehouse C',
+    createdAt: 1555016400000,
+    download: 'Download',
     status: 'Rejected'
   },
   {
     email: 'dummy@gmail.com',
-    cargoID: '#19000',
+    refNo: '#19000',
     cargoName: 'Packet Drinks',
-    currentLocation: '-',
-    destination: 'Warehouse A',
+    createdAt: 1555016400000,
+    download: 'Download',
     status: 'In Transit'
   },
   {
     email: 'test1@gmail.com',
-    cargoID: '#19100',
+    refNo: '#19100',
     cargoName: 'Packet Drinks',
-    currentLocation: 'Warehouse C',
-    destination: 'Warehouse D',
+    createdAt: 1555016400000,
+    download: 'Download',
     status: 'Approved'
   },
   {
     email: 'test2@gmail.com',
-    cargoID: '#19200',
+    refNo: '#19200',
     cargoName: 'Packet Drinks',
-    currentLocation: 'Warehouse D',
-    destination: 'Warehouse A',
+    createdAt: 1555016400000,
+    download: 'Download',
     status: 'In Transit'
   },
 ];
@@ -84,7 +84,6 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-//in progress
 const headers = [
   { name: "Email", field: "email", sortable: true },
   { name: "RefNo", field: "refNo", sortable: false },
@@ -126,7 +125,7 @@ const Header = ({ headers, onSorting }) => {
 };
 //end of sort
 
-const CargoSummary = ({ className, ...rest }) => {
+const Viewbooking = ({ className, ...rest }) => {
   const classes = useStyles();
   const [views] = useState(data);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -146,7 +145,7 @@ const CargoSummary = ({ className, ...rest }) => {
   //sorting
   if (sorting.field) {
     const reversed = sorting.order === "asc" ? 1 : -1;
-    CargoSummary = CargoSummary.sort(
+    Viewbooking = Viewbooking.sort(
       (a, b) => reversed * a[sorting.field].localeCompare(b[sorting.field])
     );
   }
@@ -157,7 +156,7 @@ const CargoSummary = ({ className, ...rest }) => {
       {...rest}
     >
 
-      <CardHeader title="Cargo Summary" />
+      <CardHeader title="View Booking" />
       <Box maxWidth={800} mb={3} ml={1}>
         <Grid container spacing={1} alignItems="flex-end">
           <Grid item>
@@ -176,7 +175,7 @@ const CargoSummary = ({ className, ...rest }) => {
 
       <Divider />
       <PerfectScrollbar>
-        <Box minWidth={1050}>
+        <Box minWidth={800}>
           <Table>
             <TableHead headers={headers} onSorting={(field, order) => setSorting({field, order}) }>
               <TableRow>
@@ -184,16 +183,16 @@ const CargoSummary = ({ className, ...rest }) => {
                   Email
                  </TableCell>
                 <TableCell>
-                  Cargo ID
+                  Reference No.
                 </TableCell>
                 <TableCell>
                   Cargo Name
                 </TableCell>
                 <TableCell>
-                  Current Location
+                  Date & Time
                 </TableCell>
                 <TableCell>
-                  Destination
+                  Bill of Landing
                 </TableCell>
                 <TableCell>
                   Status
@@ -210,16 +209,16 @@ const CargoSummary = ({ className, ...rest }) => {
                     {view.email}
                   </TableCell>
                   <TableCell>
-                    {view.cargoID}
+                    {view.refNo}
                   </TableCell>
                   <TableCell>
                     {view.cargoName}
                   </TableCell>
                   <TableCell>
-                    {view.currentLocation}
+                    {moment(view.createdAt).format('DD/MM/YYYY h:mm a')}
                   </TableCell>
                   <TableCell>
-                    {view.destination}
+                    {view.download}
                   </TableCell>
                   <TableCell>
                     {view.status === 'Approved' ? (
@@ -280,8 +279,8 @@ const CargoSummary = ({ className, ...rest }) => {
   );
 };
 
-CargoSummary.propTypes = {
+Viewbooking.propTypes = {
   className: PropTypes.string
 };
 
-export default CargoSummary;
+export default Viewbooking;

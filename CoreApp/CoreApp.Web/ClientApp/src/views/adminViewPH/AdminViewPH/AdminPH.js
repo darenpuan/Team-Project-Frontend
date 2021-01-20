@@ -4,6 +4,9 @@ import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
 import { ViewAgenda } from '@material-ui/icons';
+import Controls from "src/components/controls/Controls";
+import Popup from 'src/components/Popup';
+import AddPH from './AddPH';
 
 import {
   Box,
@@ -24,56 +27,31 @@ import {
 } from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import { Search as SearchIcon } from 'react-feather';
-import { ApprovedChip, PendingChip, RejectedChip, TransitChip } from 'src/components/StatusChips';
 
 const data = [
   {
-    email: 'hyperx66@gmail.com',
-    refNo: '#19525',
-    cargoName: 'Packet Drinks',
-    createdAt: 1603000800000,
-    download: 'Download',
-    status: 'Pending'
+    phName: 'New Year 2021',
+    startDate: '31/12/2020',
+    endDate: '01/01/2021',
+    remove: 'Remove'
   },
   {
-    email: 'dummy@gmail.com',
-    refNo: '#19000',
-    cargoName: 'Packet Drinks',
-    createdAt: 1555016400000,
-    download: 'Download',
-    status: 'Approved'
+    phName: 'Christmas Day 2021',
+    startDate: '25/12/2021',
+    endDate: '25/12/2021',
+    remove: 'Remove'
   },
   {
-    email: 'dummy@gmail.com',
-    refNo: '#19000',
-    cargoName: 'Packet Drinks',
-    createdAt: 1555016400000,
-    download: 'Download',
-    status: 'Rejected'
+    phName: 'Thanksgiving Day 2021',
+    startDate: '15/10/2021',
+    endDate: '15/10/2021',
+    remove: 'Remove'
   },
   {
-    email: 'dummy@gmail.com',
-    refNo: '#19000',
-    cargoName: 'Packet Drinks',
-    createdAt: 1555016400000,
-    download: 'Download',
-    status: 'In Transit'
-  },
-  {
-    email: 'test1@gmail.com',
-    refNo: '#19100',
-    cargoName: 'Packet Drinks',
-    createdAt: 1555016400000,
-    download: 'Download',
-    status: 'Approved'
-  },
-  {
-    email: 'test2@gmail.com',
-    refNo: '#19200',
-    cargoName: 'Packet Drinks',
-    createdAt: 1555016400000,
-    download: 'Download',
-    status: 'In Transit'
+    phName: 'Hari Raya Haji 2021',
+    startDate: '10/06/2021',
+    endDate: '10/06/2021',
+    remove: 'Remove'
   },
 ];
 
@@ -84,6 +62,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
+//in progress
 const headers = [
   { name: "Email", field: "email", sortable: true },
   { name: "RefNo", field: "refNo", sortable: false },
@@ -125,12 +104,13 @@ const Header = ({ headers, onSorting }) => {
 };
 //end of sort
 
-const Viewbooking = ({ className, ...rest }) => {
+const AdminPH = ({ className, ...rest }) => {
   const classes = useStyles();
   const [views] = useState(data);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
   const [sorting, setSorting] = useState({ field: "", order: "" }); //sort
+  const [openPopup, setOpenPopup] = useState(false);
 
 
   const handlePageChange = (event, newPage) => {
@@ -145,18 +125,19 @@ const Viewbooking = ({ className, ...rest }) => {
   //sorting
   if (sorting.field) {
     const reversed = sorting.order === "asc" ? 1 : -1;
-    Viewbooking = Viewbooking.sort(
+    AdminPH = AdminPH.sort(
       (a, b) => reversed * a[sorting.field].localeCompare(b[sorting.field])
     );
   }
 
   return (
+    <>
     <Card
       className={clsx(classes.root, className)}
       {...rest}
     >
 
-      <CardHeader title="View Booking" />
+      <CardHeader title="Public Holidays" />
       <Box maxWidth={800} mb={3} ml={1}>
         <Grid container spacing={1} alignItems="flex-end">
           <Grid item>
@@ -170,32 +151,32 @@ const Viewbooking = ({ className, ...rest }) => {
           <Grid item >
             <TextField id="input-with-icon-grid" label="Search for all columns" />
           </Grid>
+          <Controls.Button text="Add Public Holiday"
+            variant="outlined"
+            justifyContent="flex-end"
+            className={classes.newButton}
+            onClick={() => setOpenPopup(true)}
+          />
         </Grid>
       </Box>
 
       <Divider />
       <PerfectScrollbar>
-        <Box minWidth={1050}>
+        <Box minWidth={800}>
           <Table>
             <TableHead headers={headers} onSorting={(field, order) => setSorting({field, order}) }>
               <TableRow>
                 <TableCell>
-                  Email
+                  Public Holiday Name
                  </TableCell>
                 <TableCell>
-                  Reference No.
+                  Start Date
                 </TableCell>
                 <TableCell>
-                  Cargo Name
+                  End Date
                 </TableCell>
                 <TableCell>
-                  Date & Time
-                </TableCell>
-                <TableCell>
-                  Bill of Landing
-                </TableCell>
-                <TableCell>
-                  Status
+                   
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -206,59 +187,16 @@ const Viewbooking = ({ className, ...rest }) => {
                   key={view.id}
                 >
                   <TableCell>
-                    {view.email}
+                    {view.phName}
                   </TableCell>
                   <TableCell>
-                    {view.refNo}
+                    {moment(view.startDate).format('DD/MM/YYYY')}
                   </TableCell>
                   <TableCell>
-                    {view.cargoName}
+                    {moment(view.endDate).format('DD/MM/YYYY')}
                   </TableCell>
                   <TableCell>
-                    {moment(view.createdAt).format('DD/MM/YYYY h:mm a')}
-                  </TableCell>
-                  <TableCell>
-                    {view.download}
-                  </TableCell>
-                  <TableCell>
-                    {view.status === 'Approved' ? (
-                      <ApprovedChip
-                        label={view.status}
-                        size="small"
-                        variant="outlined"
-                      />
-                    )
-                      : null}
-                    {
-                      view.status === 'Pending' ? (
-                        <PendingChip
-                          label={view.status}
-                          size="small"
-                          variant="outlined"
-                        />
-                      )
-                        : null
-                    }
-                    {
-                      view.status === 'Rejected' ? (
-                        <RejectedChip
-                          label={view.status}
-                          size="small"
-                          variant="outlined"
-                        />
-                      )
-                        : null
-                    }
-                    {
-                      view.status === 'In Transit' ? (
-                        <TransitChip
-                          label={view.status}
-                          size="small"
-                          variant="outlined"
-                        />
-                      )
-                        : null
-                    }
+                    {view.remove}
                   </TableCell>
                 </TableRow>
               ))}
@@ -276,11 +214,19 @@ const Viewbooking = ({ className, ...rest }) => {
         onChangeRowsPerPage={handleLimitChange}
       />
     </Card>
+    <Popup
+      title="Public Holiday"
+      openPopup = {openPopup}
+      setOpenPopup = {setOpenPopup}
+    >
+     <AddPH />
+     </Popup>
+    </>
   );
 };
 
-Viewbooking.propTypes = {
+AdminPH.propTypes = {
   className: PropTypes.string
 };
 
-export default Viewbooking;
+export default AdminPH;

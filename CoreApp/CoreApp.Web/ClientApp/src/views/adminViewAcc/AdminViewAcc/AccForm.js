@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 60,
+    fill: 'white'
   },
 }));
 
@@ -45,8 +46,6 @@ const initialFValues = {
 
 export default function AccForm(props) {
   const classes = useStyles();
-  const [accountType, setAccountType] = React.useState('');
-  const [department, setDepartment] = React.useState('');
   const { addOrEdit, recordForEdit } = props
   const [open, setOpen] = React.useState(false);
 
@@ -78,11 +77,6 @@ export default function AccForm(props) {
       return Object.values(temp).every(x => x == "")
   }
 
-  const handleChange = (event) => {
-    setAccountType(event.target.value);
-    setDepartment(event.target.value);
-  };
-
   const {
     values,
     setValues,
@@ -91,6 +85,17 @@ export default function AccForm(props) {
     handleInputChange,
     resetForm
   } = useForm(initialFValues, true, validate);
+
+  const [accountType, setAccountType] = React.useState('');
+  const handleAccountChange = (event) => {
+    setAccountType(event.target.value);
+  }
+
+  const [departmentType, setDepartmentType] = React.useState('');
+  const handleDepartmentType = (event) => {
+    setDepartmentType(event.target.value);
+  }
+
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -115,7 +120,7 @@ export default function AccForm(props) {
             labelId="demo-controlled-select-label"
             id="demo-controlled-select"
             value={accountType}
-            onChange={handleChange}
+            onChange={handleAccountChange}
           >
             <MenuItem value="">
               <em>None</em>
@@ -132,8 +137,8 @@ export default function AccForm(props) {
           <Select
             labelId="demo-simple-select-required-label"
             id="demo-simple-select-required"
-            value={department}
-            onChange={handleChange}
+            value={departmentType}
+            onChange={handleDepartmentType}
           >
             <MenuItem value="">
               <em>None</em>
