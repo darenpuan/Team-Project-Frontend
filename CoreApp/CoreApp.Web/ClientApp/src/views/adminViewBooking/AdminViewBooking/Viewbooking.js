@@ -7,7 +7,6 @@ import { ViewAgenda } from '@material-ui/icons';
 import IconButton from '@material-ui/core/IconButton';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import Popup from 'src/components/Popup';
-import SearchBar from "material-ui-search-bar";
 
 import {
   Box,
