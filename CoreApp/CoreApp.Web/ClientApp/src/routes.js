@@ -57,7 +57,6 @@ const routes = [
       { path: 'customerCargo', element: <CustomerCargoView /> },
       { path: 'profile', element: <ProfileCustomer /> },
       { path: 'faq', element: <FreqAskQns /> },
-      { path: 'admin4', element: <AdminViewPH /> },
       { path: 'profileAdmin', element: <ProfileAdmin /> },
       { path: '*', element: <Navigate to="/404" /> }
     ]
