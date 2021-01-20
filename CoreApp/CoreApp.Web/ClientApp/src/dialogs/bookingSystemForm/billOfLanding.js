@@ -15,6 +15,9 @@ import Visibility from '@material-ui/icons/Visibility';
 const useStyles = makeStyles({
   table: {
     minWidth: 900
+  },
+  alignRight: {
+    textAlign: 'right'
   }
 });
 
@@ -53,8 +56,8 @@ export default function BillOfLanding() {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>
-            <GetApp style={{ verticalAlign: "bottom" }}/>
+            <TableCell className={classes.alignRight}>
+            <GetApp style={{ verticalAlign: "bottom"}}/>
               Download all as .zip
               </TableCell>
           </TableRow>
