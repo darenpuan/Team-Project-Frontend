@@ -1,17 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CoreApp.Data;
+using System;
+
 using System.ComponentModel.DataAnnotations;
 
-namespace CoreApp.Data
+
+namespace CoreApp.Web.Models
 {
-    public class ItemCategory
+    public class BookingModel
     {
         [Key]
-        public Guid ItemCategoryId { get; set; }
+        public Guid BookingId { get; set; }
+        public DateTime CompletionDate { get; set; }
         [Required]
-        public string DisplayValue { get; set; }
+        public Consignee Consignee { get; set; }
         [Required]
-        public string Type { get; set; }
+        public Guid ClientId { get; set; }
+        [Required]
+        public Shipper Shipper { get; set; }
         [Required]
         public bool IsActive { get; set; }
         [Required]
@@ -20,6 +25,5 @@ namespace CoreApp.Data
         public string CreatedBy { get; set; }
         public DateTime UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
-        public ICollection<Unit> Units { get; set; }
     }
 }

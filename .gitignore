@@ -30,3 +30,5 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
+CoreApp/CoreApp.Setup/CoreDbContext.dgml
+CoreApp/CoreApp.Setup/CoreDbContext.dgml
