@@ -122,7 +122,7 @@ namespace CoreApp.Web.Controllers
                     }
                     else
                     {
-                        return Ok(new { to = "/admin/adminViewBooking" });
+                        return Ok(new { to = "/admin/adminSummary" });
                     }
                 }
                 else if (user.RoleId == 2)
