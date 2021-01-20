@@ -4,6 +4,9 @@ import clsx from 'clsx';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
 import { ViewAgenda } from '@material-ui/icons';
+import IconButton from '@material-ui/core/IconButton';
+import OpenInNewIcon from '@material-ui/icons/OpenInNew';
+import Popup from 'src/components/Popup';
 
 import {
   Box,
@@ -132,6 +135,8 @@ const CargoSummary = ({ className, ...rest }) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
   const [sorting, setSorting] = useState({ field: "", order: "" }); //sort
+  const [open, setOpen] = React.useState(false);
+  const [openPopup, setOpenPopup] = useState(false);
 
 
   const handlePageChange = (event, newPage) => {
@@ -152,6 +157,7 @@ const CargoSummary = ({ className, ...rest }) => {
   }
 
   return (
+    <>
     <Card
       className={clsx(classes.root, className)}
       {...rest}
@@ -176,7 +182,7 @@ const CargoSummary = ({ className, ...rest }) => {
 
       <Divider />
       <PerfectScrollbar>
-        <Box minWidth={800}>
+        <Box minWidth={950}>
           <Table>
             <TableHead headers={headers} onSorting={(field, order) => setSorting({field, order}) }>
               <TableRow>
@@ -196,8 +202,10 @@ const CargoSummary = ({ className, ...rest }) => {
                   Destination
                 </TableCell>
                 <TableCell>
-                  Status
+                    Status
                 </TableCell>
+                  <TableCell>
+                  </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -261,6 +269,11 @@ const CargoSummary = ({ className, ...rest }) => {
                         : null
                     }
                   </TableCell>
+                  <TableCell>
+                  <IconButton color="primary">
+                    <OpenInNewIcon style={{ color: "black" }} onClick={() => setOpenPopup(true)} />
+                    </IconButton>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -277,6 +290,13 @@ const CargoSummary = ({ className, ...rest }) => {
         onChangeRowsPerPage={handleLimitChange}
       />
     </Card>
+          <Popup
+        openPopup={openPopup}
+        setOpenPopup={setOpenPopup}
+      >
+           
+     </Popup>
+    </>
   );
 };
 

@@ -5,10 +5,12 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
 import { ViewAgenda } from '@material-ui/icons';
 import Controls from "src/components/controls/Controls";
-import Popup from 'src/components/Popup';
 import AddIcon from '@material-ui/icons/Add';
 import AccForm from './AccForm';
 import AccConfi from './AccConfi';
+import IconButton from '@material-ui/core/IconButton';
+import OpenInNewIcon from '@material-ui/icons/OpenInNew';
+import Popup from 'src/components/Popup';
 
 import {
   Box,
@@ -67,7 +69,7 @@ const data = [
     role: 'Customer',
     email: 'thirumasan@infosys.com',
     phone: '9123 4567',
-    company: "Infomation Systems Pte Ltd",
+    company: "Infomation Pte Ltd",
     verified: "Email",
     lastLogin: 1603000800000,
     status: 'Pending'
@@ -206,7 +208,7 @@ const ViewAcc = ({ className, ...rest }) => {
 
         <Divider />
         <PerfectScrollbar>
-          <Box minWidth={800}>
+          <Box minWidth={1100}>
             <Table>
               <TableHead headers={headers} onSorting={(field, order) => setSorting({ field, order })}>
                 <TableRow>
@@ -226,14 +228,13 @@ const ViewAcc = ({ className, ...rest }) => {
                     Company
                 </TableCell>
                   <TableCell>
-                    Verified
-                </TableCell>
-                  <TableCell>
                     Last Login
                 </TableCell>
                   <TableCell>
                     Status
                 </TableCell>
+                  <TableCell>
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -243,11 +244,7 @@ const ViewAcc = ({ className, ...rest }) => {
                     key={view.id}
                   >
                     <TableCell>
-                      <Controls.Button text={view.user}
-                        variant="outlined"
-                        className={classes.newButton}
-                        onClick={() => setOpenPopup2(true)}
-                      />
+                      {view.user}
                     </TableCell>
                     <TableCell>
                       {view.role}
@@ -260,9 +257,6 @@ const ViewAcc = ({ className, ...rest }) => {
                     </TableCell>
                     <TableCell>
                       {view.company}
-                    </TableCell>
-                    <TableCell>
-                      {view.verified}
                     </TableCell>
                     <TableCell>
                       {moment(view.lastLogin).format('DD/MM/YYYY')}
@@ -296,6 +290,11 @@ const ViewAcc = ({ className, ...rest }) => {
                         )
                           : null
                       }
+                    </TableCell>
+                    <TableCell>
+                    <IconButton color="primary">
+                      <OpenInNewIcon style={{ color: "black" }} onClick={() => setOpenPopup2(true)} />
+                      </IconButton>
                     </TableCell>
                   </TableRow>
                 ))}
