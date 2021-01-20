@@ -4,6 +4,9 @@ import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
 import { ViewAgenda } from '@material-ui/icons';
+import IconButton from '@material-ui/core/IconButton';
+import OpenInNewIcon from '@material-ui/icons/OpenInNew';
+import Popup from 'src/components/Popup';
 
 import {
   Box,
@@ -25,6 +28,7 @@ import {
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import { Search as SearchIcon } from 'react-feather';
 import { ApprovedChip, PendingChip, RejectedChip, TransitChip } from 'src/components/StatusChips';
+import BillOfLanding from '../../../dialogs/bookingSystemForm/billOfLanding';
 
 const data = [
   {
@@ -97,6 +101,7 @@ const headers = [
 const Header = ({ headers, onSorting }) => {
   const [sortingField, setSortingField] = useState("");
   const [sortingOrder, setSortingOrder] = useState("asc");
+
   const onSortingChange = field => {
     const order = field === sortingField && sortingField === "asc" ? "desc" : "asc";
     setSortingField(field);
@@ -131,7 +136,16 @@ const Viewbooking = ({ className, ...rest }) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
   const [sorting, setSorting] = useState({ field: "", order: "" }); //sort
+  const [open, setOpen] = React.useState(false);
+  const [openPopup, setOpenPopup] = useState(false);
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handlePageChange = (event, newPage) => {
     setPage(newPage);
@@ -151,6 +165,7 @@ const Viewbooking = ({ className, ...rest }) => {
   }
 
   return (
+    <>
     <Card
       className={clsx(classes.root, className)}
       {...rest}
@@ -195,8 +210,10 @@ const Viewbooking = ({ className, ...rest }) => {
                   Bill of Landing
                 </TableCell>
                 <TableCell>
-                  Status
+                    Status
                 </TableCell>
+                  <TableCell>
+                  </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -260,6 +277,11 @@ const Viewbooking = ({ className, ...rest }) => {
                         : null
                     }
                   </TableCell>
+                  <TableCell>
+                    <IconButton color="primary">
+                    <OpenInNewIcon style={{ color: "black" }} onClick={() => setOpenPopup(true)}/>
+                    </IconButton>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -276,6 +298,13 @@ const Viewbooking = ({ className, ...rest }) => {
         onChangeRowsPerPage={handleLimitChange}
       />
     </Card>
+        <Popup
+      openPopup = {openPopup}
+      setOpenPopup = {setOpenPopup}
+    >
+     <BillOfLanding />
+     </Popup>
+    </>
   );
 };
 
