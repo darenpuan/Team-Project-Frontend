@@ -33,32 +33,32 @@ const user = {
 
 const items = [
   {
-    href: '/app/adminSummary',
+    href: '/admin/adminSummary',
     icon: DashboardIcon,
     title: 'Dashboard'
   },
   {
-    href: '/app/adminViewBooking',
+    href: '/admin/adminViewBooking',
     icon: EventNoteIcon,
     title: 'Booking'
   },
   {
-    href: '/app/adminCargo',
+    href: '/admin/adminCargo',
     icon: LocalShippingIcon,
     title: 'Cargo Summary'
   },
   {
-    href: '/app/adminViewOrder',
+    href: '/admin/adminViewOrder',
     icon: ListAltIcon,
     title: 'Order List'
   },
   {
-    href: '/app/adminViewAcc',
+    href: '/admin/adminViewAcc',
     icon: PeopleIcon,
     title: 'Account Management'
   },
   {
-    href: '/app/adminViewPH',
+    href: '/admin/adminViewPH',
     icon: EventIcon,
     title: 'Public Holiday'
   }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { Link as RouterLink, Router, useNavigate } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import * as Yup from 'yup';
@@ -79,16 +79,20 @@ const LoginView = () => {
                 className={classes.contentWrapper}>
               <Formik
                 initialValues={{
-                  email: 'staff@cloudplus.com.sg',
-                  password: 'p@as$w0rd'
+                    email: 'hello222@gmail.com',
+                    password: 'qwerty1'
                 }}
                 validationSchema={Yup.object().shape({
                   email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
                   password: Yup.string().max(255).required('Password is required')
                 })}
-                onSubmit={() => {
-                  navigate('/app/analytics', { replace: true });
-                }}
+                  onSubmit={async (values, { setSubmitting }) => {
+                    const res = await fetch(`https://localhost:5001/api/User/Authenticate?email=${values.email}&password=${values.password}`, {
+                      method: 'POST',
+                    }).then(response => response.json());
+                    navigate(res["to"], { replace: true });
+                  }
+                  }
               >
                 {({
                   errors,
