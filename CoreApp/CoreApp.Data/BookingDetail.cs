@@ -14,7 +14,7 @@ namespace CoreApp.Data
         [Required]
         public DateTime BookingDate { get; set; }
         [Required]
-        public DateTime BookingTime { get; set; }
+        public TimeSpan BookingTime { get; set; }
         [Required]
         public string BookingType { get; set; }
         [Required]
@@ -39,6 +39,14 @@ namespace CoreApp.Data
         public string FinalDestination { get; set; }
         [Required]
         public string BookingStatus { get; set; }
+        [Required]
+        public double DeclaredWeight { get; set; }
+        [Required]
+        public string DeclaredHeight { get; set; }
+        [Required]
+        public string DeclaredWidth { get; set; }
+        [Required]
+        public string DeclaredLength { get; set; }
         [Required]
         public bool IsActive { get; set; }
         [Required]

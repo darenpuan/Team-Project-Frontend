@@ -6,7 +6,7 @@ namespace CoreApp.Data {
     public class Department
     {
         [Key]
-        public Guid DepartmentId {get; set;}
+        public int DepartmentId {get; set;}
         [Required]
         public string DisplayValue {get; set;}
         [Required]
