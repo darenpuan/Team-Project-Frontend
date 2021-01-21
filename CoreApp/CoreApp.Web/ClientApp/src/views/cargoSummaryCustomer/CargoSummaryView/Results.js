@@ -238,7 +238,9 @@ const Results = ({ className, customers, ...rest }) => {
                         : null
                     }
                   </TableCell>
-                  <Component3/>
+                  <IconButton>
+                    <OpenInNewIcon style={{color:"black"}}/ >
+                    </IconButton>
                     </TableRow>
                   ))
                 }

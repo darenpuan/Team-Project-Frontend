@@ -22,9 +22,9 @@ import {
 } from "@material-ui/pickers";
 import Component3NoEdit from './component3NoEdit';
 import Component3Editable from 'src/dialogs/component3Editable.js';
-import ShipperConsignee from './ShipperConsignee';
+import ShipperConsignee from './ShipperConsigneeEmpty';
 import BillOfLanding from 'src/dialogs/bookingSystemForm/billOfLanding';
-import TopComponent from './bookingSystemForm/TopComponent';
+import TopComponent from './bookingSystemForm/TopComponentEmpty';
 
 const styles = (theme) => ({
   root: {
@@ -428,7 +428,7 @@ export default function NewBookingChoiceDialog() {
           <Component3Editable />
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleCloseBookingForm} color="primary">
+          <Button autoFocus onClick={handleChangeSuccessDialog} color="primary">
             Submit
           </Button>
         </DialogActions>
