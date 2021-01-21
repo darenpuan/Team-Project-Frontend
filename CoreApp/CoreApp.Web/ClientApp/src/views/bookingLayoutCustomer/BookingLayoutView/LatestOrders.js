@@ -8,6 +8,8 @@ import NewBookingChoiceDialog from 'src/dialogs/newBookingChoiceDialog';
 import IconButton from '@material-ui/core/IconButton';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import Button from '@material-ui/core/Button';
+import ApproveForm from 'src/views/bookingLayoutCustomer/BookingLayoutView/ApprovedForm.js'
+import PendingForm from 'src/views/bookingLayoutCustomer/BookingLayoutView/PendingForm.js'
 import {
   Box,
   Card,
@@ -52,14 +54,6 @@ const data = [
     cargoName: 'Packet Drinks',
     createdAt: 1555016400000,
     status: 'Completed'
-  },
-  {
-    id: uuid(),
-    ref: '#19002',
-    amount: 10.99,
-    cargoName: 'Packet Drinks',
-    createdAt: 1554930000000,
-    status: 'Uncompleted'
   },
   {
     id: uuid(),
@@ -237,9 +231,19 @@ const LatestOrders = ({ className, ...rest }) => {
                         : null
                     }
                   </TableCell>
-                  <IconButton color="primary">
-                    <OpenInNewIcon style={{ color: "black" }} />
-                  </IconButton>
+
+
+                  <TableCell align="right">
+                    {order.status === 'Completed' ? (
+                      < ApproveForm />
+                    )
+                      : null}
+                    {order.status == 'Pending' ? (
+                      < PendingForm />
+                    )
+                      : null
+                    }
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

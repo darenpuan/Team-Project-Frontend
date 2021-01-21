@@ -239,7 +239,7 @@ const Results = ({ className, customers, ...rest }) => {
                     }
                   </TableCell>
                   <IconButton>
-                    <OpenInNewIcon style={{color:"black"}}/ >
+                    <OpenInNewIcon style={{ color:"primary"}}/ >
                     </IconButton>
                     </TableRow>
                   ))
