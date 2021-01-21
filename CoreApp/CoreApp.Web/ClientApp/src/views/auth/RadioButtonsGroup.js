@@ -77,10 +77,11 @@ function StyledRadio(props) {
 export default function RadioButtonsGroup() {
   const [value, setValue] = React.useState('mr');
   const classes = useStyles();
-
+  localStorage.setItem("salutation", 'mr');
 
   const handleChange = (event) => {
     setValue(event.target.value);
+    localStorage.setItem("salutation", event.target.value);
   };
 
   return (

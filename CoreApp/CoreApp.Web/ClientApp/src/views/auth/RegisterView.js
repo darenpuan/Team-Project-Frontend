@@ -60,10 +60,9 @@ const useStyles = makeStyles((theme) => ({
 }
 }));
 
-const RegisterView = () => {
+const RegisterView = (props) => {
   const classes = useStyles();
   const navigate = useNavigate();
-  
 
   return (
     <Page
@@ -130,8 +129,14 @@ const RegisterView = () => {
                   //  companyName: Yup.string().max(255).required('Company Name is required'),
                   //  //password: Yup.string().max(255).required('Password is required')
                   //})}
-                  onSubmit={() => {
-                    navigate('/registerCompany', { user: 'Lucy' });
+                  onSubmit={async (values, { setSubmitting }) => {
+                    localStorage.setItem("firstName", values.firstName);
+                    localStorage.setItem("lastName", values.lastName);
+                    localStorage.setItem("hpContact", values.hpContact);
+                    localStorage.setItem("officeContact", values.officeContact);
+                    localStorage.setItem("email", values.email);
+                    localStorage.setItem("companyName", values.companyName);
+                    navigate('/registerCompany');
                   }}
                 >
                   {({

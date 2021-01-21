@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import Card from '@material-ui/core/Card';
@@ -123,9 +123,30 @@ const RegisterCompany = () => {
                   validationSchema={Yup.object().shape({
                    
                   })}
-                  onSubmit={() => {
-                    
-                    navigate('/registerAfter', { replace: true });
+                  onSubmit={async (values, { setSubmitting }) => {      
+                    var jsonData = {
+                      salutation: localStorage.getItem("salutation"),
+                      firstName: localStorage.getItem("firstName"),
+                      lastName: localStorage.getItem("lastName"),
+                      contactnumber: localStorage.getItem("hpContact"),
+                      officenumber: localStorage.getItem("officeContact"),
+                      email: localStorage.getItem("email"),
+                      companyName: localStorage.getItem("companyName"),
+                      address: values.addressNickname,
+                      street: values.street,
+                      apartment: values.apartment,
+                      town: values.town,
+                      country: values.country,
+                      postalcode: values.companyPostalCode
+                    }
+                    const res = await fetch(`https://localhost:5001/api/User/Register`, {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify(jsonData)
+                    }).then(response => response.json());
+                    if (res["proceed"] === true) {
+                      navigate('/registerAfter', { replace: true });
+                    }
                   }}
                 >
                   {({
@@ -217,7 +238,7 @@ const RegisterCompany = () => {
                               helperText={touched.postal && errors.postal}
                               label="Postal Code"
                               className={classes.tbCustom}
-                              name="companyName"
+                              name="companyPostalCode"
                               onBlur={handleBlur}
                               onChange={handleChange}
                               type="number"

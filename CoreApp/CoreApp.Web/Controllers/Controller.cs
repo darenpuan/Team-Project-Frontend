@@ -9,6 +9,7 @@ using System.Linq;
 using CoreApp.Data;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace CoreApp.Web.Controllers
 {
@@ -50,6 +51,37 @@ namespace CoreApp.Web.Controllers
            return _dataAccessProvider.GetRecords();
         }
 
+        [HttpGet]
+        [ActionName("AdminChart")]
+        public int[] GetChartNum()
+        {
+            int active = 0;
+            int pending = 0;
+            int suspended = 0;
+            List<Int32> returnList = new List<Int32>();
+            var returnedResult = _dataAccessProvider.GetRecords();
+            for(int i = 0; i < returnedResult.Count; i++)
+            {
+                var currentObj = returnedResult[i];
+                if (currentObj.IsActive && currentObj.IsApproved) {
+                    active++;
+                }
+                else if (currentObj.IsActive && !currentObj.IsApproved)
+                {
+                    pending++;
+                }
+                else
+                {
+                    suspended++;
+                }
+            }
+            var intReturn = new int[3];
+            intReturn[0] = active;
+            intReturn[1] = pending;
+            intReturn[2] = suspended;
+            return intReturn;
+        }
+
         //registration 
         [HttpPost]
         [ActionName("Register")]
@@ -57,12 +89,13 @@ namespace CoreApp.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userId = Guid.NewGuid();
                 UserModel db = new UserModel();
                 BillingAddressModel db2 = new BillingAddressModel();
                 ClientModel db3 = new ClientModel();
-                db.UserId = Guid.NewGuid();
+                db.UserId = userId;
                 db.RoleId = 1;
-                db.Password = "qwerty";
+                db.Password = GeneratePassword();
                 db.Salutation = Users.Salutation;
                 db.FirstName = Users.FirstName;
                 db.LastName = Users.LastName;
@@ -72,7 +105,7 @@ namespace CoreApp.Web.Controllers
                 db.IsActive = true;
                 db.IsApproved = false;
                 db.IsFirstLogin = true;
-                db.CreatedBy = "qwerty";
+                db.CreatedBy = userId.ToString();
                 db.CreatedDate = DateTime.Now;
                 db2.BillingId = db.UserId;
                 db2.BillingFName = Users.FirstName;
@@ -84,21 +117,21 @@ namespace CoreApp.Web.Controllers
                 db2.BillingAddressTown = Users.Town;
                 db2.BillingCountry = Users.Country;
                 db2.BillingAddressPostalcode = Users.PostalCode;
-                db2.BillingAddressPhone = Int16.Parse(Users.ContactNumber);
+                db2.BillingAddressPhone = Int32.Parse(Users.ContactNumber);
                 db2.BillingAddressEmail = Users.Email;
                 db2.CreatedDate = DateTime.Now;
-                db2.CreatedBy = "john";
+                db2.CreatedBy = userId.ToString();
                 db2.IsActive = true;
                 db3.ClientId = db.UserId;
                 db3.CompanyName = Users.CompanyName;
                 db3.CompanyAddress = Users.Address;
                 db3.IsActive = true;
                 db3.CreatedDate = DateTime.Now;
-                db3.CreatedBy = "john";
+                db3.CreatedBy = userId.ToString();
                 _dataAccessProvider.AddRecord(db);
                 _dataAccessProvider.AddBillingRecord(db2);
                 _dataAccessProvider.AddClientRecord(db3);
-                return Ok();
+                return Ok(new { proceed=true});
 
             }
             return BadRequest(ModelState.IsValid);

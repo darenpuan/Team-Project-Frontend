@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState} from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Pie } from 'react-chartjs-2';
@@ -19,13 +19,21 @@ const useStyles = makeStyles(() => ({
   root: {}
 }));
 
+
 const AdminSummary = ({ className, ...rest }) => {
   const classes = useStyles();
   const theme = useTheme();
+  const [userData, setUserData] = useState("");
+  
+  async function fetchMovies() {
+    const response = await fetch('https://localhost:5001/api/User/AdminChart')
+    let responseJson = await response.json();
+    setUserData(responseJson);
+  }
 
   const data = {
     datasets: [{
-      data: [10, 20, 30],
+      data: userData,
       backgroundColor: [
         colors.green[500],
         colors.orange[600],
