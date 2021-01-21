@@ -3,17 +3,10 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import Divider from '@material-ui/core/Divider';
-import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Box from '@material-ui/core/Box';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Alert from "@material-ui/lab/Alert";
-import CheckIcon from "@material-ui/icons/Check";
-import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
-import Controls from "src/components/controls/Controls";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,7 +22,7 @@ export default function TimePickers()  {
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
-      <Alert severity="success" variant="outlined">
+      <Alert severity="success" variant="outlined" style={{ marginBottom:"30px" }}>
         Approved
       </Alert>
 
@@ -109,15 +102,16 @@ export default function TimePickers()  {
             />
           </Grid>
 
-          <Grid item xs={5} style={{ marginLeft: "26px" }}>
+          <Grid item xs={5} style={{ marginLeft: "26px", marginBottom: "30px" }}>
             <Typography variant="h5" gutterBottom>
               Receiving Warehouse *
             </Typography>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={6} style={{ marginBottom: "30px" }}>
           <Select
             labelId="demo-controlled-select-label"
-            id="demo-controlled-select"
+              id="demo-controlled-select"
+              fullWidth
           >
             <MenuItem value="">
               <em>None</em>

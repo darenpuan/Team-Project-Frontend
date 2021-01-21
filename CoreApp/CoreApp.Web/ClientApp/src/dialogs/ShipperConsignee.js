@@ -47,15 +47,14 @@ export default function TimePickers() {
             <TextField id="consignee_email" margin="dense" label="Email *" variant="outlined" fullWidth />
           </Grid>
           <Grid item xs={3} align="left">
-            <InputLabel style={{ marginTop: "10px" }}>Type of Shipment</InputLabel>
+            <InputLabel style={{ marginTop: "10px", marginLeft:"10px" }}>Type of Shipment</InputLabel>
           </Grid>
           <Grid item xs={3} align="left">
             <form noValidate autoComplete="off">
               <Select
                 value='Import'
                 variant="outlined"
-                style={{ width: "205px", height: "40px", backgroundColor: "lightGrey" }}
-                disabled
+                style={{ width: "198px", height: "40px" }}
               >
                 <option aria-label="None" value="" />
                 <option value={"Import"}>Import</option>
@@ -63,15 +62,14 @@ export default function TimePickers() {
             </form>
           </Grid>
           <Grid item xs={3} align="left">
-            <InputLabel style={{ marginTop: "10px" }}>Country of Origin of Goods</InputLabel>
+            <InputLabel style={{ marginTop: "10px", marginLeft: "10px" }}>Country of Origin of Goods</InputLabel>
           </Grid>
           <Grid item xs={3} align="left">
             <form noValidate autoComplete="off">
               <Select
                 value='Singapore'
                 variant="outlined"
-                style={{ width: "205px", height: "40px", backgroundColor: "lightGrey" }}
-                disabled
+                style={{ width: "198px", height: "40px"}}
               >
                 <option aria-label="None" value="" />
                 <option value={"Singapore"}>Singapore</option>
@@ -79,23 +77,22 @@ export default function TimePickers() {
             </form>
           </Grid>
           <Grid item xs={3} align="left">
-            <InputLabel style={{ marginTop: "10px" }}>Vessel / Voyage</InputLabel>
+            <InputLabel style={{ marginTop: "10px", marginLeft: "10px" }}>Vessel / Voyage</InputLabel>
           </Grid>
           <Grid item xs={3} align="right">
             <form noValidate autoComplete="off">
-              <TextField size="small" value="Aircraft" variant="outlined" style={{ backgroundColor: "lightGrey" }} disabled />
+              <TextField size="small" value="Aircraft" variant="outlined"/>
             </form>
           </Grid> 
           <Grid item xs={3} align="left">
-            <InputLabel style={{ marginTop: "10px" }}>Country of Final Destination</InputLabel>
+            <InputLabel style={{ marginTop: "10px", marginLeft: "10px" }}>Country of Final Destination</InputLabel>
           </Grid>
           <Grid item xs={3} align="left">
             <form noValidate autoComplete="off">
               <Select
                 value='malaysia'
                 variant="outlined"
-                style={{ width: "205px", height: "40px", backgroundColor: "lightGrey" }}
-                disabled
+                style={{ width: "198px", height: "40px" }}
               >
                 <option aria-label="None" value="" />
                 <option value={"malaysia"}>Malaysia</option>
@@ -103,35 +100,35 @@ export default function TimePickers() {
             </form>
           </Grid>
           <Grid item xs={3} align="left">
-            <InputLabel style={{ marginTop: "10px" }}>Port of Loading</InputLabel>
+            <InputLabel style={{ marginTop: "10px", marginLeft: "10px" }}>Port of Loading</InputLabel>
           </Grid>
           <Grid item xs={3} align="right">
             <form noValidate autoComplete="off">
-              <TextField size="small" value="ABC Port" variant="outlined" style={{ backgroundColor: "lightGrey" }} disabled />
+              <TextField size="small" value="ABC Port" variant="outlined" />
             </form>
           </Grid>
           <Grid item xs={3} align="left">
-            <InputLabel style={{ marginTop: "10px" }}>Date of Departure</InputLabel>
+            <InputLabel style={{ marginTop: "10px", marginLeft: "10px" }}>Date of Departure</InputLabel>
           </Grid>
           <Grid item xs={3} align="right">
             <form noValidate autoComplete="off">
-              <TextField size="small" value="12/1/2021" variant="outlined" style={{ backgroundColor: "lightGrey" }} disabled />
+              <TextField size="small" value="12/1/2021" variant="outlined" />
             </form>
           </Grid>
           <Grid item xs={3} align="left">
-            <InputLabel style={{ marginTop: "10px" }}>Port of Discharge</InputLabel>
+            <InputLabel style={{ marginTop: "10px", marginLeft: "10px" }}>Port of Discharge</InputLabel>
           </Grid>
           <Grid item xs={3} align="right">
             <form noValidate autoComplete="off">
-              <TextField size="small" value="BCD Port" variant="outlined" style={{ backgroundColor: "lightGrey" }} disabled />
+              <TextField size="small" value="BCD Port" variant="outlined"  />
             </form>
           </Grid>
           <Grid item xs={3} align="left">
-            <InputLabel style={{ marginTop: "10px" }}>Final Destination</InputLabel>
+            <InputLabel style={{ marginTop: "10px", marginLeft: "10px" }}>Final Destination</InputLabel>
           </Grid>
           <Grid item xs={3} align="right">
             <form noValidate autoComplete="off">
-              <TextField size="small" value="Johor Bahru" variant="outlined" style={{ backgroundColor: "lightGrey" }} disabled />
+              <TextField size="small" value="Johor Bahru" variant="outlined" />
             </form>
           </Grid>
         </Grid>
