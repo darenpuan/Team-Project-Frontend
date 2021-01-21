@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from "react";
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -20,10 +20,10 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker
 } from "@material-ui/pickers";
-import component3NoEdit from './component3NoEdit';
-import component3Editable from './component3Editable';
+import Component3NoEdit from './component3NoEdit';
+import Component3Editable from 'src/dialogs/component3Editable.js';
 import ShipperConsignee from './ShipperConsignee';
-import billOfLanding from './bookingSystemForm/billOfLanding';
+import BillOfLanding from 'src/dialogs/bookingSystemForm/billOfLanding';
 import TopComponent from './bookingSystemForm/TopComponent';
 
 const styles = (theme) => ({
@@ -425,12 +425,11 @@ export default function NewBookingChoiceDialog() {
         <DialogContent dividers>
           <TopComponent />
           <ShipperConsignee />
-          <component3NoEdit />
-          <billOfLanding />
+          <Component3Editable />
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleCloseBookingForm} color="primary">
-            Save & Submit
+            Submit
           </Button>
         </DialogActions>
       </Dialog>

@@ -34,8 +34,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 const tableStyles = makeStyles({
-  table: {
-    minWidth: 650,
+  root: {
+    flexGrow: 1,
   },
 });
 
@@ -122,38 +122,32 @@ export default function TransferWarehouseDialog() {
   return (
     <div>
 
-      <IconButton onClose={ handleCloseComponent} color="primary" onClick={ handleOpenComponent}>
-        <OpenInNewIcon style={{ color: "black" }} />
-      </IconButton>
-      
-      <Dialog open={openComponent} fullWidth={'true'} maxWidth={'md'}>
-        <DialogContent>
-          <Box display="flex" justifyContent="center">
-            <Box borderColor="text.primary" {...boxProps}>
+      <Box display="flex" justifyContent="center" style={{ marginTop: "30px" }}>
+        <Box borderColor="text.primary" {...boxProps}>
 
 
-          <Grid container spacing={1} style={{ margin: "10px", width: "850px" }} >
+          <Grid container spacing={1} style={{ margin: "10px" }} >
             <Grid item xs={2} align="left" >
               <InputLabel style={{ marginTop: "10px" }}>Cargo Name</InputLabel>
             </Grid>
             <Grid item xs={3} align="right" >
-                  <TextField size="small" value="Cargo A" variant="outlined" disabled/>
+              <TextField size="small" value="Cargo A" variant="outlined" disabled />
             </Grid>
             <Grid item xs={1} align="right" >
             </Grid>
             <Grid item xs={3} align="left">
               <InputLabel style={{ marginTop: "10px" }}>Marks & Numbers</InputLabel>
             </Grid>
-            <Grid item xs={3} align="right">
+            <Grid item xs={3} align="left">
               <form noValidate autoComplete="off">
-                <TextField size="small" value="ABC12345" variant="outlined" disabled/>
+                <TextField size="small" style={{ width: "185px" }} value="ABC12345" variant="outlined" disabled />
               </form>
             </Grid>
             <Grid item xs={2} align="left" >
               <InputLabel style={{ marginTop: "10px" }}>Weight (KG)</InputLabel>
             </Grid>
-            <Grid item xs={3} align="right" >
-                  <TextField size="small" value="50" variant="outlined" disabled/>
+            <Grid item xs={3} align="left" >
+              <TextField size="small" value="50" variant="outlined" disabled />
             </Grid>
             <Grid item xs={1} align="right" >
             </Grid>
@@ -163,10 +157,10 @@ export default function TransferWarehouseDialog() {
             <Grid item xs={3} align="left">
               <form noValidate autoComplete="off">
                 <Select
-                   value='drum'
-                   variant="outlined"
-                      style={{ width: "205px", height: "40px" }}
-                      disabled
+                  value='drum'
+                  variant="outlined"
+                  style={{ width: "185px", height: "40px" }}
+                  disabled
                 >
                   <option aria-label="None" value="" />
                   <option value={"drum"}>Drum</option>
@@ -181,7 +175,7 @@ export default function TransferWarehouseDialog() {
             </Grid>
             <Grid item xs={2} align="right">
               <form noValidate autoComplete="off">
-                    <TextField size="small" value="100" variant="outlined" disabled/>
+                <TextField size="small" value="100" variant="outlined" disabled />
               </form>
             </Grid>
             <Grid item xs={1} align="center">
@@ -192,7 +186,7 @@ export default function TransferWarehouseDialog() {
             </Grid>
             <Grid item xs={2} align="right">
               <form noValidate autoComplete="off">
-                    <TextField size="small" value="100" variant="outlined" disabled/>
+                <TextField size="small" value="100" variant="outlined" disabled />
               </form>
             </Grid>
             <Grid item xs={1} align="center">
@@ -203,135 +197,122 @@ export default function TransferWarehouseDialog() {
             </Grid>
             <Grid item xs={2} align="right">
               <form noValidate autoComplete="off">
-                    <TextField size="small" value="100" variant="outlined" disabled/>
+                <TextField size="small" value="100" variant="outlined" disabled />
               </form>
-             </Grid>
-                <Grid item xs={1} align="right">
-                  <IconButton disabled>
-                    <AddCircleOutlineIcon style={{ fontSize: 30, color: green[500], verticalAlign:"bottom" }}/>
-                  </IconButton>
-              </Grid>
+            </Grid>
+            <Grid item xs={1} align="right">
+              <IconButton disabled>
+                <AddCircleOutlineIcon style={{ fontSize: 30, color: green[500], verticalAlign: "bottom" }} />
+              </IconButton>
+            </Grid>
           </Grid>
 
 
 
 
-    <TableContainer style={{ margin: "10px", width: "850px" }} >
-      <Table className={tableClasses.table} size="small" aria-label="a dense table" style={{ width: "850px" }}>
-        <TableHead>
-          <TableRow >
-            <TableCell style={{ border: "1px solid black" }} align="center">Type</TableCell>
-            <TableCell style={{ border: "1px solid black" }} align="center">Category</TableCell>
-            <TableCell style={{ border: "1px solid black" }} align="center">Item Name</TableCell>
-            <TableCell style={{ border: "1px solid black" }} align="center">Batch</TableCell>
-            <TableCell style={{ border: "1px solid black" }} align="center">Quantity</TableCell>
-            <TableCell style={{ border: "1px solid black" }} align="center">Expiry</TableCell>
-            <TableCell style={{ border: "1px solid black" }} align="center">Remove</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell style={{ border: "1px solid black" }} align="center">{row.type}</TableCell>
-              <TableCell style={{ border: "1px solid black" }} align="center">{row.category}</TableCell>
-              <TableCell style={{ border: "1px solid black" }} align="center">{row.itemName}</TableCell>
-              <TableCell style={{ border: "1px solid black" }} align="center">{row.batch}</TableCell>
-              <TableCell style={{ border: "1px solid black" }} align="center">{row.quantity}</TableCell>
-              <TableCell style={{ border: "1px solid black" }} align="center">{row.expiry}</TableCell>
-              <TableCell style={{ border: "1px solid black" }} align="center">
-                <Button style={{ color: "white", backgroundColor: "red" }} variant="contained" >
-                  REMOVE
+          <TableContainer style={{ margin: "10px" }} >
+            <Table className={tableClasses.table} size="small" aria-label="a dense table" style={{ width: "850px" }}>
+              <TableHead>
+                <TableRow >
+                  <TableCell style={{ border: "1px solid black" }} align="center">Type</TableCell>
+                  <TableCell style={{ border: "1px solid black" }} align="center">Category</TableCell>
+                  <TableCell style={{ border: "1px solid black" }} align="center">Item Name</TableCell>
+                  <TableCell style={{ border: "1px solid black" }} align="center">Batch</TableCell>
+                  <TableCell style={{ border: "1px solid black" }} align="center">Quantity</TableCell>
+                  <TableCell style={{ border: "1px solid black" }} align="center">Expiry</TableCell>
+                  <TableCell style={{ border: "1px solid black" }} align="center">Remove</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map((row) => (
+                  <TableRow key={row.name}>
+                    <TableCell style={{ border: "1px solid black" }} align="center">{row.type}</TableCell>
+                    <TableCell style={{ border: "1px solid black" }} align="center">{row.category}</TableCell>
+                    <TableCell style={{ border: "1px solid black" }} align="center">{row.itemName}</TableCell>
+                    <TableCell style={{ border: "1px solid black" }} align="center">{row.batch}</TableCell>
+                    <TableCell style={{ border: "1px solid black" }} align="center">{row.quantity}</TableCell>
+                    <TableCell style={{ border: "1px solid black" }} align="center">{row.expiry}</TableCell>
+                    <TableCell style={{ border: "1px solid black" }} align="center">
+                      <Button style={{ color: "white", backgroundColor: "red" }} variant="contained" >
+                        REMOVE
                   </Button>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
             </Table>
           </TableContainer>
 
-              <Grid container spacing={1} style={{ margin: "10px", width: "850px" }} >
-                <Grid item xs={7} align="left">
-                  <InputLabel style={{ marginTop: "10px" }}>Does this shipment contain hazardous/dangerous goods?</InputLabel>
-                </Grid>
-                <Grid item xs={5} align="right">
-                  <Select
-                    style={{ width: "300px", textAlign: "left" }}
-                    value={'yes'}
-                    onChange={handleDangerChange}
-                    input={<BootstrapInput />}
-                    disabled
-                  >
-                    <MenuItem value={'yes'}>YES</MenuItem>
-                    <MenuItem value={'no'}>NO</MenuItem>
-                  </Select>
-                </Grid>
-                <Grid item xs={7} align="left">
-                  <InputLabel style={{ marginTop: "10px" }}>Do you require a transportation?</InputLabel>
-                </Grid>
-                <Grid item xs={5} align="right">
-                <form>
-                  <Select
-                      style={{ width: "300px", textAlign: "left" }}
-                      value='yes'
-                      onChange={handleTransportationChange}
-                      input={<BootstrapInput />}
-                      disabled
-                  >
-                    <MenuItem value={'yes'}>YES</MenuItem>
-                    <MenuItem value={'no'}>NO</MenuItem>
-                    </Select>
-                </form>
-                </Grid>
-                <Grid item xs={7} align="left">
-                  <InputLabel style={{ marginTop: "10px" }}>Select Transporter</InputLabel>
-                </Grid>
-                <Grid item xs={5} align="right">
-                  <Select
-                    disabled={transportation=='no'}
-                    style={{ width: "300px", textAlign: "left"  }}
-                    value={'Marino'}
-                    onChange={handleTransporterChange}
-                    input={<BootstrapInput />}
-                    disabled
-                  >
-                    <MenuItem value={'Marino'}>Marino Co.</MenuItem>
-                    <MenuItem value={'Company2'}>Transport Company 2</MenuItem>
-                  </Select>
-                </Grid>
-                <Divider />
-                <Grid item xs={12}>
-                  <InputLabel style={{ marginTop: "10px" }}>Remarks</InputLabel>
-                  <TextField
-                    variant="outlined"
-                    multiline={true}
-                    rows={5}
-                    margin=""
-                    fullWidth
-                    name="remarks"
-                    id="remarks"
-                    disabled
-                  />
-                  <FormControlLabel
-                    control={<Checkbox value="remember" color="primary" defaultChecked="true" disabled/>}
-                    label="By checking this box, you agree to our Shipping Policy and Terms & Conditions"
-                  />
-                </Grid>
-              </Grid>
-            </Box>
-          </Box>
-          <Grid style={{ margin: "5px"}} >
-            <Grid item xs={12} align="right">
-              <Button style={{ width:"100px", margin: "10px" }} variant="contained" onClick={handleCloseComponent}>
-                Cancel
-              </Button>
-              <Button variant="contained" style={{ width: "100px", backgroundColor:green[500], color:"white" }}>
-                Submit
-              </Button>
-              </Grid>
+          <Grid container spacing={1} style={{ margin: "10px" }} >
+            <Grid item xs={7} align="left">
+              <InputLabel style={{ marginTop: "10px" }}>Does this shipment contain hazardous/dangerous goods?</InputLabel>
+            </Grid>
+            <Grid item xs={5} align="left">
+              <Select
+                style={{ width: "320px", textAlign: "left" }}
+                value={'yes'}
+                onChange={handleDangerChange}
+                input={<BootstrapInput />}
+                disabled
+              >
+                <MenuItem value={'yes'}>YES</MenuItem>
+                <MenuItem value={'no'}>NO</MenuItem>
+              </Select>
+            </Grid>
+            <Grid item xs={7} align="left">
+              <InputLabel style={{ marginTop: "10px" }}>Do you require a transportation?</InputLabel>
+            </Grid>
+            <Grid item xs={5} align="left">
+              <form>
+                <Select
+                  style={{ width: "320px", textAlign: "left" }}
+                  value='yes'
+                  onChange={handleTransportationChange}
+                  input={<BootstrapInput />}
+                  disabled
+                >
+                  <MenuItem value={'yes'}>YES</MenuItem>
+                  <MenuItem value={'no'}>NO</MenuItem>
+                </Select>
+              </form>
+            </Grid>
+            <Grid item xs={7} align="left">
+              <InputLabel style={{ marginTop: "10px" }}>Select Transporter</InputLabel>
+            </Grid>
+            <Grid item xs={5} align="left">
+              <Select
+                disabled={transportation == 'no'}
+                style={{ width: "320px", textAlign: "left" }}
+                value={'Marino'}
+                onChange={handleTransporterChange}
+                input={<BootstrapInput />}
+                disabled
+              >
+                <MenuItem value={'Marino'}>Marino Co.</MenuItem>
+                <MenuItem value={'Company2'}>Transport Company 2</MenuItem>
+              </Select>
+            </Grid>
+            <Divider />
+            <Grid item xs={12}>
+              <InputLabel style={{ marginTop: "10px" }}>Remarks</InputLabel>
+              <TextField
+                variant="outlined"
+                multiline={true}
+                rows={5}
+                margin=""
+                style={{ width: "850px"}}
+                name="remarks"
+                id="remarks"
+                disabled
+              />
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" defaultChecked="true" disabled />}
+                label="By checking this box, you agree to our Shipping Policy and Terms & Conditions"
+              />
+            </Grid>
           </Grid>
-
-        </DialogContent>
-        </Dialog>
-      </div>
+        </Box>
+      </Box>
+    </div>
   );
 }
