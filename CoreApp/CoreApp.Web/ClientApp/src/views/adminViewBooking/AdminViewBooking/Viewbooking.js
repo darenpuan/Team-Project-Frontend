@@ -34,7 +34,6 @@ import {
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import { ApprovedChip, PendingChip, RejectedChip, TransitChip } from 'src/components/StatusChips';
 import { FilterButton } from 'src/components/Buttons';
-import BookingReject from '../../../dialogs/bookingreject';
 
 const data = [
   {

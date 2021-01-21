@@ -112,9 +112,9 @@ export default function TimePickers()  {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={"Customer"}>Customer</MenuItem>
-            <MenuItem value={"Staff"}>Staff</MenuItem>
-            <MenuItem value={"Admin"}>Admin</MenuItem>
+              <MenuItem value={'A'}>Warehouse A</MenuItem>
+              <MenuItem value={'B'}>Warehouse B</MenuItem>
+              <MenuItem value={'C'}>Warehouse C</MenuItem>
           </Select>
           </Grid>
           
