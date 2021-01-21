@@ -9,10 +9,17 @@ import {
   TextField,
   InputAdornment,
   SvgIcon,
-  makeStyles
+  makeStyles,
+  colors,
+  Grid
 } from '@material-ui/core';
-import { Search as SearchIcon } from 'react-feather';
 import NewOrderList from './NewOrderList';
+import {
+  Search as SearchIcon,
+  Filter as FilterIcon
+} from 'react-feather';
+
+import { FilterButton } from 'src/components/Buttons';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -21,6 +28,11 @@ const useStyles = makeStyles((theme) => ({
   },
   exportButton: {
     marginRight: theme.spacing(1)
+  },
+  filterButton: {
+    '&:hover': {
+      color: colors.common.white
+    }
   }
 }));
 
@@ -37,7 +49,9 @@ const Toolbar = ({ className, ...rest }) => {
           <CardContent>
             <div style={{ width: '100%' }}>
               <Box display="flex">
-                <Box flexGrow={1}>
+                <Grid container spacing={1} alignItems="flex-end">
+
+                <Grid item>
                   <TextField
                     InputProps={{
                       startAdornment: (
@@ -54,10 +68,21 @@ const Toolbar = ({ className, ...rest }) => {
                     placeholder="Search product"
                     variant="standard"
                   />
-                </Box>
-                <Box>
+                </Grid>
+                <Grid item mr={2}>
+                  <FilterButton variant="contained">
+                    <SvgIcon
+                      fontSize="small"
+                      color="action"
+                    >
+                      <FilterIcon className={classes.filterButton} />
+                    </SvgIcon>&nbsp;&nbsp;Filter
+              </FilterButton>
+                  </Grid>
+                  </Grid>
+                <Grid container display="flex" justify="flex-end">
                   <NewOrderList />
-                </Box>
+                </Grid>
               </Box>
             </div>
           </CardContent>

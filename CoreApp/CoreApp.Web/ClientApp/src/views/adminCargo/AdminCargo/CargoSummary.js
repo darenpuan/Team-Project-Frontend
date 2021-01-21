@@ -23,10 +23,17 @@ import {
   InputAdornment,
   SvgIcon,
   Grid,
-  TextField
+  TextField,
+  colors
 } from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
-import { Search as SearchIcon } from 'react-feather';
+import {
+  Search as SearchIcon,
+  Filter as FilterIcon
+} from 'react-feather';
+
+import { FilterButton } from 'src/components/Buttons';
+
 import { ApprovedChip, PendingChip, RejectedChip, TransitChip } from 'src/components/StatusChips';
 
 const data = [
@@ -84,6 +91,11 @@ const useStyles = makeStyles(() => ({
   root: {},
   actions: {
     justifyContent: 'flex-end'
+  },
+  filterButton: {
+    '&:hover': {
+      color: colors.common.white
+    }
   }
 }));
 
@@ -176,7 +188,17 @@ const CargoSummary = ({ className, ...rest }) => {
           </Grid>
           <Grid item >
             <TextField id="input-with-icon-grid" label="Search for all columns" />
-          </Grid>
+            </Grid>
+            <Grid item >
+              <FilterButton variant="contained">
+                <SvgIcon
+                  fontSize="small"
+                  color="action"
+                >
+                  <FilterIcon className={classes.filterButton} />
+                </SvgIcon>&nbsp;&nbsp;Filter
+              </FilterButton>
+            </Grid>
         </Grid>
       </Box>
 

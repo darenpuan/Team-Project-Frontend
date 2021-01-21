@@ -4,7 +4,6 @@ import moment from 'moment';
 import { v4 as uuid } from 'uuid';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
-import { Search as SearchIcon } from 'react-feather';
 import NewBookingChoiceDialog from 'src/dialogs/newBookingChoiceDialog';
 import IconButton from '@material-ui/core/IconButton';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
@@ -25,9 +24,16 @@ import {
   Grid,
   Tooltip,
   makeStyles,
-  Typography
+  Typography,
+  colors
 } from '@material-ui/core';
 
+import {
+  Search as SearchIcon,
+  Filter as FilterIcon
+} from 'react-feather';
+
+import { FilterButton } from 'src/components/Buttons';
 import { CompletedChip, PendingChip, UnCompletedChip } from 'src/components/StatusChips';
 
 const data = [
@@ -85,6 +91,11 @@ const useStyles = makeStyles(() => ({
   root: {},
   actions: {
     justifyContent: 'flex-end'
+  },
+  filterButton: {
+    '&:hover': {
+      color: colors.common.white
+    }
   }
 }));
 
@@ -123,6 +134,16 @@ const LatestOrders = ({ className, ...rest }) => {
                 </Grid>
                 <Grid item >
                   <TextField id="input-with-icon-grid" label="Search for all columns" />
+                </Grid>
+                <Grid item >
+                  <FilterButton variant="contained">
+                    <SvgIcon
+                      fontSize="small"
+                      color="action"
+                    >
+                      <FilterIcon className={classes.filterButton} />
+                    </SvgIcon>&nbsp;&nbsp;Filter
+              </FilterButton>
                 </Grid>
               </Grid>
             </Box>
