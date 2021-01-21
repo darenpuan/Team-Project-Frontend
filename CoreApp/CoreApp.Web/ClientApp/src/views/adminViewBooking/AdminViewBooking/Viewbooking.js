@@ -7,6 +7,7 @@ import { ViewAgenda } from '@material-ui/icons';
 import IconButton from '@material-ui/core/IconButton';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import Popup from 'src/components/Popup';
+import SummaryBookingChoice from 'src/dialogs/summaryBookingChoice';
 
 import {
   Box,
@@ -33,7 +34,7 @@ import {
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import { ApprovedChip, PendingChip, RejectedChip, TransitChip } from 'src/components/StatusChips';
 import { FilterButton } from 'src/components/Buttons';
-import BillOfLanding from '../../../dialogs/bookingSystemForm/billOfLanding';
+import BookingReject from '../../../dialogs/bookingreject';
 
 const data = [
   {
@@ -324,7 +325,7 @@ const Viewbooking = ({ className, ...rest }) => {
       openPopup = {openPopup}
       setOpenPopup = {setOpenPopup}
     >
-     <BillOfLanding />
+        <SummaryBookingChoice />
      </Popup>
     </>
   );

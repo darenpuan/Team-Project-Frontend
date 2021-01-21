@@ -7,6 +7,7 @@ import { ViewAgenda } from '@material-ui/icons';
 import IconButton from '@material-ui/core/IconButton';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import Popup from 'src/components/Popup';
+import SummaryBookingChoice from 'src/dialogs/summaryBookingChoice';
 
 import {
   Box,
@@ -316,7 +317,7 @@ const CargoSummary = ({ className, ...rest }) => {
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >
-           
+        <SummaryBookingChoice />
      </Popup>
     </>
   );
