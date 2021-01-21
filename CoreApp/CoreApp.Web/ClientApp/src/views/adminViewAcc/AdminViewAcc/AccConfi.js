@@ -97,7 +97,7 @@ const DialogContent1 = withStyles((theme) => ({
     padding: theme.spacing(8),
     textAlign: "center",
     width: '600px',
-    height: '360px'
+    height: '400px'
   },
 }))(MuiDialogContent);
 
@@ -164,14 +164,14 @@ export default function AccForm(props) {
       <IconButton color="primary">
         <OpenInNewIcon style={{ color: "black" }} onClick={handleClickOpen} />
       </IconButton>
-        <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+      <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" fullWidth={'true'} fullHeight={ 'true'} open={open}>
           <DialogTitle id="customized-dialog-title" onClose={handleClose}>
             <Typography align='center'>
-              Transfer Warehouse
+              Account Configuration
         </Typography>
           </DialogTitle>
     <Form onSubmit={handleSubmit}>
-      <Grid container justify="center">
+      <Grid container justify="center" >
         <FormControl className={classes.formControl}>
           <InputLabel id="demo-controlled-select-label">Account Type</InputLabel>
           <Select

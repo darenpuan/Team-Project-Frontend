@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
-import OrderTableEdit from './OrderTableEdit';
+//import OrderTableEdit from './OrderTableEdit';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
