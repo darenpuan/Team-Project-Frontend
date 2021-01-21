@@ -227,7 +227,6 @@ export default function AccForm(props) {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={"Customer"}>Customer</MenuItem>
             <MenuItem value={"Staff"}>Staff</MenuItem>
             <MenuItem value={"Admin"}>Admin</MenuItem>
           </Select>
