@@ -3,9 +3,11 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import { Search as SearchIcon } from 'react-feather';
 import IconButton from '@material-ui/core/IconButton';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
-import Component3 from 'src/dialogs/component3NoEdit'
+import CustomerCargo from 'src/dialogs/CustomerCargoDialog';
+
 import {
   Box,
   Card,
@@ -21,15 +23,8 @@ import {
   Grid,
   SvgIcon,
   TextField,
-  Button,
-  colors
+  Button
 } from '@material-ui/core';
-import {
-  Search as SearchIcon,
-  Filter as FilterIcon
-} from 'react-feather';
-
-import { FilterButton } from 'src/components/Buttons';
 import { CompletedChip, PendingChip, UnCompletedChip } from 'src/components/StatusChips';
 import getInitials from 'src/utils/getInitials';
 import TransferWarehouseDialog from 'src/dialogs/transferWarehouseDialog'
@@ -95,11 +90,6 @@ const useStyles = makeStyles((theme) => ({
   root: {},
   avatar: {
     marginRight: theme.spacing(2)
-  },
-  filterButton: {
-    '&:hover': {
-      color: colors.common.white
-    }
   }
 }));
 
@@ -139,16 +129,6 @@ const Results = ({ className, customers, ...rest }) => {
                 </Grid>
                 <Grid item >
                   <TextField id="input-with-icon-grid" label="Search for all columns" />
-                </Grid>
-                <Grid item >
-                  <FilterButton variant="contained">
-                    <SvgIcon
-                      fontSize="small"
-                      color="action"
-                    >
-                      <FilterIcon className={classes.filterButton} />
-                    </SvgIcon>&nbsp;&nbsp;Filter
-              </FilterButton>
                 </Grid>
               </Grid>
             </Box>
@@ -237,10 +217,10 @@ const Results = ({ className, customers, ...rest }) => {
                       )
                         : null
                     }
-                  </TableCell>
-                  <IconButton>
-                    <OpenInNewIcon style={{ color:"primary"}}/ >
-                    </IconButton>
+                      </TableCell>
+                      <TableCell>
+                        <CustomerCargo />
+                      </TableCell>
                     </TableRow>
                   ))
                 }
