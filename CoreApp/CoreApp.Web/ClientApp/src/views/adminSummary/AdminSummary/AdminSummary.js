@@ -25,12 +25,12 @@ const AdminSummary = ({ className, ...rest }) => {
   const theme = useTheme();
   const [userData, setUserData] = useState("");
   
-  async function fetchMovies() {
+  async function fetchData() {
     const response = await fetch('https://localhost:5001/api/User/AdminChart')
     let responseJson = await response.json();
     setUserData(responseJson);
   }
-
+  fetchData();
   const data = {
     datasets: [{
       data: userData,
