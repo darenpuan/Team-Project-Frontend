@@ -22,9 +22,9 @@ export default function TimePickers()  {
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
-      <Alert severity="success" variant="outlined" style={{ marginBottom:"30px" }}>
-        Approved <br /><br />
-        The Warehouse has approved the transfer request.
+      <Alert severity="error" variant="outlined" style={{ marginBottom:"30px" }}>
+        Rejected <br /><br />
+        The Warehouse has rejected the transfer as there is insufficient space in the Warehouse.
       </Alert>
 
 
