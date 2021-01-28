@@ -232,7 +232,7 @@ export default function TransferWarehouseDialog() {
                   <TableBody>
                     {rows.map((row) => (
                       <TableRow key={row.name}>
-                        <TableCell style={{ border: "1px solid black" }} align="center">{row.type}</TableCell>
+                        <TableCell style={{ border: "1px solid black" }} align="center" backgroundColor="lightGrey">{row.type}</TableCell>
                         <TableCell style={{ border: "1px solid black" }} align="center">{row.category}</TableCell>
                         <TableCell style={{ border: "1px solid black" }} align="center">{row.itemName}</TableCell>
                         <TableCell style={{ border: "1px solid black" }} align="center">{row.batch}</TableCell>

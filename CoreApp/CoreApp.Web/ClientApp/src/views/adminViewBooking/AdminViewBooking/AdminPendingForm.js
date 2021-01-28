@@ -77,7 +77,7 @@ export default function CustomizedDialogs() {
         <DialogContent dividers>
           <TopComponentPending />
           <ShipperConsignee />
-          <Component3Editable />
+          <Component3NoEdit />
           <BillOfLanding />
         </DialogContent>
         <DialogActions>

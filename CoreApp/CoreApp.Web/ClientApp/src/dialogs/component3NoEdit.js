@@ -89,11 +89,11 @@ function createData(type, category, itemName, batch, quantity, expiry) {
 }
 
 const rows = [
-  createData('Type A', 'Category A', 'Item A', '123', 20, 'DD/MM//YY'),
-  createData('Type B', 'Category B', 'Item B', '123', 17, 'DD/MM//YY'),
-  createData('Type C', 'Category C', 'Item C', '123', 42, 'DD/MM//YY'),
-  createData('Type D', 'Category D', 'Item D', '123', 16, 'DD/MM//YY'),
-  createData('Type E', 'Category E', 'Item F', '123', 50, 'DD/MM//YY'),
+  createData('Type A', 'Category A', 'Item A', '123', 20, '20/10/2020'),
+  createData('Type B', 'Category B', 'Item B', '123', 17, '05/10/2020'),
+  createData('Type C', 'Category C', 'Item C', '123', 42, '09/05/2020'),
+  createData('Type D', 'Category D', 'Item D', '123', 16, '02/01/2021'),
+  createData('Type E', 'Category E', 'Item F', '123', 50, '20/10/2020'),
 ];
 
 
@@ -126,28 +126,28 @@ export default function TransferWarehouseDialog() {
         <Box borderColor="text.primary" {...boxProps}>
 
 
-          <Grid container spacing={1} style={{ margin: "10px" }} >
+          <Grid container spacing={1} style={{ margin: "10px", width: "850px" }} >
             <Grid item xs={2} align="left" >
               <InputLabel style={{ marginTop: "10px" }}>Cargo Name</InputLabel>
             </Grid>
             <Grid item xs={3} align="right" >
-              <TextField size="small" value="Cargo A" variant="outlined" disabled />
+              <TextField size="small" value="Cargo A" variant="outlined" disabled style={{ backgroundColor: "lightGrey" }} />
             </Grid>
             <Grid item xs={1} align="right" >
             </Grid>
             <Grid item xs={3} align="left">
               <InputLabel style={{ marginTop: "10px" }}>Marks & Numbers</InputLabel>
             </Grid>
-            <Grid item xs={3} align="left">
+            <Grid item xs={3} align="right">
               <form noValidate autoComplete="off">
-                <TextField size="small" style={{ width: "185px" }} value="ABC12345" variant="outlined" disabled />
+                <TextField size="small" value="ABC12345" variant="outlined" disabled style={{ backgroundColor: "lightGrey" }} />
               </form>
             </Grid>
             <Grid item xs={2} align="left" >
               <InputLabel style={{ marginTop: "10px" }}>Weight (KG)</InputLabel>
             </Grid>
-            <Grid item xs={3} align="left" >
-              <TextField size="small" value="50" variant="outlined" disabled />
+            <Grid item xs={3} align="right" >
+              <TextField size="small" value="50" variant="outlined" disabled style={{ backgroundColor: "lightGrey" }} />
             </Grid>
             <Grid item xs={1} align="right" >
             </Grid>
@@ -159,7 +159,7 @@ export default function TransferWarehouseDialog() {
                 <Select
                   value='drum'
                   variant="outlined"
-                  style={{ width: "185px", height: "40px" }}
+                  style={{ width: "205px", height: "40px", backgroundColor: "lightGrey" }}
                   disabled
                 >
                   <option aria-label="None" value="" />
@@ -175,7 +175,7 @@ export default function TransferWarehouseDialog() {
             </Grid>
             <Grid item xs={2} align="right">
               <form noValidate autoComplete="off">
-                <TextField size="small" value="100" variant="outlined" disabled />
+                <TextField size="small" value="100" variant="outlined" disabled style={{ backgroundColor: "lightGrey" }} />
               </form>
             </Grid>
             <Grid item xs={1} align="center">
@@ -186,7 +186,7 @@ export default function TransferWarehouseDialog() {
             </Grid>
             <Grid item xs={2} align="right">
               <form noValidate autoComplete="off">
-                <TextField size="small" value="100" variant="outlined" disabled />
+                <TextField size="small" value="100" variant="outlined" disabled style={{ backgroundColor: "lightGrey" }} />
               </form>
             </Grid>
             <Grid item xs={1} align="center">
@@ -197,14 +197,10 @@ export default function TransferWarehouseDialog() {
             </Grid>
             <Grid item xs={2} align="right">
               <form noValidate autoComplete="off">
-                <TextField size="small" value="100" variant="outlined" disabled />
+                <TextField size="small" value="100" variant="outlined" disabled style={{ backgroundColor: "lightGrey" }} />
               </form>
             </Grid>
-            <Grid item xs={1} align="right">
-              <IconButton disabled>
-                <AddCircleOutlineIcon style={{ fontSize: 30, color: green[500], verticalAlign: "bottom" }} />
-              </IconButton>
-            </Grid>
+
           </Grid>
 
 
@@ -220,23 +216,17 @@ export default function TransferWarehouseDialog() {
                   <TableCell style={{ border: "1px solid black" }} align="center">Batch</TableCell>
                   <TableCell style={{ border: "1px solid black" }} align="center">Quantity</TableCell>
                   <TableCell style={{ border: "1px solid black" }} align="center">Expiry</TableCell>
-                  <TableCell style={{ border: "1px solid black" }} align="center">Remove</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {rows.map((row) => (
                   <TableRow key={row.name}>
-                    <TableCell style={{ border: "1px solid black" }} align="center">{row.type}</TableCell>
-                    <TableCell style={{ border: "1px solid black" }} align="center">{row.category}</TableCell>
-                    <TableCell style={{ border: "1px solid black" }} align="center">{row.itemName}</TableCell>
-                    <TableCell style={{ border: "1px solid black" }} align="center">{row.batch}</TableCell>
-                    <TableCell style={{ border: "1px solid black" }} align="center">{row.quantity}</TableCell>
-                    <TableCell style={{ border: "1px solid black" }} align="center">{row.expiry}</TableCell>
-                    <TableCell style={{ border: "1px solid black" }} align="center">
-                      <Button style={{ color: "white", backgroundColor: "red" }} variant="contained" >
-                        REMOVE
-                  </Button>
-                    </TableCell>
+                    <TableCell style={{ border: "1px solid black", backgroundColor: "lightGrey" }} align="center">{row.type}</TableCell>
+                    <TableCell style={{ border: "1px solid black", backgroundColor: "lightGrey" }} align="center">{row.category}</TableCell>
+                    <TableCell style={{ border: "1px solid black", backgroundColor: "lightGrey" }} align="center">{row.itemName}</TableCell>
+                    <TableCell style={{ border: "1px solid black", backgroundColor: "lightGrey" }} align="center">{row.batch}</TableCell>
+                    <TableCell style={{ border: "1px solid black", backgroundColor: "lightGrey" }} align="center">{row.quantity}</TableCell>
+                    <TableCell style={{ border: "1px solid black", backgroundColor: "lightGrey" }} align="center">{row.expiry}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -248,31 +238,31 @@ export default function TransferWarehouseDialog() {
               <InputLabel style={{ marginTop: "10px" }}>Does this shipment contain hazardous/dangerous goods?</InputLabel>
             </Grid>
             <Grid item xs={5} align="left">
-              <Select
-                style={{ width: "320px", textAlign: "left" }}
-                value={'yes'}
-                onChange={handleDangerChange}
-                input={<BootstrapInput />}
-                disabled
-              >
-                <MenuItem value={'yes'}>YES</MenuItem>
-                <MenuItem value={'no'}>NO</MenuItem>
-              </Select>
+              <form noValidate autoComplete="off">
+                <Select
+                  value='yes'
+                  variant="outlined"
+                  style={{ width: "320px", height: "40px", backgroundColor: "lightGrey" }}
+                  disabled
+                >
+                  <option aria-label="None" value="" />
+                  <option value={"yes"}>YES</option>
+                </Select>
+              </form>
             </Grid>
             <Grid item xs={7} align="left">
               <InputLabel style={{ marginTop: "10px" }}>Do you require a transportation?</InputLabel>
             </Grid>
             <Grid item xs={5} align="left">
-              <form>
+              <form noValidate autoComplete="off">
                 <Select
-                  style={{ width: "320px", textAlign: "left" }}
                   value='yes'
-                  onChange={handleTransportationChange}
-                  input={<BootstrapInput />}
+                  variant="outlined"
+                  style={{ width: "320px", height: "40px", backgroundColor: "lightGrey" }}
                   disabled
                 >
-                  <MenuItem value={'yes'}>YES</MenuItem>
-                  <MenuItem value={'no'}>NO</MenuItem>
+                  <option aria-label="None" value="" />
+                  <option value={"yes"}>YES</option>
                 </Select>
               </form>
             </Grid>
@@ -280,17 +270,17 @@ export default function TransferWarehouseDialog() {
               <InputLabel style={{ marginTop: "10px" }}>Select Transporter</InputLabel>
             </Grid>
             <Grid item xs={5} align="left">
-              <Select
-                disabled={transportation == 'no'}
-                style={{ width: "320px", textAlign: "left" }}
-                value={'Marino'}
-                onChange={handleTransporterChange}
-                input={<BootstrapInput />}
-                disabled
-              >
-                <MenuItem value={'Marino'}>Marino Co.</MenuItem>
-                <MenuItem value={'Company2'}>Transport Company 2</MenuItem>
-              </Select>
+              <form noValidate autoComplete="off">
+                <Select
+                  value='marinoCo'
+                  variant="outlined"
+                  style={{ width: "320px", height: "40px", backgroundColor: "lightGrey" }}
+                  disabled
+                >
+                  <option aria-label="None" value="" />
+                  <option value={"marinoCo"}>Marino Co.</option>
+                </Select>
+              </form>
             </Grid>
             <Divider />
             <Grid item xs={12}>
@@ -300,11 +290,13 @@ export default function TransferWarehouseDialog() {
                 multiline={true}
                 rows={5}
                 margin=""
-                style={{ width: "850px"}}
+                style={{ width: "850px", backgroundColor: "lightGrey" }}
                 name="remarks"
                 id="remarks"
-                disabled
+                value="NIL"
+                disabled 
               />
+              
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" defaultChecked="true" disabled />}
                 label="By checking this box, you agree to our Shipping Policy and Terms & Conditions"
