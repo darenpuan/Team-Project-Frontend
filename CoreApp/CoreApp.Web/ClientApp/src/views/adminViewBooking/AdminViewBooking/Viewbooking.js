@@ -9,6 +9,7 @@ import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import Popup from 'src/components/Popup';
 import AdminApprovedForm from 'src/views/adminViewBooking/AdminViewBooking/AdminApprovedForm';
 import AdminRejectedForm from 'src/views/adminViewBooking/AdminViewBooking/AdminRejectedForm';
+import AdminPendingForm from 'src/views/adminViewBooking/AdminViewBooking/AdminPendingForm';
 
 import {
   Box,
@@ -303,6 +304,11 @@ const Viewbooking = ({ className, ...rest }) => {
                   <TableCell>
                     {view.status === 'Approved' ? (
                       <AdminApprovedForm />
+                    )
+                      : null}
+
+                    {view.status === 'Pending' ? (
+                      <AdminPendingForm />
                     )
                       : null}
 
