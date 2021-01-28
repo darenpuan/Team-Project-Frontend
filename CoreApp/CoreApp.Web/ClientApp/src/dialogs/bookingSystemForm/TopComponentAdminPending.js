@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react'
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Alert from "@material-ui/lab/Alert";
+import InputLabel from '@material-ui/core/InputLabel';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,14 +18,67 @@ const useStyles = makeStyles((theme) => ({
 export default function TimePickers()  {
   // The first commit of Material-UI
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+  const [open1, setOpen1] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleClickOpen1 = () => {
+    setOpen1(true);
+  };
+
+  const handleClose1 = () => {
+    setOpen1(false);
+  };
+
+  const handleChange1 = () => {
+    setOpen(false);
+    setOpen1(true);
+  };
+
+  const handleClickOpen2 = () => {
+    setOpen2(true);
+  };
+
+
+  const handleClose2 = () => {
+    setOpen2(false);
+  };
+
+  const handleChange2 = () => {
+    setOpen(false);
+    setOpen2(true);
+  };
+
 
   const onFileLoad = (e, file) => console.log(e.target.result, file.name);
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
-      <Alert severity="error" variant="outlined" style={{ marginBottom:"30px" }}>
-        Rejected <br /><br />
-        The Warehouse has rejected the transfer as there is insufficient space in the Warehouse.
+      <Alert severity="warning" variant="outlined" style={{ marginBottom:"30px" }}>
+        <Grid container spacing={1} style={{ margin: "1px" }} >
+          
+          <Grid item xs={5} align="left" >
+            <InputLabel style={{ marginTop: "2px" }}>Pending Approval</InputLabel>
+          </Grid>
+
+          <Grid item xs={1} align="right" >
+          </Grid>
+          
+          <Grid item xs={3} align="left" >
+            <Button variant="contained" color="dark" onClick={handleChange1} className={classes.button}>Reject</Button>
+          </Grid>
+          <Grid item xs={3} align="left" >
+            <Button variant="contained" color="primary" onClick={handleChange2} className={classes.button}>Approve</Button>
+          </Grid>
+        </Grid>
       </Alert>
 
 
@@ -42,9 +96,6 @@ export default function TimePickers()  {
               fullWidth
               defaultValue="2017-05-24"
               className={classes.textField}
-              InputLabelProps={{
-                shrink: true,
-              }}
               style={{ backgroundColor: "lightGrey" }}
               disabled
             />
@@ -64,9 +115,6 @@ export default function TimePickers()  {
               InputLabelProps={{
                 shrink: true,
               }}
-              inputProps={{
-                step: 300, // 5 min
-              }}
               style={{ backgroundColor: "lightGrey" }}
               disabled
             />   
@@ -85,11 +133,11 @@ export default function TimePickers()  {
             <label htmlFor="contained-button-file">
               <Grid container spacing={1} style={{ width: "300px" }} >
 
-                <Grid item xs={9} align="left" >
+                <Grid item xs={9} align="right" >
                   <TextField size="small" value="Upload Bill of Lading" variant="outlined" disabled style={{ backgroundColor: "lightGrey" }} fullWidth />
                 </Grid>
 
-                <Grid item xs={1} align="left" >
+                <Grid item xs={1} align="right" >
                   <Button variant="contained" color="dark" component="span">
                     Browse
                   </Button>

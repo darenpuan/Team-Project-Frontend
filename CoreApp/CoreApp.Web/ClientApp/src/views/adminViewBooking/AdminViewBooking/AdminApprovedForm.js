@@ -11,9 +11,9 @@ import Typography from '@material-ui/core/Typography';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import Component3NoEdit from 'src/dialogs/component3NoEdit';
 import Component3Editable from 'src/dialogs/component3Editable.js';
-import ShipperConsignee from 'src/dialogs/ShipperConsignee';
+import ShipperConsigneeNoEdit from 'src/dialogs/ShipperConsigneeNoEdit';
 import BillOfLanding from 'src/dialogs/bookingSystemForm/billOfLanding';
-import TopComponent from 'src/dialogs/bookingSystemForm/TopComponent';
+import TopComponentApprove from 'src/dialogs/bookingSystemForm/TopComponentApprove';
 
 const styles = (theme) => ({
   root: {
@@ -75,9 +75,9 @@ export default function CustomizedDialogs() {
           Order List Form
         </DialogTitle>
         <DialogContent dividers>
-          <TopComponent />
-          <ShipperConsignee />
-          <Component3Editable />
+          <TopComponentApprove />
+          <ShipperConsigneeNoEdit />
+          <Component3NoEdit />
           <BillOfLanding />
         </DialogContent>
         <DialogActions>

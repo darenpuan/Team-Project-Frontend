@@ -73,10 +73,10 @@ export default function TimePickers()  {
           </Grid>
           
           <Grid item xs={3} align="left" >
-            <Button variant="contained" color="dark" onClick={handleChange1} className={classes.button}>Reject</Button>
+            <Button variant="contained" color="dark" onClick={handleChange1} className={classes.button}>Cancel Booking</Button>
           </Grid>
           <Grid item xs={3} align="left" >
-            <Button variant="contained" color="primary" onClick={handleChange2} className={classes.button}>Approve</Button>
+            <Button variant="contained" color="primary" onClick={handleChange2} className={classes.button}>Edit Booking</Button>
           </Grid>
         </Grid>
       </Alert>

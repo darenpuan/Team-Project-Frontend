@@ -22,9 +22,9 @@ export default function TimePickers()  {
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
-      <Alert severity="error" variant="outlined" style={{ marginBottom:"30px" }}>
-        Rejected <br /><br />
-        The Warehouse has rejected the transfer as there is insufficient space in the Warehouse.
+      <Alert severity="success" variant="outlined" style={{ marginBottom:"30px" }}>
+        Approved <br /><br />
+        The Warehouse has approved the transfer request.
       </Alert>
 
 
@@ -64,9 +64,6 @@ export default function TimePickers()  {
               InputLabelProps={{
                 shrink: true,
               }}
-              inputProps={{
-                step: 300, // 5 min
-              }}
               style={{ backgroundColor: "lightGrey" }}
               disabled
             />   
@@ -85,11 +82,11 @@ export default function TimePickers()  {
             <label htmlFor="contained-button-file">
               <Grid container spacing={1} style={{ width: "300px" }} >
 
-                <Grid item xs={9} align="left" >
-                  <TextField size="small" value="Upload Bill of Lading" variant="outlined" disabled style={{ backgroundColor: "lightGrey" }} fullWidth />
-                </Grid>
+                <Grid item xs={9} align="right" >
+                    <TextField size="small" value="Upload Bill of Lading" variant="outlined" disabled style={{ backgroundColor: "lightGrey" }} fullWidth />
+                 </Grid>
 
-                <Grid item xs={1} align="left" >
+                <Grid item xs={1} align="right" >
                   <Button variant="contained" color="dark" component="span">
                     Browse
                   </Button>

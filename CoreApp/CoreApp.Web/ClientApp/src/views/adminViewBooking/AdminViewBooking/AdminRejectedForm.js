@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import Component3NoEdit from 'src/dialogs/component3NoEdit';
 import Component3Editable from 'src/dialogs/component3Editable.js';
-import ShipperConsignee from 'src/dialogs/ShipperConsignee';
+import ShipperConsigneeNoEdit from 'src/dialogs/ShipperConsigneeNoEdit';
 import BillOfLanding from 'src/dialogs/bookingSystemForm/billOfLanding';
 import TopComponentReject from 'src/dialogs/bookingSystemForm/TopComponentReject';
 
@@ -76,8 +76,8 @@ export default function CustomizedDialogs() {
         </DialogTitle>
         <DialogContent dividers>
           <TopComponentReject />
-          <ShipperConsignee />
-          <Component3Editable />
+          <ShipperConsigneeNoEdit />
+          <Component3NoEdit />
           <BillOfLanding />
         </DialogContent>
         <DialogActions>

@@ -29,22 +29,22 @@ export default function TimePickers() {
             <Typography variant="h5" gutterBottom>
               Shipper
             </Typography>
-            <TextField id="shipper_name" margin="dense" label="Name of Shipper *" variant="outlined" fullWidth />
-            <TextField id="shipper_add1" margin="dense" label="Address Line 1 *" variant="outlined" fullWidth />
-            <TextField id="shipper_add2" margin="dense" label="Address Line 2" variant="outlined" fullWidth />
-            <TextField id="shipper_contact" margin="dense" label="Contact Number *" variant="outlined" fullWidth />
-            <TextField id="shipper_email" margin="dense" label="Email *" variant="outlined" fullWidth />
+            <TextField id="shipper_name" margin="dense" value="Mr Shipper A" variant="outlined" fullWidth disabled style={{ backgroundColor: "lightGrey" }} />
+            <TextField id="shipper_add1" margin="dense" value="Block AAA Loyang #01-01" variant="outlined" fullWidth disabled style={{ backgroundColor: "lightGrey" }}/>
+            <TextField id="shipper_add2" margin="dense" value="Address Line 2" variant="outlined" fullWidth disabled style={{ backgroundColor: "lightGrey" }}/>
+            <TextField id="shipper_contact" margin="dense" value="9123 1234" variant="outlined" fullWidth disabled style={{ backgroundColor: "lightGrey" }}/>
+            <TextField id="shipper_email" margin="dense" value="shipperA@shipper.com" variant="outlined" fullWidth disabled style={{ backgroundColor: "lightGrey" }}/>
           </Grid>
           <Divider orientation="vertical" flexItem />
           <Grid item xs={5}>
             <Typography variant="h5" gutterBottom>
               Consignee
             </Typography>
-            <TextField id="consignee_name" margin="dense" label="Name of Consignee *" variant="outlined" fullWidth />
-            <TextField id="consignee_add1" margin="dense" label="Address Line 1 *" variant="outlined" fullWidth />
-            <TextField id="consignee_add2" margin="dense" label="Address Line 2" variant="outlined" fullWidth />
-            <TextField id="consignee_contact" margin="dense" label="Contact Number *" variant="outlined" fullWidth />
-            <TextField id="consignee_email" margin="dense" label="Email *" variant="outlined" fullWidth />
+            <TextField id="consignee_name" margin="dense" value="Mr Consignee B" variant="outlined" fullWidth disabled style={{ backgroundColor: "lightGrey" }}/>
+            <TextField id="consignee_add1" margin="dense" value="Block BBB Jurong Industry #01-09" variant="outlined" fullWidth disabled style={{ backgroundColor: "lightGrey" }}/>
+            <TextField id="consignee_add2" margin="dense" value="Address Line 2" variant="outlined" fullWidth disabled style={{ backgroundColor: "lightGrey" }}/>
+            <TextField id="consignee_contact" margin="dense" value="9343 3453" variant="outlined" fullWidth disabled style={{ backgroundColor: "lightGrey" }}/>
+            <TextField id="consignee_email" margin="dense" value="consigneeB@consignee.com" variant="outlined" fullWidth disabled style={{ backgroundColor: "lightGrey" }}/>
           </Grid>
           <Grid item xs={3} align="left">
             <InputLabel style={{ marginTop: "10px", marginLeft: "10px" }}>Type of Shipment</InputLabel>
@@ -52,13 +52,14 @@ export default function TimePickers() {
           <Grid item xs={3} align="left">
             <form noValidate autoComplete="off">
               <Select
-                value=''
+                value='import'
                 variant="outlined"
-                style={{ width: "198px", height: "40px" }}
+                style={{ width: "198px", height: "40px", backgroundColor: "lightGrey" }}
+                disabled
               >
                 <option aria-label="None" value="" />
-                <option value={"Import"}>Import</option>
-                <option value={"Export"}>Export</option>
+                <option value={"import"}>Import</option>
+                <option value={"export"}>Export</option>
               </Select>
             </form>
           </Grid>
@@ -68,9 +69,10 @@ export default function TimePickers() {
           <Grid item xs={3} align="left">
             <form noValidate autoComplete="off">
               <Select
-                value=''
+                value='Singapore'
                 variant="outlined"
-                style={{ width: "198px", height: "40px" }}
+                style={{ width: "198px", height: "40px", backgroundColor: "lightGrey" }}
+                disabled
               >
                 <option aria-label="None" value="" />
                 <option value={"Singapore"}>Singapore</option>
@@ -82,7 +84,7 @@ export default function TimePickers() {
           </Grid>
           <Grid item xs={3} align="right">
             <form noValidate autoComplete="off">
-              <TextField size="small" value="" variant="outlined" />
+              <TextField size="small" value="Aircraft" variant="outlined" disabled style={{ backgroundColor: "lightGrey" }} />
             </form>
           </Grid>
           <Grid item xs={3} align="left">
@@ -91,9 +93,10 @@ export default function TimePickers() {
           <Grid item xs={3} align="left">
             <form noValidate autoComplete="off">
               <Select
-                value=''
+                value='malaysia'
                 variant="outlined"
-                style={{ width: "198px", height: "40px" }}
+                style={{ width: "198px", height: "40px", backgroundColor: "lightGrey" }}
+                disabled
               >
                 <option aria-label="None" value="" />
                 <option value={"malaysia"}>Malaysia</option>
@@ -105,7 +108,7 @@ export default function TimePickers() {
           </Grid>
           <Grid item xs={3} align="right">
             <form noValidate autoComplete="off">
-              <TextField size="small" value="" variant="outlined" />
+              <TextField size="small" value="ABC Port" variant="outlined" disabled style={{ backgroundColor: "lightGrey" }}/>
             </form>
           </Grid>
           <Grid item xs={3} align="left">
@@ -113,7 +116,7 @@ export default function TimePickers() {
           </Grid>
           <Grid item xs={3} align="right">
             <form noValidate autoComplete="off">
-              <TextField size="small" value="" variant="outlined" />
+              <TextField size="small" value="12/1/2021" variant="outlined" disabled style={{ backgroundColor: "lightGrey" }}/>
             </form>
           </Grid>
           <Grid item xs={3} align="left">
@@ -121,7 +124,7 @@ export default function TimePickers() {
           </Grid>
           <Grid item xs={3} align="right">
             <form noValidate autoComplete="off">
-              <TextField size="small" value="" variant="outlined" />
+              <TextField size="small" value="BCD Port" variant="outlined" disabled style={{ backgroundColor: "lightGrey" }}/>
             </form>
           </Grid>
           <Grid item xs={3} align="left">
@@ -129,7 +132,7 @@ export default function TimePickers() {
           </Grid>
           <Grid item xs={3} align="right">
             <form noValidate autoComplete="off">
-              <TextField size="small" value="" variant="outlined" />
+              <TextField size="small" value="Johor Bahru" variant="outlined" disabled style={{ backgroundColor: "lightGrey" }}/>
             </form>
           </Grid>
         </Grid>

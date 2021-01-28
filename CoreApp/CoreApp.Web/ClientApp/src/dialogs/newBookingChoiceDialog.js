@@ -22,7 +22,7 @@ import {
 } from "@material-ui/pickers";
 import Component3NoEdit from './component3NoEdit';
 import Component3Editable from 'src/dialogs/component3Editable.js';
-import ShipperConsignee from './ShipperConsigneeEmpty';
+import ShipperConsignee from './ShipperConsignee';
 import BillOfLanding from 'src/dialogs/bookingSystemForm/billOfLanding';
 import TopComponent from './bookingSystemForm/TopComponentEmpty';
 
