@@ -22,11 +22,11 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import { green } from '@material-ui/core/colors';
+import MuiDialogTitle from '@material-ui/core/DialogTitle';
+import MuiDialogContent from '@material-ui/core/DialogContent';
+import { withStyles } from '@material-ui/core/styles';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -59,6 +59,7 @@ const ProfileDetails = ({ className, ...rest }) => {
   });
 
   const [open, setOpen] = React.useState(false);
+  const [openSuccess, setOpenSuccess] = React.useState(false);
 
   const user = {
     email: 'JohnDoe@cloudplus.com',
@@ -76,12 +77,38 @@ const ProfileDetails = ({ className, ...rest }) => {
 
   };
 
-  const handleChange = (event) => {
-    setValues({
-      ...values,
-      [event.target.name]: event.target.value
-    });
-  };
+  const styles = (theme) => ({
+    root: {
+      margin: 0,
+      padding: theme.spacing(1.5),
+      backgroundColor: theme.palette.info.main,
+      color: 'white',
+    },
+    closeButton: {
+      position: 'absolute',
+      right: theme.spacing(0),
+      top: theme.spacing(0),
+      color: theme.palette.grey[500],
+    },
+  });
+
+  const DialogTitle2 = withStyles(styles)((props) => {
+    const { children, classes, onClose, ...other } = props;
+    return (
+      <MuiDialogTitle disableTypography className={classes.root} {...other}>
+        <Typography variant="h6">{children}</Typography>
+      </MuiDialogTitle>
+    );
+  });
+
+  const DialogContent2 = withStyles((theme) => ({
+    root: {
+      padding: theme.spacing(8),
+      textAlign: "center",
+      width: '600px',
+      height: '360px'
+    },
+  }))(MuiDialogContent);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -89,6 +116,14 @@ const ProfileDetails = ({ className, ...rest }) => {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleCloseSuccessDialog = () => {
+    setOpenSuccess(false);
+  };
+  const handleChangeSuccessDialog = () => {
+    setOpen(false);
+    setOpenSuccess(true);
   };
 
   return (
@@ -234,10 +269,22 @@ const ProfileDetails = ({ className, ...rest }) => {
             <Button onClick={handleClose} color="primary">
               Cancel
           </Button>
-            <Button onClick={handleClose} color="primary">
+            <Button onClick={handleChangeSuccessDialog} color="primary">
               Update
           </Button>
           </DialogActions>
+        </Dialog>
+
+        <Dialog onClose={handleCloseSuccessDialog} aria-labelledby="customized-dialog-title" open={openSuccess} >
+          <DialogTitle2 align='center' id="customized-dialog-title" onClose={handleCloseSuccessDialog} style={{ backgroundColor: green[500] }}>
+            SUCCESS
+        </DialogTitle2>
+          <DialogContent2 dividers>
+            <CheckCircleIcon style={{ fontSize: 200, color: green[500] }} />
+            <Typography>
+              Company information has been updated successfully
+          </Typography>
+          </DialogContent2>
         </Dialog>
 
       </List>

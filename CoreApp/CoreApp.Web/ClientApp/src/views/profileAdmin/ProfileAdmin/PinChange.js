@@ -10,6 +10,13 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
+import Dialog from '@material-ui/core/Dialog';
+import Typography from "@material-ui/core/Typography";
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import { green } from '@material-ui/core/colors';
+import MuiDialogTitle from '@material-ui/core/DialogTitle';
+import MuiDialogContent from '@material-ui/core/DialogContent';
+import { withStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,28 +48,52 @@ const ProfileDetails = ({ className, ...rest }) => {
     country: 'Singapore'
   });
 
-  const user = {
-    email: 'JohnDoe@cloudplus.com',
-    salutation: "Mr ",
-    hp: "+(65) 9123 5678",
-    office: "+(65) 6123 5678",
-    name: 'John Doe',
-    timezone: 'GMT+8',
-    company: 'SIT LLP',
-    companyadd: '172 Ang Mo Kio Avenue 8 DR-3P, Singapore (567739)'
-  };
+  const [openSuccess, setOpenSuccess] = React.useState(false);
 
-  const handleChange = (event) => {
-    setValues({
-      ...values,
-      [event.target.name]: event.target.value
-    });
+  const styles = (theme) => ({
+    root: {
+      margin: 0,
+      padding: theme.spacing(1.5),
+      backgroundColor: theme.palette.info.main,
+      color: 'white',
+    },
+    closeButton: {
+      position: 'absolute',
+      right: theme.spacing(0),
+      top: theme.spacing(0),
+      color: theme.palette.grey[500],
+    },
+  });
+
+  const DialogTitle2 = withStyles(styles)((props) => {
+    const { children, classes, onClose, ...other } = props;
+    return (
+      <MuiDialogTitle disableTypography className={classes.root} {...other}>
+        <Typography variant="h6">{children}</Typography>
+      </MuiDialogTitle>
+    );
+  });
+
+  const DialogContent2 = withStyles((theme) => ({
+    root: {
+      padding: theme.spacing(8),
+      textAlign: "center",
+      width: '600px',
+      height: '360px'
+    },
+  }))(MuiDialogContent);
+
+  const handleCloseSuccessDialog = () => {
+    setOpenSuccess(false);
+  };
+  const handleSuccessDialog = () => {
+    setOpenSuccess(true);
   };
 
   return (
     <Paper elevation='0'>
       <CardHeader
-        subheader="The pin you use on the kiosk"
+        subheader="Enter the pin you use on the kiosk"
         title="Pin Change"
       />
       <Divider />
@@ -75,6 +106,7 @@ const ProfileDetails = ({ className, ...rest }) => {
           id="currPin"
           label="Current Pin"
           name="Current Pin"
+          autoFocus
         />
         <TextField
           variant="outlined"
@@ -83,7 +115,6 @@ const ProfileDetails = ({ className, ...rest }) => {
           fullWidth
           name="newPin"
           label="New Pin"
-          type="New Pin"
           id="newPin"
         />
         <TextField
@@ -91,23 +122,35 @@ const ProfileDetails = ({ className, ...rest }) => {
           margin="normal"
           required
           fullWidth
-          name="confirmPin"
+          name="confirm pin"
           label="Confirm Pin"
-          type="New Pin"
           id="confirmPin"
         />
         <Grid container justify="flex-end">
           <Button
-            type="submit"
             maxWidth="30%"
             align
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleSuccessDialog}
           >
             Submit
           </Button>
         </Grid>
+
+        <Dialog onClose={handleCloseSuccessDialog} aria-labelledby="customized-dialog-title" open={openSuccess} >
+          <DialogTitle2 align='center' id="customized-dialog-title" onClose={handleCloseSuccessDialog} style={{ backgroundColor: green[500] }}>
+            SUCCESS
+        </DialogTitle2>
+          <DialogContent2 dividers>
+            <CheckCircleIcon style={{ fontSize: 200, color: green[500] }} />
+            <Typography>
+              Security Pin has been updated successfully
+          </Typography>
+          </DialogContent2>
+        </Dialog>
+
       </form>
     </Paper>
   );
