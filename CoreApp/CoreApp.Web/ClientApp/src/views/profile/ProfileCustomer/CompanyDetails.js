@@ -14,7 +14,19 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Typography from "@material-ui/core/Typography";
+import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -46,6 +58,8 @@ const ProfileDetails = ({ className, ...rest }) => {
     country: 'Singapore'
   });
 
+  const [open, setOpen] = React.useState(false);
+
   const user = {
     email: 'JohnDoe@cloudplus.com',
     salutation: "Mr ",
@@ -54,7 +68,12 @@ const ProfileDetails = ({ className, ...rest }) => {
     name: 'John Doe',
     timezone: 'GMT+8',
     company: 'SIT LLP',
-    companyadd: '172 Ang Mo Kio Avenue 8 DR-3P, Singapore (567739)' 
+    companyadd: '172 Ang Mo Kio Avenue 8 DR-3P, Singapore (567739)', 
+    block: '172 Ang Mo Kio Avenue 8',
+    unit: 'DR-3P',
+    postalcode: '567739',
+    country: 'Singapore'
+
   };
 
   const handleChange = (event) => {
@@ -62,6 +81,14 @@ const ProfileDetails = ({ className, ...rest }) => {
       ...values,
       [event.target.name]: event.target.value
     });
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   return (
@@ -80,7 +107,7 @@ const ProfileDetails = ({ className, ...rest }) => {
         }
         className={classes.mylist}
       >
-        <ListItem button>
+        <ListItem button onClick={handleClickOpen}>
           <ListItemIcon>
             <Typography style={{ marginRight: 125 }}>
               Company Name
@@ -94,7 +121,7 @@ const ProfileDetails = ({ className, ...rest }) => {
           <ChevronRightIcon />
         </ListItem>
 
-        <ListItem button>
+        <ListItem button onClick={handleClickOpen}>
           <ListItemIcon>
             <Typography style={{ marginRight: 108 }}>
               Company Address
@@ -108,6 +135,111 @@ const ProfileDetails = ({ className, ...rest }) => {
           />
           <ChevronRightIcon />
         </ListItem>
+
+        <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+          <DialogTitle id="form-dialog-title" align="center">Update Company Information</DialogTitle>
+          <DialogContent dividers>
+            <Grid container spacing={3} p={3}>
+              <Grid item xs={12}>
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  variant="outlined"
+                  id="company"
+                  label="Company Name"
+                  value={`${user.company}`}
+                  required
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  fullWidth
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  variant="outlined"
+                  id="nickname"
+                  label="Address Nickname"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  fullWidth
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  variant="outlined"
+                  id="block"
+                  label="Block"
+                  value={`${user.block}`}
+                  required
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  fullWidth
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  variant="outlined"
+                  id="unitno"
+                  label="Unit Number"
+                  value={`${user.unit}`}
+                  required
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  fullWidth
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  variant="outlined"
+                  id="country"
+                  label="Country"
+                  value={`${user.country}`}
+                  required
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  fullWidth
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  variant="outlined"
+                  id="postal"
+                  label="Postal Code"
+                  value={`${user.postalcode}`}
+                  required
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  fullWidth
+                />
+              </Grid>
+            </Grid>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Cancel
+          </Button>
+            <Button onClick={handleClose} color="primary">
+              Update
+          </Button>
+          </DialogActions>
+        </Dialog>
+
       </List>
 
     </Paper>
