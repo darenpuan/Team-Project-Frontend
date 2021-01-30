@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import PerfectScrollbar from 'react-perfect-scrollbar';
 import { Search as SearchIcon } from 'react-feather';
 import IconButton from '@material-ui/core/IconButton';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import CustomerCargo from 'src/dialogs/CustomerCargoDialog';
 
@@ -25,7 +25,7 @@ import {
   TextField,
   Button
 } from '@material-ui/core';
-import { CompletedChip, PendingChip, UnCompletedChip } from 'src/components/StatusChips';
+import { CompletedChip, PendingChip, RejectedChip } from 'src/components/StatusChips';
 import getInitials from 'src/utils/getInitials';
 import TransferWarehouseDialog from 'src/dialogs/transferWarehouseDialog'
 
@@ -55,7 +55,7 @@ const data = [
     createdAt: 1554930000000,
     currentLocation: 'Warehouse B',
     destination: 'Warehouse A',
-    status: 'Uncompleted'
+    status: 'Rejected'
   },
   {
     ref: '#190005',
@@ -208,20 +208,20 @@ const Results = ({ className, customers, ...rest }) => {
                         : null
                     }
                     {
-                      order.status === 'Uncompleted' ? (
-                        <UnCompletedChip
+                      order.status === 'Rejected' ? (
+                        <RejectedChip
                           label={order.status}
                           size="small"
                           variant="outlined"
                         />
                       )
                         : null
-                    }
+                    } 
                       </TableCell>
-                      <TableCell>
-                        <CustomerCargo />
-                      </TableCell>
-                    </TableRow>
+                    <TableCell>
+                      <CustomerCargo /> 
+                    </TableCell>
+                  </TableRow>
                   ))
                 }
             </TableBody>

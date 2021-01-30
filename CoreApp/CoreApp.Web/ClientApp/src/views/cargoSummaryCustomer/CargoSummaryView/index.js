@@ -28,7 +28,7 @@ const CustomerListView = () => {
       className={classes.root}
       title="Customers"
     >
-      <Container maxWidth={false}>
+      <Container>
         <BreadCrumb />
         <Grid
           container
