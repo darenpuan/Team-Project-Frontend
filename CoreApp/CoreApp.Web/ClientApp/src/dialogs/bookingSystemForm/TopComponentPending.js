@@ -8,6 +8,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Alert from "@material-ui/lab/Alert";
 import InputLabel from '@material-ui/core/InputLabel';
+import { green } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,25 +63,17 @@ export default function TimePickers()  {
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
-      <Alert severity="warning" variant="outlined" style={{ marginBottom:"30px" }}>
-        <Grid container spacing={1} style={{ margin: "1px" }} >
-          
-          <Grid item xs={5} align="left" >
-            <InputLabel style={{ marginTop: "2px" }}>Pending Approval</InputLabel>
-          </Grid>
-
-          <Grid item xs={1} align="right" >
-          </Grid>
-          
-          <Grid item xs={3} align="left" >
-            <Button variant="contained" color="dark" onClick={handleChange1} className={classes.button}>Cancel Booking</Button>
-          </Grid>
-          <Grid item xs={3} align="left" >
-            <Button variant="contained" color="primary" onClick={handleChange2} className={classes.button}>Edit Booking</Button>
-          </Grid>
-        </Grid>
+      <Alert
+        severity="warning" variant="outlined" style={{ marginBottom: "30px" }}
+        action={
+          <div>
+            <Button variant="contained" style={{ marginRight: "10px", backgroundColor: "red", color: "white", width: "175px" }} onClick={handleChange1} className={classes.button}>Cancel Booking</Button>
+            <Button variant="contained" style={{ backgroundColor: green[500], color: "white", width: "175px" }} onClick={handleChange2} className={classes.button}>Edit Booking</Button>
+          </div>
+        }
+      >
+        <InputLabel style={{ marginTop: "2px" }}>Pending Approval</InputLabel>
       </Alert>
-
 
       <div>
         <Grid container spacing={3} alignItems="flex-center" justify="space-evenly" direction="row">
