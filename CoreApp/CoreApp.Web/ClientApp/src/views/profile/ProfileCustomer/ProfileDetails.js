@@ -87,7 +87,7 @@ const ProfileDetails = ({ className, ...rest }) => {
       position: 'absolute',
       right: theme.spacing(0),
       top: theme.spacing(0),
-      color: theme.palette.grey[500],
+      color: 'white',
     },
   });
 

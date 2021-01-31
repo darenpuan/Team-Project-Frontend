@@ -37,7 +37,7 @@ const styles = (theme) => ({
     position: 'absolute',
     right: theme.spacing(0),
     top: theme.spacing(0),
-    color: theme.palette.grey[500],
+    color: 'white',
   },
 });
 
@@ -80,7 +80,7 @@ const DialogTitle = withStyles(styles)((props) => {
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
       <Typography variant="h6">{children}</Typography>
       {onClose ? (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose} style={{ color: "white" }}>
+        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
           <CloseIcon />
         </IconButton>
       ) : null}
@@ -110,7 +110,7 @@ const DialogTitle1 = withStyles(styles)((props) => {
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
       <Typography variant="h6">{children}</Typography>
       {onClose ? (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose} style={{ color: "white" }}>
+        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
           <CloseIcon />
         </IconButton>
       ) : null}

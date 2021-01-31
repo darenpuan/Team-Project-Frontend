@@ -19,12 +19,14 @@ const styles = (theme) => ({
   root: {
     margin: 0,
     padding: theme.spacing(2),
+    backgroundColor: theme.palette.info.main,
+    color:"white",
   },
   closeButton: {
     position: 'absolute',
     right: theme.spacing(1),
     top: theme.spacing(1),
-    color: theme.palette.grey[500],
+    color: 'white',
   },
 });
 
@@ -72,7 +74,7 @@ export default function CustomizedDialogs() {
       </IconButton>
       <Dialog maxWidth="md" onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle id="customized-dialog-title" style={{ textAlign: "center" }} onClose={handleClose}>
-          Order List Form
+          Booking Form
         </DialogTitle>
         <DialogContent dividers>
           <TopComponentApprove />
