@@ -23,6 +23,25 @@ import OrderListDetailEdit from './OrderListDetailEdit';
 import Dialog from '@material-ui/core/Dialog';
 import ButtonOrderEdit from './ButtonOrderEdit';
 import ButtonOrderConfirm from './ButtonOrderConfirm'
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  TextField,
+  InputAdornment,
+  SvgIcon,
+  colors,
+  Grid
+} from '@material-ui/core';
+import NewOrderList from './NewOrderList';
+import {
+  Search as SearchIcon,
+  Filter as FilterIcon
+} from 'react-feather';
+
+import { FilterButton } from 'src/components/Buttons';
+
 
 function createData(orderid, orderdate, ordertime, status) {
   return { orderid, orderdate, ordertime, status };
@@ -148,9 +167,6 @@ const EnhancedTableToolbar = (props) => {
         [classes.highlight]: numSelected > 0,
       })}
     >
-      <Typography className={classes.title} id="tableTitle" component="div">
-        Customer Order List Summary
-      </Typography>
     </Toolbar>
   );
 };
@@ -247,8 +263,50 @@ export default function EnhancedTable() {
 
   return (
     <div className={classes.root}>
-      <Paper className={classes.paper}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+      <Card>
+
+        <CardContent>
+        <div style={{ width: '100%' }}>
+          <Box p={1}>
+          <Box display="flex" p={1}>
+            <Grid container spacing={1} alignItems="flex-end">
+
+              <Grid item>
+                <TextField
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SvgIcon
+                          fontSize="small"
+                          color="action"
+                        >
+                          <SearchIcon />
+                        </SvgIcon>
+                      </InputAdornment>
+                    )
+                  }}
+                  placeholder="Search product"
+                  variant="standard"
+                />
+              </Grid>
+              <Grid item mr={2}>
+                <FilterButton variant="contained">
+                  <SvgIcon
+                    fontSize="small"
+                    color="action"
+                  >
+                    <FilterIcon className={classes.filterButton} />
+                  </SvgIcon>&nbsp;&nbsp;Filter
+              </FilterButton>
+              </Grid>
+            </Grid>
+            <Grid container display="flex" justify="flex-end" >
+              <NewOrderList />
+            </Grid>
+            </Box>
+            </Box>
+        </div>
+          </CardContent>
         <TableContainer>
           <Table
             className={classes.table}
@@ -339,7 +397,7 @@ export default function EnhancedTable() {
           onChangePage={handleChangePage}
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
-      </Paper>
+      </Card>
       <FormControlLabel
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"

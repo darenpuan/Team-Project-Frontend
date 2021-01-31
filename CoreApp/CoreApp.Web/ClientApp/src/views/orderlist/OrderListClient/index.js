@@ -34,10 +34,6 @@ const ProductList = () => {
 
       <Container maxWidth={false}>
               <BreadCrumb />
-        <Grid>
-          <Toolbar />
-          </Grid>
-        <Box mt={1}>
           <Grid
             container
             spacing={0}
@@ -46,12 +42,6 @@ const ProductList = () => {
               <CustomerOrders />
             </Grid>
           </Grid>
-        </Box>
-        <Box
-          mt={3}
-          display="flex"
-          justifyContent="center"
-        />
       </Container>
     </Page>
   );

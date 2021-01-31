@@ -62,7 +62,7 @@ export default function CustomizedDialogs() {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen} style={{ width: "150px" }}>
         New Order
       </Button>
       <Dialog maxWidth="md" onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>

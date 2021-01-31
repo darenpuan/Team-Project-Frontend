@@ -15,6 +15,7 @@ import {
   Card,
   CardContent,
   TextField,
+  InputAdornment,
   SvgIcon,
   Table,
   TableBody,
@@ -119,15 +120,22 @@ const LatestOrders = ({ className, ...rest }) => {
             <Box p={1} flexGrow={1}>
               <Grid container spacing={1} alignItems="flex-end">
                 <Grid item>
-                  <SvgIcon
-                    fontSize="small"
-                    color="action"
-                  >
-                    <SearchIcon />
-                  </SvgIcon>
-                </Grid>
-                <Grid item >
-                  <TextField id="input-with-icon-grid" label="Search for all columns" />
+                  <TextField
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <SvgIcon
+                            fontSize="small"
+                            color="action"
+                          >
+                            <SearchIcon />
+                          </SvgIcon>
+                        </InputAdornment>
+                      )
+                    }}
+                    placeholder="Search product"
+                    variant="standard"
+                  />
                 </Grid>
                 <Grid item >
                   <FilterButton variant="contained">

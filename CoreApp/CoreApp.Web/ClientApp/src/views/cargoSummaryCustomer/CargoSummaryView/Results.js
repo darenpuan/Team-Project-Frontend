@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { Search as SearchIcon } from 'react-feather';
 import IconButton from '@material-ui/core/IconButton';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import CustomerCargo from 'src/dialogs/CustomerCargoDialog';
+import { FilterButton } from 'src/components/Buttons';
 
 import {
   Box,
@@ -23,11 +23,17 @@ import {
   Grid,
   SvgIcon,
   TextField,
+  InputAdornment,
   Button
 } from '@material-ui/core';
 import { CompletedChip, PendingChip, RejectedChip } from 'src/components/StatusChips';
 import getInitials from 'src/utils/getInitials';
 import TransferWarehouseDialog from 'src/dialogs/transferWarehouseDialog'
+
+import {
+  Search as SearchIcon,
+  Filter as FilterIcon
+} from 'react-feather';
 
 const data = [
   {
@@ -120,15 +126,33 @@ const Results = ({ className, customers, ...rest }) => {
             <Box p={1} flexGrow={1}>
               <Grid container spacing={1} alignItems="flex-end">
                 <Grid item>
-                  <SvgIcon
-                    fontSize="small"
-                    color="action"
-                  >
-                    <SearchIcon />
-                  </SvgIcon>
+                <TextField
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SvgIcon
+                          fontSize="small"
+                          color="action"
+                        >
+                          <SearchIcon />
+                        </SvgIcon>
+                      </InputAdornment>
+                    )
+                  }}
+                  placeholder="Search product"
+                  variant="standard"
+                />
                 </Grid>
+
                 <Grid item >
-                  <TextField id="input-with-icon-grid" label="Search for all columns" />
+                  <FilterButton variant="contained">
+                    <SvgIcon
+                      fontSize="small"
+                      color="action"
+                    >
+                      <FilterIcon className={classes.filterButton} />
+                    </SvgIcon>&nbsp;&nbsp;Filter
+              </FilterButton>
                 </Grid>
               </Grid>
             </Box>

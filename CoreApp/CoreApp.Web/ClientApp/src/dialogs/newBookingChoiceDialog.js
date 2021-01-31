@@ -228,7 +228,7 @@ export default function NewBookingChoiceDialog() {
   return (
     <div>
       {/*Choose Booking Dialog*/}
-      <Button variant="outlined" color="primary" onClick={handleOpenBookingChoice}>
+      <Button variant="outlined" color="primary" onClick={handleOpenBookingChoice} style={{width:"150px"}}>
         New Booking
       </Button>
       <Dialog onClose={handleCloseBookingChoice} aria-labelledby="customized-dialog-title" open={openBookingChoice}>

@@ -203,7 +203,7 @@ export default function TransferWarehouseDialog() {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleOpenTransfer}>
+      <Button variant="outlined" color="primary" onClick={handleOpenTransfer} style={{ width: "150px" }}>
         TRANSFER
       </Button>
       <Dialog onClose={handleCloseTransfer} aria-labelledby="customized-dialog-title" open={openTransfer} fullWidth={'true'} maxWidth={'md'}>
