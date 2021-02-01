@@ -151,25 +151,14 @@ namespace CoreApp.Web.Controllers
                 {
                     if (user.IsFirstLogin == true)
                     {
-                        return Ok(new {to = "/firstloginadmin"});
-                    }
-                    else
-                    {
-                        return Ok(new { to = "/admin/adminSummary" });
-                    }
-                }
-                else if (user.RoleId == 2)
-                {
-                    if (user.IsFirstLogin == true)
-                    {
-                        return Ok(new { to = "/firstloginclient" });
+                        return Ok(new {to = "/firstloginclient" });
                     }
                     else
                     {
                         return Ok(new { to = "/customer/customerBooking" });
                     }
                 }
-                else if (user.RoleId == 3)
+                else if (user.RoleId == 2)
                 {
                     if (user.IsFirstLogin == true)
                     {
@@ -178,6 +167,17 @@ namespace CoreApp.Web.Controllers
                     else
                     {
                         return Ok(new { to = "/staff/dashboardView" });
+                    }
+                }
+                else if (user.RoleId == 3)
+                {
+                    if (user.IsFirstLogin == true)
+                    {
+                        return Ok(new { to = "/firstloginadmin" }); 
+                    }
+                    else
+                    {
+                        return Ok(new { to = "/admin/adminSummary" }); 
                     }
                 }
                 else
@@ -211,11 +211,10 @@ namespace CoreApp.Web.Controllers
             return _dataAccessProvider.GetRoleId();
         }
 
-        [ActionName("adminDashboard")]
-        [HttpGet]
+        [ActionName("adminDashboard")] // Bernie
+        [HttpGet] 
         public IActionResult DashboardAdmin() // function to count total approved/pending/suspended account
         {
-            //UserModel account = new UserModel();
             var account = _dataAccessProvider.AdminDashboard();
             return Ok(new
             {
@@ -331,7 +330,7 @@ namespace CoreApp.Web.Controllers
         }
 
         [ActionName("AccountManagementPage")]
-        [HttpGet]
+        [HttpGet] //Bernie - For Account Management Page
         public IActionResult AccountManagementPage()
         {
             var list = __context.Clients.Include(c => c.User);
@@ -351,7 +350,7 @@ namespace CoreApp.Web.Controllers
             })); ;
         }
 
-        //Retrieve Company profile based on userid for customer
+        //Retrieve Company profile based on userid for customer - Bernie
         [HttpGet("{id}")]
         [ActionName("GetCompanyProfile")]
         public IActionResult GetCompanyProfileById(string id)
@@ -372,7 +371,7 @@ namespace CoreApp.Web.Controllers
             });
         }
 
-        //Update Company Profile for customer
+        //Update Company Profile for customer - Bernie
         [HttpPost]
         [ActionName("UpdateCompanyDetail")]
         public IActionResult UpdateCompanyDetail([FromBody] CompanyModel company)
@@ -607,6 +606,7 @@ namespace CoreApp.Web.Controllers
                 NewPublicHoliday tablePH = new NewPublicHoliday();
                 tablePH.PublicHolidayId = Guid.NewGuid();
                 tablePH.PublicHolidayDate = NewHoliday.PublicHolidayDate;
+                tablePH.PublicHolidayName = NewHoliday.PublicHolidayName;
                 tablePH.StartDate = NewHoliday.StartDate;
                 tablePH.EndDate = NewHoliday.EndDate;
                 tablePH.IsActive = NewHoliday.IsActive;
@@ -614,9 +614,9 @@ namespace CoreApp.Web.Controllers
                 tablePH.CreatedBy = NewHoliday.CreatedBy;
                 tablePH.UpdatedDate = NewHoliday.UpdatedDate;
                 _dataAccessProvider.AddNewHoliday(tablePH);
-                return Ok("Holiday Successfully Added");
+                return Ok(); //return successfully added
             }
-            return BadRequest(ModelState);
+            return BadRequest(ModelState); // if ModelState not valid, show error message
         }
 
         [HttpPost] // BERNIE -  USING TEMP NewPublicHoliday.cs in model
@@ -625,7 +625,6 @@ namespace CoreApp.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                NewPublicHoliday NewHolidayObject = new NewPublicHoliday(); 
                 var CheckGuid = _context.PublicHolidays.Find(NewHoliday);
                 if (CheckGuid == null) // Checking if user input Guid is in database
                 {
@@ -638,11 +637,31 @@ namespace CoreApp.Web.Controllers
             return BadRequest(ModelState); // if ModelState not valid, show error message
         }
 
+
+        [HttpPost] // BERNIE -  USING TEMP NewPublicHoliday.cs in model
+        [ActionName("UpdateHoliday")]
+        public IActionResult UpdateHoliday([FromBody] NewPublicHoliday NewHoliday)
+        {
+            if (ModelState.IsValid)
+            {
+                var CheckGuid = _context.PublicHolidays.Find(NewHoliday.PublicHolidayId);
+                if (CheckGuid == null) // Checking if user input Guid is in database
+                {
+                    return NotFound(); // If Guid is not in database, return 404 error
+                }
+                _dataAccessProvider.UpdateHoliday(NewHoliday); // If Guid is valid, call method to update holiday
+                return Ok(); //return successfully updated.
+            }
+            return BadRequest(ModelState); // if ModelState not valid, show error message
+        }
+
+
+
         [HttpGet] // BERNIE -  USING TEMP NewPublicHoliday.cs in model
         [ActionName("ViewAllHoliday")]
         public IEnumerable<NewPublicHoliday> ViewAllHolidays()
         {
-            return _dataAccessProvider.ViewAllHolidays();
+            return _dataAccessProvider.ViewAllHolidays(); // call method to show all holidays in database
 
         }
 
