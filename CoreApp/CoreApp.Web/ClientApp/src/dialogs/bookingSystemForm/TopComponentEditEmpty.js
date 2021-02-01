@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Alert from "@material-ui/lab/Alert";
-import InputLabel from '@material-ui/core/InputLabel';
-import { green } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,61 +17,17 @@ const useStyles = makeStyles((theme) => ({
 export default function TimePickers()  {
   // The first commit of Material-UI
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const [open1, setOpen1] = React.useState(false);
-  const [open2, setOpen2] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleClickOpen1 = () => {
-    setOpen1(true);
-  };
-
-  const handleClose1 = () => {
-    setOpen1(false);
-  };
-
-  const handleChange1 = () => {
-    setOpen(false);
-    setOpen1(true);
-  };
-
-  const handleClickOpen2 = () => {
-    setOpen2(true);
-  };
-
-
-  const handleClose2 = () => {
-    setOpen2(false);
-  };
-
-  const handleChange2 = () => {
-    setOpen(false);
-    setOpen2(true);
-  };
-
 
   const onFileLoad = (e, file) => console.log(e.target.result, file.name);
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
-      <Alert
-        severity="warning" variant="outlined" style={{ marginBottom: "30px" }}
-      >
-        <InputLabel style={{ marginTop: "2px" }}>Pending Approval</InputLabel>
-      </Alert>
 
       <div>
         <Grid container spacing={3} alignItems="flex-center" justify="space-evenly" direction="row">
-          <Grid item xs={5} style={{ marginLeft: "26px" }}>
+          <Grid item xs={5} style={{ marginLeft:"26px" }}>
             <Typography variant="h5" gutterBottom>
-              Date Selected
+               Date Selected
             </Typography>
           </Grid>
           <Grid item xs={6}>
@@ -83,13 +37,14 @@ export default function TimePickers()  {
               fullWidth
               defaultValue="2017-05-24"
               className={classes.textField}
-              style={{ backgroundColor: "lightGrey" }}
-              disabled
+              InputLabelProps={{
+                shrink: true,
+              }}
             />
           </Grid>
           <Grid item xs={5} style={{ marginLeft: "26px" }}>
             <Typography variant="h5" gutterBottom>
-              Time Slot Selected
+                 Time Slot Selected
             </Typography>
           </Grid>
           <Grid item xs={6}>
@@ -102,9 +57,10 @@ export default function TimePickers()  {
               InputLabelProps={{
                 shrink: true,
               }}
-              style={{ backgroundColor: "lightGrey" }}
-              disabled
-            />
+              inputProps={{
+                step: 300, // 5 min
+              }}
+            />   
           </Grid>
           <Grid item xs={5} style={{ marginLeft: "26px" }}>
             <Typography variant="h5" gutterBottom>
@@ -118,19 +74,9 @@ export default function TimePickers()  {
               type="file"
             />
             <label htmlFor="contained-button-file">
-              <Grid container spacing={1} style={{ width: "300px" }} >
-
-                <Grid item xs={9} align="right" >
-                  <TextField size="small" value="Upload Bill of Lading" variant="outlined" disabled style={{ backgroundColor: "lightGrey" }} fullWidth />
-                </Grid>
-
-                <Grid item xs={1} align="right" >
-                  <Button variant="contained" color="dark" component="span">
-                    Browse
-                  </Button>
-
-                </Grid>
-              </Grid>
+              <Button variant="contained" color="primary" component="span">
+                Upload
+    </Button>
             </label>
           </Grid>
 
@@ -144,13 +90,11 @@ export default function TimePickers()  {
               id="declare"
               type="text"
               fullWidth
-              defaultValue="123456"
+              defaultValue="12345"
               className={classes.textField}
               InputLabelProps={{
                 shrink: true,
               }}
-              style={{ backgroundColor: "lightGrey" }}
-              disabled
             />
           </Grid>
 
@@ -160,20 +104,21 @@ export default function TimePickers()  {
             </Typography>
           </Grid>
           <Grid item xs={6} style={{ marginBottom: "30px" }}>
-            <TextField
-              id="declare"
-              type="text"
+          <Select
+            labelId="demo-controlled-select-label"
+              id="demo-controlled-select"
               fullWidth
-              defaultValue="Warehouse B"
-              className={classes.textField}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              style={{ backgroundColor: "lightGrey" }}
-              disabled
-            />
+              value='A'
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+              <MenuItem value={'A'}>Warehouse A</MenuItem>
+              <MenuItem value={'B'}>Warehouse B</MenuItem>
+              <MenuItem value={'C'}>Warehouse C</MenuItem>
+          </Select>
           </Grid>
-
+          
         </Grid>
       </div>
     </form>
