@@ -79,7 +79,7 @@ const LoginView = () => {
                 className={classes.contentWrapper}>
               <Formik
                 initialValues={{
-                    email: 'hello222@gmail.com',
+                    email: 'test1@gmail.com',
                     password: 'qwerty1'
                 }}
                 validationSchema={Yup.object().shape({
