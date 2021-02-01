@@ -5,7 +5,7 @@ import moment from 'moment';
 import IconButton from '@material-ui/core/IconButton';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
-import CustomerCargo from 'src/dialogs/CustomerCargoDialog';
+import CustomerWarehouse from 'src/dialogs/CustomerWarehouseDialog';
 import { FilterButton } from 'src/components/Buttons';
 
 import {
@@ -243,7 +243,7 @@ const Results = ({ className, customers, ...rest }) => {
                     } 
                       </TableCell>
                     <TableCell>
-                      <CustomerCargo /> 
+                      <CustomerWarehouse /> 
                     </TableCell>
                   </TableRow>
                   ))

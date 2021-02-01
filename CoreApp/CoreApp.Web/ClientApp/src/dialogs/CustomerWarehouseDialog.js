@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
+import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputBase from '@material-ui/core/InputBase';
@@ -203,13 +204,13 @@ export default function TransferWarehouseDialog() {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleOpenTransfer} style={{ width: "150px" }}>
-        TRANSFER
-      </Button>
+      <IconButton color="primary" onClick={handleOpenTransfer}>
+        <OpenInNewIcon style={{ color: "black" }} />
+      </IconButton>
       <Dialog onClose={handleCloseTransfer} aria-labelledby="customized-dialog-title" open={openTransfer} fullWidth={'true'} maxWidth={'md'}>
         <DialogTitle id="customized-dialog-title" onClose={handleCloseTransfer}>
           <Typography align='center'>
-            Transfer Warehouse
+            Transfer Details
         </Typography>
         </DialogTitle>
         <DialogContent dividers>
@@ -224,10 +225,11 @@ export default function TransferWarehouseDialog() {
               <Grid item xs={6}>
                 <FormControl required style={{width:'430px'}}>
                   <Select
-                    value={cargo}
+                    value={19525}
                     onChange={handleCargoChange}
                     variant="outlined"
-                    style={{height: "40px" }}
+                    style={{ backgroundColor: "lightGrey", height: "40px" }}
+                    disabled
                   >
                     <MenuItem value={'19525'}>Cargo #19525</MenuItem>
                     <MenuItem value={'12314'}>Cargo #12314</MenuItem>
@@ -238,10 +240,11 @@ export default function TransferWarehouseDialog() {
               <Grid item xs={6}>
                 <FormControl required style={{ width: '430px' }}>
                   <Select
-                    value={warehouse}
+                    value={'A'}
                     onChange={handleWarehouseChange}
                     variant="outlined"
-                    style={{ height: "40px" }}
+                    style={{ backgroundColor: "lightGrey", height: "40px" }}
+                    disabled
                   >
                     <MenuItem value={'A'}>Warehouse A</MenuItem>
                     <MenuItem value={'B'}>Warehouse B</MenuItem>
@@ -355,22 +358,11 @@ export default function TransferWarehouseDialog() {
             </Box>
           </div>
           <Grid item xs={12} align="center">
-            <Button style={{margin:"5px", width:"200px"}} size="large" onClick={handleChangeSuccessDialog} variant='contained' color="primary">
-              Submit
+            <Button style={{margin:"5px", width:"200px"}} size="large" onClick={handleCloseTransfer} variant='contained' color="primary">
+              Close
             </Button>
           </Grid>
         </DialogContent>
-      </Dialog>
-      <Dialog onClose={handleCloseSuccessDialog} aria-labelledby="customized-dialog-title" open={openSuccess} >
-        <DialogTitle1 align='center' id="customized-dialog-title" onClose={handleCloseSuccessDialog} style={{ backgroundColor: green[500] }}>
-          SUCCESS
-        </DialogTitle1>
-        <DialogContent1 dividers>
-          <CheckCircleIcon style={{ fontSize: 200, color: green[500] }} />
-          <Typography>
-            Your Booking Reference No. is: 627301
-          </Typography>
-        </DialogContent1>
       </Dialog>
     </div>
   );
