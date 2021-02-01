@@ -69,8 +69,6 @@ export default function TimePickers()  {
         severity="warning" variant="outlined" style={{ marginBottom: "30px" }}
         action={
           <div>
-            <Button variant="contained" style={{ backgroundColor: "red", color:"white", marginRight:"10px", width:"175px" }} onClick={handleChange1} className={classes.button}>Reject</Button>
-            <Button variant="contained" style={{ backgroundColor: green[500], color: "white", width: "175px" }} onClick={handleChange2} className={classes.button}>Approve</Button>
           </div>
         }
       >

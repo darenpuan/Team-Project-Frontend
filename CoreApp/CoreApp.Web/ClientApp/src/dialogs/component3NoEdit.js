@@ -89,11 +89,11 @@ function createData(type, category, itemName, batch, quantity, expiry) {
 }
 
 const rows = [
-  createData('Type A', 'Category A', 'Item A', '123', 20, '20/10/2020'),
-  createData('Type B', 'Category B', 'Item B', '123', 17, '05/10/2020'),
-  createData('Type C', 'Category C', 'Item C', '123', 42, '09/05/2020'),
-  createData('Type D', 'Category D', 'Item D', '123', 16, '02/01/2021'),
-  createData('Type E', 'Category E', 'Item F', '123', 50, '20/10/2020'),
+  createData('Type A', 'Category A', 'Item A', 'ABC123', 20, '20/10/2020'),
+  createData('Type B', 'Category B', 'Item B', 'ABC123', 17, '05/10/2020'),
+  createData('Type C', 'Category C', 'Item C', 'ABC123', 42, '09/05/2020'),
+  createData('Type D', 'Category D', 'Item D', 'ABC123', 16, '02/01/2021'),
+  createData('Type E', 'Category E', 'Item F', 'ABC123', 50, '20/10/2020'),
 ];
 
 
