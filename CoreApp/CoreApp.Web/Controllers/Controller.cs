@@ -606,7 +606,7 @@ namespace CoreApp.Web.Controllers
                 NewPublicHoliday tablePH = new NewPublicHoliday();
                 tablePH.PublicHolidayId = Guid.NewGuid();
                 tablePH.PublicHolidayDate = NewHoliday.PublicHolidayDate;
-                tablePH.PublicHolidayName = NewHoliday.PublicHolidayName;
+                //tablePH.PublicHolidayName = NewHoliday.PublicHolidayName;
                 tablePH.StartDate = NewHoliday.StartDate;
                 tablePH.EndDate = NewHoliday.EndDate;
                 tablePH.IsActive = NewHoliday.IsActive;
@@ -649,7 +649,7 @@ namespace CoreApp.Web.Controllers
                 {
                     return NotFound(); // If Guid is not in database, return 404 error
                 }
-                _dataAccessProvider.UpdateHoliday(NewHoliday); // If Guid is valid, call method to update holiday
+                //_dataAccessProvider.UpdateHoliday(NewHoliday); // If Guid is valid, call method to update holiday
                 return Ok(); //return successfully updated.
             }
             return BadRequest(ModelState); // if ModelState not valid, show error message

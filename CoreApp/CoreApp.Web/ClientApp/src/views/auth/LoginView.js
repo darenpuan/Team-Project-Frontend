@@ -80,7 +80,7 @@ const LoginView = () => {
               <Formik
                 initialValues={{
                     email: 'test1@gmail.com',
-                    password: 'qwerty1'
+                    password: 'qwerty'
                 }}
                 validationSchema={Yup.object().shape({
                   email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
