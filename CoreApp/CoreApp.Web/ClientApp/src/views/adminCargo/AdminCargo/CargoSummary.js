@@ -7,7 +7,9 @@ import { ViewAgenda } from '@material-ui/icons';
 import IconButton from '@material-ui/core/IconButton';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import Popup from 'src/components/Popup';
-import SummaryBookingChoice from 'src/dialogs/summaryBookingChoice';
+import AdminApprovedForm from 'src/views/adminViewBooking/AdminViewBooking/AdminApprovedForm';
+import AdminRejectedForm from 'src/views/adminViewBooking/AdminViewBooking/AdminRejectedForm';
+import AdminPendingForm from 'src/views/adminViewBooking/AdminViewBooking/AdminPendingForm';
 
 import {
   Box,
@@ -293,9 +295,25 @@ const CargoSummary = ({ className, ...rest }) => {
                     }
                   </TableCell>
                   <TableCell>
-                  <IconButton color="primary">
-                    <OpenInNewIcon style={{ color: "black" }} onClick={() => setOpenPopup(true)} />
-                    </IconButton>
+                    {view.status === 'Approved' ? (
+                      <AdminApprovedForm />
+                    )
+                      : null}
+
+                    {view.status === 'Pending' ? (
+                      <AdminPendingForm />
+                    )
+                      : null}
+
+                    {view.status === 'In Transit' ? (
+                      <AdminApprovedForm />
+                    )
+                      : null}
+
+                    {view.status === 'Rejected' ? (
+                      <AdminRejectedForm />
+                    )
+                      : null}
                   </TableCell>
                 </TableRow>
               ))}
@@ -313,12 +331,6 @@ const CargoSummary = ({ className, ...rest }) => {
         onChangeRowsPerPage={handleLimitChange}
       />
     </Card>
-          <Popup
-        openPopup={openPopup}
-        setOpenPopup={setOpenPopup}
-      >
-        <SummaryBookingChoice />
-     </Popup>
     </>
   );
 };
