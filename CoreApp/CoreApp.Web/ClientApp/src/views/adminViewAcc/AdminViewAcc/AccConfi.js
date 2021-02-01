@@ -161,8 +161,8 @@ export default function AccForm(props) {
   return (
     <div>
 
-      <IconButton color="primary">
-        <OpenInNewIcon style={{ color: "black" }} onClick={handleClickOpen} />
+      <IconButton variant="outlined" color="primary">
+        <OpenInNewIcon onClick={handleClickOpen} />
       </IconButton>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" fullWidth={'true'} fullHeight={ 'true'} open={open}>
           <DialogTitle id="customized-dialog-title" onClose={handleClose}>

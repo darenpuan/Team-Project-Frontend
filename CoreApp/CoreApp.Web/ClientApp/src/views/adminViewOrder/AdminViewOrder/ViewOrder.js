@@ -163,7 +163,7 @@ const Viewbooking = ({ className, ...rest }) => {
 
       <Divider />
       <PerfectScrollbar>
-        <Box minWidth={1050}>
+        <Box minWidth={950}>
           <Table>
             <TableHead headers={headers} onSorting={(field, order) => setSorting({field, order}) }>
               <TableRow>
@@ -237,7 +237,7 @@ const Viewbooking = ({ className, ...rest }) => {
                   </TableCell>
                   <TableCell>
                     <IconButton color="primary">
-                      <OpenInNewIcon style={{ color: "black" }} onClick={() => setOpenPopup(true)} />
+                      <OpenInNewIcon onClick={() => setOpenPopup(true)} />
                     </IconButton>
                   </TableCell>
                 </TableRow>
