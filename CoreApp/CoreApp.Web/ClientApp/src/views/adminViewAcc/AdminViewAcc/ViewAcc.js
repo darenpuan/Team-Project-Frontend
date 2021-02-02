@@ -162,6 +162,7 @@ const Header = ({ headers, onSorting }) => {
 const ViewAcc = ({ className, ...rest }) => {
   const classes = useStyles();
   const [views] = useState(data);
+  const [search, setSearch] = useState(data);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
   const [sorting, setSorting] = useState({ field: "", order: "" }); //sort
@@ -178,6 +179,15 @@ const ViewAcc = ({ className, ...rest }) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  //user, role, email, , company, status
+  const handleSearch = event => {
+    const items = views.filter((data) => {
+      return data.user.toLowerCase().includes(event.target.value.toLowerCase()) || data.role.toLowerCase().includes(event.target.value.toLowerCase()) || data.email.toLowerCase().includes(event.target.value.toLowerCase()) || data.company.toLowerCase().includes(event.target.value.toLowerCase()) || data.status.toLowerCase().includes(event.target.value.toLowerCase())
+    })
+
+    setSearch(items);
+  }
 
   //sorting
   if (sorting.field) {
@@ -206,7 +216,11 @@ const ViewAcc = ({ className, ...rest }) => {
                 </SvgIcon>
               </Grid>
               <Grid item >
-                <TextField id="input-with-icon-grid" label="Search for all columns" />
+                <TextField
+                  id="input-with-icon-grid"
+                  label="Search for all columns"
+                  onChange={handleSearch}
+                />
               </Grid>
               <Grid item >
                 <FilterButton variant="contained">
@@ -257,7 +271,7 @@ const ViewAcc = ({ className, ...rest }) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {views.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((view) => (
+                {search.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((view) => (
                   <TableRow
                     hover
                     key={view.id}

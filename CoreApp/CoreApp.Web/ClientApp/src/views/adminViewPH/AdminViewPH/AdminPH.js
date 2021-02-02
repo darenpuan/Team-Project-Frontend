@@ -5,6 +5,8 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
 import { ViewAgenda } from '@material-ui/icons';
 import AddPH from './AddPH';
+import Button from '@material-ui/core/Button';
+
 
 import {
   Box,
@@ -116,6 +118,7 @@ const Header = ({ headers, onSorting }) => {
 const AdminPH = ({ className, ...rest }) => {
   const classes = useStyles();
   const [views] = useState(data);
+  const [search, setSearch] = useState(data);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
   const [sorting, setSorting] = useState({ field: "", order: "" }); //sort
@@ -128,6 +131,14 @@ const AdminPH = ({ className, ...rest }) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  //PH name
+  const handleSearch = event => {
+    const items = views.filter((data) => {
+      return data.phName.toLowerCase().includes(event.target.value.toLowerCase())
+    })
+    setSearch(items);
+  }
 
   //sorting
   if (sorting.field) {
@@ -158,7 +169,11 @@ const AdminPH = ({ className, ...rest }) => {
                   </SvgIcon>
                 </Grid>
                 <Grid item >
-                  <TextField id="input-with-icon-grid" label="Search for all columns" />
+                  <TextField
+                    id="input-with-icon-grid"
+                    label="Search for all columns"
+                    onChange={handleSearch}
+                  />
                 </Grid>
                 <Grid item >
                   <FilterButton variant="contained">
@@ -198,7 +213,7 @@ const AdminPH = ({ className, ...rest }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {views.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((view) => (
+              {search.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((view) => (
                 <TableRow
                   hover
                   key={view.id}
@@ -213,7 +228,9 @@ const AdminPH = ({ className, ...rest }) => {
                     {moment(view.endDate).format('DD/MM/YYYY')}
                   </TableCell>
                   <TableCell>
-                    {view.remove}
+                    <Button style={{ color: "white", backgroundColor: "red" }} variant="contained" >
+                      REMOVE
+                  </Button>
                   </TableCell>
                 </TableRow>
               ))}

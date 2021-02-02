@@ -92,6 +92,7 @@ const Header = ({ headers, onSorting }) => {
 const Viewbooking = ({ className, ...rest }) => {
   const classes = useStyles();
   const [views] = useState(data);
+  const [search, setSearch] = useState(data);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
   const [sorting, setSorting] = useState({ field: "", order: "" }); //sort
@@ -114,6 +115,16 @@ const Viewbooking = ({ className, ...rest }) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  //email, ref no, status
+  const handleSearch = event => {
+    const items = views.filter((data) => {
+      return data.email.toLowerCase().includes(event.target.value.toLowerCase()) || data.refNo.toLowerCase().includes(event.target.value.toLowerCase()) || data.status.toLowerCase().includes(event.target.value.toLowerCase())
+    })
+
+    setSearch(items);
+  }
+
 
   const handleCLick = (event) => {
     console.log("Working");
@@ -146,7 +157,11 @@ const Viewbooking = ({ className, ...rest }) => {
             </SvgIcon>
           </Grid>
           <Grid item >
-            <TextField id="input-with-icon-grid" label="Search for all columns" />
+              <TextField
+                id="input-with-icon-grid"
+                label="Search for all columns"
+                onChange={handleSearch}
+              />
             </Grid>
             <Grid item >
               <FilterButton variant="contained">
@@ -188,7 +203,7 @@ const Viewbooking = ({ className, ...rest }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {views.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((view) => (
+              {search.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((view) => (
                 <TableRow
                   hover
                   key={view.id}
