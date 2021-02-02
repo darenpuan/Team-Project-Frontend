@@ -10,6 +10,8 @@ import Popup from 'src/components/Popup';
 import AdminApprovedForm from 'src/views/adminViewBooking/AdminViewBooking/AdminApprovedForm';
 import AdminRejectedForm from 'src/views/adminViewBooking/AdminViewBooking/AdminRejectedForm';
 import AdminPendingForm from 'src/views/adminViewBooking/AdminViewBooking/AdminPendingForm';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import {
   Box,
@@ -173,6 +175,51 @@ const CargoSummary = ({ className, ...rest }) => {
     setSearch(items);
   }
 
+  const handleApproved = event => {
+    setAnchorEl(null);
+    const items = views.filter((data) => {
+      return data.cargoName.toLowerCase().includes("approved") || data.email.toLowerCase().includes("approved") || data.cargoID.toLowerCase().includes("approved") || data.status.toLowerCase().includes("approved");
+    })
+
+    setSearch(items);
+  }
+
+  const handlePending = event => {
+    setAnchorEl(null);
+    const items = views.filter((data) => {
+      return data.cargoName.toLowerCase().includes("pending") || data.email.toLowerCase().includes("pending") || data.cargoID.toLowerCase().includes("pending") || data.status.toLowerCase().includes("pending");
+    })
+
+    setSearch(items);
+  }
+
+  const handleTransit = event => {
+    setAnchorEl(null);
+    const items = views.filter((data) => {
+      return data.cargoName.toLowerCase().includes("in transit") || data.email.toLowerCase().includes("in transit") || data.cargoID.toLowerCase().includes("in transit") || data.status.toLowerCase().includes("in transit");
+    })
+
+    setSearch(items);
+  }
+
+  const handleRejected = event => {
+    setAnchorEl(null);
+    const items = views.filter((data) => {
+      return data.cargoName.toLowerCase().includes("rejected") || data.email.toLowerCase().includes("rejected") || data.cargoID.toLowerCase().includes("rejected") || data.status.toLowerCase().includes("rejected");
+    })
+
+    setSearch(items);
+  }
+
+  const handleAll = event => {
+    setAnchorEl(null);
+    const items = views.filter((data) => {
+      return data.cargoName.toLowerCase().includes(" ") || data.email.toLowerCase().includes(" ") || data.cargoID.toLowerCase().includes(" ") || data.status.toLowerCase().includes(" ");
+    })
+
+    setSearch(items);
+  }
+
   //sorting
   if (sorting.field) {
     const reversed = sorting.order === "asc" ? 1 : -1;
@@ -180,6 +227,16 @@ const CargoSummary = ({ className, ...rest }) => {
       (a, b) => reversed * a[sorting.field].localeCompare(b[sorting.field])
     );
   }
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
 
   return (
     <>
@@ -207,7 +264,7 @@ const CargoSummary = ({ className, ...rest }) => {
               />
             </Grid>
             <Grid item >
-              <FilterButton variant="contained">
+              <FilterButton variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                 <SvgIcon
                   fontSize="small"
                   color="action"
@@ -215,6 +272,20 @@ const CargoSummary = ({ className, ...rest }) => {
                   <FilterIcon className={classes.filterButton} />
                 </SvgIcon>&nbsp;&nbsp;Filter
               </FilterButton>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+
+                <MenuItem onClick={handleAll}>All</MenuItem>
+                <MenuItem onClick={handleApproved}>Approved</MenuItem>
+                <MenuItem onClick={handleTransit}>In Transit</MenuItem>
+                <MenuItem onClick={handlePending}>Pending</MenuItem>
+                <MenuItem onClick={handleRejected}>Rejected</MenuItem>
+              </Menu>
             </Grid>
         </Grid>
       </Box>
