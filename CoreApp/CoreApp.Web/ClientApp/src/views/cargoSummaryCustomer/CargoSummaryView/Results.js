@@ -105,6 +105,7 @@ const Results = ({ className, customers, ...rest }) => {
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
   const [orders] = useState(data);
+  const [search, setSearch] = useState(data);
 
   const handleLimitChange = (event) => {
     setLimit(+event.target.value);
@@ -114,6 +115,14 @@ const Results = ({ className, customers, ...rest }) => {
   const handlePageChange = (event, newPage) => {
     setPage(newPage);
   };
+
+  const handleSearch = event => {
+    const items = orders.filter((data) => {
+      return data.cargoName.toLowerCase().includes(event.target.value.toLowerCase()) || data.ref.toLowerCase().includes(event.target.value.toLowerCase()) || data.status.toLowerCase().includes(event.target.value.toLowerCase())
+    })
+
+    setSearch(items);
+  }
 
   return (
     <Card
@@ -126,7 +135,8 @@ const Results = ({ className, customers, ...rest }) => {
             <Box p={1} flexGrow={1}>
               <Grid container spacing={1} alignItems="flex-end">
                 <Grid item>
-                <TextField
+                  <TextField
+                  onChange={handleSearch}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
@@ -185,7 +195,7 @@ const Results = ({ className, customers, ...rest }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {orders.slice(page * limit, page * limit + limit).map((order) => (
+              {search.slice(page * limit, page * limit + limit).map((order) => (
                     <TableRow
                       hover
                       key={order.id}
