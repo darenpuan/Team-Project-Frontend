@@ -13,7 +13,7 @@ import Component3NoEdit from 'src/dialogs/component3NoEdit';
 import Component3Editable from 'src/dialogs/component3Editable.js';
 import ShipperConsigneeNoEdit from 'src/dialogs/ShipperConsigneeNoEdit';
 import BillOfLanding from 'src/dialogs/bookingSystemForm/billOfLanding';
-import TopComponent from 'src/dialogs/bookingSystemForm/TopComponentApprove';
+import TopComponent from 'src/dialogs/bookingSystemForm/TopComponentReject';
 
 const styles = (theme) => ({
   root: {

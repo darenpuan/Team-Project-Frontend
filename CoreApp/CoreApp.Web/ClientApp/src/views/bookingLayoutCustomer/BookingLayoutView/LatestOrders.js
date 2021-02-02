@@ -10,6 +10,7 @@ import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import Button from '@material-ui/core/Button';
 import ApproveForm from 'src/views/bookingLayoutCustomer/BookingLayoutView/ApprovedForm.js'
 import PendingForm from 'src/views/bookingLayoutCustomer/BookingLayoutView/PendingForm.js'
+import RejectedForm from 'src/views/bookingLayoutCustomer/BookingLayoutView/RejectedForm.js'
 import {
   Box,
   Card,
@@ -37,7 +38,7 @@ import {
 } from 'react-feather';
 
 import { FilterButton } from 'src/components/Buttons';
-import { CompletedChip, PendingChip, UnCompletedChip } from 'src/components/StatusChips';
+import { CompletedChip, PendingChip, RejectedChip } from 'src/components/StatusChips';
 
 const data = [
   {
@@ -50,7 +51,7 @@ const data = [
   },
   {
     id: uuid(),
-    ref: '#190005',
+    ref: '#19005',
     amount: 25.1,
     cargoName: 'Packet Drinks',
     createdAt: 1555016400000,
@@ -58,7 +59,7 @@ const data = [
   },
   {
     id: uuid(),
-    ref: '#190005',
+    ref: '#19005',
     amount: 96.43,
     cargoName: 'Packet Drinks',
     createdAt: 1554757200000,
@@ -66,7 +67,7 @@ const data = [
   },
   {
     id: uuid(),
-    ref: '#190005',
+    ref: '#19005',
     amount: 32.54,
     cargoName: 'Packet Drinks',
     createdAt: 1554670800000,
@@ -74,11 +75,19 @@ const data = [
   },
   {
     id: uuid(),
-    ref: '#190005',
+    ref: '#19005',
     amount: 16.76,
     cargoName: 'Packet Drinks',
     createdAt: 1554670800000,
     status: 'Completed'
+  },
+    {
+    id: uuid(),
+    ref: '#19005',
+    amount: 16.76,
+    cargoName: 'Snacks',
+    createdAt: 1554670800000,
+    status: 'Rejected'
   }
 ];
 
@@ -240,8 +249,8 @@ const LatestOrders = ({ className, ...rest }) => {
                         : null
                     }
                     {
-                      order.status === 'Uncompleted' ? (
-                        <UnCompletedChip
+                      order.status === 'Rejected' ? (
+                        <RejectedChip
                           label={order.status}
                           size="small"
                           variant="outlined"
@@ -259,6 +268,11 @@ const LatestOrders = ({ className, ...rest }) => {
                       : null}
                     {order.status == 'Pending' ? (
                       < PendingForm />
+                    )
+                      : null
+                    }
+                    {order.status == 'Rejected' ? (
+                      < RejectedForm />
                     )
                       : null
                     }
