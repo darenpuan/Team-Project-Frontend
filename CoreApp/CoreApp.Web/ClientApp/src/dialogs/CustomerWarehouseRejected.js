@@ -21,11 +21,13 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
+import Alert from "@material-ui/lab/Alert";
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { green } from '@material-ui/core/colors';
+
 
 const BootstrapInput = withStyles((theme) => ({
   root: {
@@ -214,6 +216,10 @@ export default function TransferWarehouseDialog() {
         </Typography>
         </DialogTitle>
         <DialogContent dividers>
+          <Alert severity="error" variant="outlined" style={{ marginBottom: "30px" }}>
+            Rejected <br /><br />
+        The Warehouse has rejected the transfer as there is insufficient space in the Warehouse.
+      </Alert>
           <div flexGrow={1}>
             <Grid container spacing={1} style={{ marginLeft:"2px" }}>
               <Grid item xs={6}>
@@ -357,12 +363,14 @@ export default function TransferWarehouseDialog() {
               </Box>
             </Box>
           </div>
+        </DialogContent>
+        <DialogActions>
           <Grid item xs={12} align="center">
-            <Button style={{margin:"5px", width:"200px"}} size="large" onClick={handleCloseTransfer} variant='contained' color="primary">
+            <Button style={{ margin: "5px", width: "200px" }} size="large" onClick={handleCloseTransfer} variant='contained' color="primary">
               Close
             </Button>
           </Grid>
-        </DialogContent>
+        </DialogActions>
       </Dialog>
     </div>
   );

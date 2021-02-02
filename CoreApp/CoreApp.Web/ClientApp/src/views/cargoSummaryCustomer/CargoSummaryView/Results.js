@@ -5,7 +5,9 @@ import moment from 'moment';
 import IconButton from '@material-ui/core/IconButton';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
-import CustomerWarehouse from 'src/dialogs/CustomerWarehouseDialog';
+import PendingWarehouse from 'src/dialogs/CustomerWarehousePending';
+import RejectedWarehouse from 'src/dialogs/CustomerWarehouseRejected';
+import CompletedWarehouse from 'src/dialogs/CustomerWarehouseCompleted';
 import { FilterButton } from 'src/components/Buttons';
 
 import {
@@ -253,7 +255,20 @@ const Results = ({ className, customers, ...rest }) => {
                     } 
                       </TableCell>
                     <TableCell>
-                      <CustomerWarehouse /> 
+                    {order.status === 'Completed' ? (
+                      < CompletedWarehouse />
+                    )
+                      : null}
+                    {order.status == 'Pending' ? (
+                      < PendingWarehouse />
+                    )
+                      : null
+                    }
+                    {order.status == 'Rejected' ? (
+                      < RejectedWarehouse />
+                    )
+                      : null
+                    }
                     </TableCell>
                   </TableRow>
                   ))
