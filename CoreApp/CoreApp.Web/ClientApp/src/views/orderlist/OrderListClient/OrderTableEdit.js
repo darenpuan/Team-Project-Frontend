@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
+import ControlPointIcon from '@material-ui/icons/ControlPoint';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -58,7 +59,8 @@ export default function CustomizedTables() {
             <StyledTableCell align="left">Category</StyledTableCell>
             <StyledTableCell align="left">Name</StyledTableCell>
             <StyledTableCell align="left">Total Weight (Kg)</StyledTableCell>
-            <StyledTableCell align="left"></StyledTableCell>
+            <StyledTableCell align="left">Action</StyledTableCell>
+            <StyledTableCell align="center">Add New</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -83,6 +85,7 @@ export default function CustomizedTables() {
                 )
                   : null}
               </StyledTableCell>
+              <StyledTableCell align="center"><ControlPointIcon /></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

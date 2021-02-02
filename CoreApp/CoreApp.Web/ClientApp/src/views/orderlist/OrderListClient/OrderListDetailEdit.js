@@ -70,11 +70,6 @@ export default function CustomizedDialogs() {
         <DialogContent dividers>
           <OrderTableEdit />
         </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose} color="primary">
-            Save
-          </Button>
-        </DialogActions>
       </Dialog>
     </div>
   );

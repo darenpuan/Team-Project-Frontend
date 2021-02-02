@@ -10,6 +10,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import OrderTableEdit from './OrderTableEdit';
+import { green } from '@material-ui/core/colors';
+
 
 const styles = (theme) => ({
   root: {
@@ -72,14 +74,15 @@ export default function CustomizedDialogs() {
         <DialogTitle id="customized-dialog-title" style={{ textAlign: "center" }} onClose={handleClose}>
           Order List Details
         </DialogTitle>
-        <DialogContent dividers>
+        <DialogContent>
+          <Typography display="inline"> Booking Reference No.: #197515 </Typography>
+          <Button variant="contained" style={{ marginLeft: "300px", marginRight: "10px", backgroundColor: "red", color: "white", width: "175px" }}>Cancel Booking</Button>
+          <Button variant="contained" style={{ backgroundColor: green[500], color: "white", width: "175px" }} >Save Booking</Button>
+        </DialogContent>
+        <DialogContent>
           <OrderTableEdit />
         </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose} color="primary">
-            Save
-          </Button>
-        </DialogActions>
+          
       </Dialog>
     </div>
   );

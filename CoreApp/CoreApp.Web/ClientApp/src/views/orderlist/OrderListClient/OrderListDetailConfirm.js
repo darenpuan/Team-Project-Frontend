@@ -51,7 +51,7 @@ export default function CustomizedTables() {
 
   return (
     <TableContainer>
-      <Typography style={{ marginBottom:"10px" }}> Order Reference Number </Typography>
+      <Typography style={{ marginBottom:"10px" }}> Order Reference Number: #197515 </Typography>
       <Table className={classes.table} aria-label="customized table" style={{ marginBottom: "20px" }}>
         <TableHead>
           <TableRow>

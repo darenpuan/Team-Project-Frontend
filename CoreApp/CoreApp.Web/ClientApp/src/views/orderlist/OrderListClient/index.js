@@ -9,6 +9,8 @@ import Page from 'src/components/Page';
 import Toolbar from './Toolbar';
 import CustomerOrders from './CustomerOrders';
 import BreadCrumb from './BreadCrumb';
+import Employees from 'src/pages/Employees/Employees'
+import EmployeeForm from 'src/pages/Employees/EmployeeForm'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -38,8 +40,8 @@ const ProductList = () => {
             container
             spacing={0}
           >
-            <Grid item sm={12}>
-              <CustomerOrders />
+          <Grid item sm={12}>
+            <CustomerOrders />
             </Grid>
           </Grid>
       </Container>
