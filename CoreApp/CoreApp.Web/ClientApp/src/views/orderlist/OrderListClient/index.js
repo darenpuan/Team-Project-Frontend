@@ -9,8 +9,6 @@ import Page from 'src/components/Page';
 import Toolbar from './Toolbar';
 import CustomerOrders from './CustomerOrders';
 import BreadCrumb from './BreadCrumb';
-import Employees from 'src/pages/Employees/Employees'
-import EmployeeForm from 'src/pages/Employees/EmployeeForm'
 
 
 const useStyles = makeStyles((theme) => ({
