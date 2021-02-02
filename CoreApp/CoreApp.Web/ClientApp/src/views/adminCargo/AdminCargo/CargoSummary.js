@@ -105,7 +105,7 @@ const useStyles = makeStyles(() => ({
 //in progress
 const headers = [
   { name: "Email", field: "email", sortable: true },
-  { name: "RefNo", field: "refNo", sortable: false },
+  { name: "RefNo", field: "cargoID", sortable: false },
   { name: "CargoName", field: "cargoName", sortable: false },
   { name: "CreatedAt", field: "createAt", sortable: true },
   { name: "Download", field: "download", sortable: false },
@@ -147,6 +147,7 @@ const Header = ({ headers, onSorting }) => {
 const CargoSummary = ({ className, ...rest }) => {
   const classes = useStyles();
   const [views] = useState(data);
+  const [search, setSearch] = useState(data);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
   const [sorting, setSorting] = useState({ field: "", order: "" }); //sort
@@ -162,6 +163,15 @@ const CargoSummary = ({ className, ...rest }) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  //email, cargo ID, cargo name, status
+  const handleSearch = event => {
+    const items = views.filter((data) => {
+      return data.cargoName.toLowerCase().includes(event.target.value.toLowerCase()) || data.email.toLowerCase().includes(event.target.value.toLowerCase()) || data.cargoID.toLowerCase().includes(event.target.value.toLowerCase()) || data.status.toLowerCase().includes(event.target.value.toLowerCase())
+    })
+
+    setSearch(items);
+  }
 
   //sorting
   if (sorting.field) {
@@ -190,7 +200,11 @@ const CargoSummary = ({ className, ...rest }) => {
             </SvgIcon>
           </Grid>
           <Grid item >
-            <TextField id="input-with-icon-grid" label="Search for all columns" />
+              <TextField
+                id="input-with-icon-grid"
+                label="Search for all columns"
+                onChange={handleSearch}
+              />
             </Grid>
             <Grid item >
               <FilterButton variant="contained">
@@ -234,7 +248,7 @@ const CargoSummary = ({ className, ...rest }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {views.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((view) => (
+              {search.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((view) => (
                 <TableRow
                   hover
                   key={view.id}

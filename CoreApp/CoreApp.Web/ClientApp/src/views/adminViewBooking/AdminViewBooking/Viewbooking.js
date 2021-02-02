@@ -146,6 +146,7 @@ const Header = ({ headers, onSorting }) => {
 const Viewbooking = ({ className, ...rest }) => {
   const classes = useStyles();
   const [views] = useState(data);
+  const [search, setSearch] = useState(data);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
   const [sorting, setSorting] = useState({ field: "", order: "" }); //sort
@@ -168,6 +169,15 @@ const Viewbooking = ({ className, ...rest }) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  //email, ref no, cargo name, status
+  const handleSearch = event => {
+    const items = views.filter((data) => {
+      return data.cargoName.toLowerCase().includes(event.target.value.toLowerCase()) || data.email.toLowerCase().includes(event.target.value.toLowerCase()) || data.refNo.toLowerCase().includes(event.target.value.toLowerCase()) || data.status.toLowerCase().includes(event.target.value.toLowerCase())
+    })
+
+    setSearch(items);
+  }
 
   //sorting
   if (sorting.field) {
@@ -195,7 +205,11 @@ const Viewbooking = ({ className, ...rest }) => {
             </SvgIcon>
           </Grid>
           <Grid item >
-            <TextField id="input-with-icon-grid" label="Search for all columns" />
+              <TextField
+                id="input-with-icon-grid"
+                label="Search for all columns"
+                onChange={handleSearch}
+              />
             </Grid>
             <Grid item >
               <FilterButton variant="contained">
@@ -241,7 +255,7 @@ const Viewbooking = ({ className, ...rest }) => {
               <TableBody>
                 <div>
                 </div>
-              {views.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((view) => (
+              {search.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((view) => (
                 <TableRow
                   hover
                   key={view.id}
