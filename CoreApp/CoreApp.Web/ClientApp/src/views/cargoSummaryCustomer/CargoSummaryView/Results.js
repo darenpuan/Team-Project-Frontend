@@ -175,7 +175,7 @@ const Results = ({ className, customers, ...rest }) => {
         </div>
         </CardContent>
       <PerfectScrollbar>
-        <Box minWidth={1050}>
+        <Box minWidth={950}>
           <Table>
             <TableHead>
               <TableRow>
@@ -194,6 +194,8 @@ const Results = ({ className, customers, ...rest }) => {
                 <TableCell>
                   Status
                 </TableCell>
+                <TableCell>
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -203,17 +205,7 @@ const Results = ({ className, customers, ...rest }) => {
                       key={order.id}
                     >
                       <TableCell>
-                        <Box
-                          alignItems="center"
-                          display="flex"
-                        >
-                          <Typography
-                            color="textPrimary"
-                            variant="body1"
-                          >
                             {order.ref}
-                          </Typography>
-                        </Box>
                       </TableCell>
                       <TableCell>
                       {order.cargoName}

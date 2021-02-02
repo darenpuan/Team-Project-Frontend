@@ -207,6 +207,7 @@ export default function EnhancedTable() {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [search, setSearch] = React.useState(rows);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -256,6 +257,13 @@ export default function EnhancedTable() {
     setDense(event.target.checked);
   };
 
+  const handleSearch = event => {
+    const items = rows.filter((data) => {
+      return data.orderid.toLowerCase().includes(event.target.value.toLowerCase()) || data.status.toLowerCase().includes(event.target.value.toLowerCase())
+    })
+    setSearch(items);
+  }
+
   const isSelected = (orderid) => selected.indexOf(orderid) !== -1;
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
@@ -286,7 +294,8 @@ export default function EnhancedTable() {
                     )
                   }}
                   placeholder="Search product"
-                  variant="standard"
+                      variant="standard"
+                      onChange={handleSearch}
                 />
               </Grid>
               <Grid item mr={2}>
@@ -324,9 +333,7 @@ export default function EnhancedTable() {
               rowCount={rows.length}
             />
             <TableBody>
-              {stableSort(rows, getComparator(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
+              {search.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
                   const isItemSelected = isSelected(row.orderid);
                   const labelId = `enhanced-table-checkbox-${index}`;
 

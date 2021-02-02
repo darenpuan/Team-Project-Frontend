@@ -206,6 +206,8 @@ const LatestOrders = ({ className, ...rest }) => {
                 <TableCell>
                   Status
                 </TableCell>
+                <TableCell>
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

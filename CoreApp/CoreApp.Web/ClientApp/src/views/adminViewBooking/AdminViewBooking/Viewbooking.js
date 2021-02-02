@@ -10,6 +10,8 @@ import Popup from 'src/components/Popup';
 import AdminApprovedForm from 'src/views/adminViewBooking/AdminViewBooking/AdminApprovedForm';
 import AdminRejectedForm from 'src/views/adminViewBooking/AdminViewBooking/AdminRejectedForm';
 import AdminPendingForm from 'src/views/adminViewBooking/AdminViewBooking/AdminPendingForm';
+import Button from '@material-ui/core/Button';
+
 
 import {
   Box,
@@ -273,7 +275,9 @@ const Viewbooking = ({ className, ...rest }) => {
                     {moment(view.createdAt).format('DD/MM/YYYY h:mm a')}
                   </TableCell>
                   <TableCell>
-                    {view.download}
+                    <Button style={{ textTransform: 'none' }}>
+                      Download
+                    </Button>
                   </TableCell>
                   <TableCell>
                     {view.status === 'Approved' ? (
