@@ -9,6 +9,8 @@ import PendingWarehouse from 'src/dialogs/CustomerWarehousePending';
 import RejectedWarehouse from 'src/dialogs/CustomerWarehouseRejected';
 import CompletedWarehouse from 'src/dialogs/CustomerWarehouseCompleted';
 import { FilterButton } from 'src/components/Buttons';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
 
 import {
   Box,
@@ -108,6 +110,8 @@ const Results = ({ className, customers, ...rest }) => {
   const [page, setPage] = useState(0);
   const [orders] = useState(data);
   const [search, setSearch] = useState(data);
+  const [open, setOpen] = React.useState(false);
+  const [openPopup, setOpenPopup] = useState(false);
 
   const handleLimitChange = (event) => {
     setLimit(+event.target.value);
@@ -125,6 +129,62 @@ const Results = ({ className, customers, ...rest }) => {
 
     setSearch(items);
   }
+
+  const handleCompleted = event => {
+    setAnchorEl(null);
+    const items = data.filter((data) => {
+      return data.cargoName.toLowerCase().includes("completed") || data.ref.toLowerCase().includes("completed") || data.status.toLowerCase().includes("completed")
+    })
+
+    setSearch(items);
+  }
+
+  const handlePending = event => {
+    setAnchorEl(null);
+    const items = data.filter((data) => {
+      return data.cargoName.toLowerCase().includes("pending") || data.ref.toLowerCase().includes("pending") || data.status.toLowerCase().includes("pending")
+    })
+
+    setSearch(items);
+  }
+
+  const handleTransit = event => {
+    setAnchorEl(null);
+    const items = data.filter((data) => {
+      return data.cargoName.toLowerCase().includes("in transit") || data.ref.toLowerCase().includes("in transit") || data.status.toLowerCase().includes("in transit")
+    })
+
+    setSearch(items);
+  }
+
+  const handleRejected = event => {
+    setAnchorEl(null);
+    const items = data.filter((data) => {
+      return data.cargoName.toLowerCase().includes("rejected") || data.ref.toLowerCase().includes("rejected") || data.status.toLowerCase().includes("rejected")
+    })
+
+    setSearch(items);
+  }
+
+  const handleAll = event => {
+    setAnchorEl(null);
+    const items = data.filter((data) => {
+      return data.cargoName.toLowerCase().includes(" ") || data.ref.toLowerCase().includes(" ") || data.status.toLowerCase().includes(" ")
+    })
+
+    setSearch(items);
+  }
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
 
   return (
     <Card
@@ -157,7 +217,7 @@ const Results = ({ className, customers, ...rest }) => {
                 </Grid>
 
                 <Grid item >
-                  <FilterButton variant="contained">
+                  <FilterButton variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                     <SvgIcon
                       fontSize="small"
                       color="action"
@@ -165,6 +225,20 @@ const Results = ({ className, customers, ...rest }) => {
                       <FilterIcon className={classes.filterButton} />
                     </SvgIcon>&nbsp;&nbsp;Filter
               </FilterButton>
+                  <Menu
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                  >
+
+                    <MenuItem onClick={handleAll}>All</MenuItem>
+                    <MenuItem onClick={handleCompleted}>Completed</MenuItem>
+                    <MenuItem onClick={handleTransit}>In Transit</MenuItem>
+                    <MenuItem onClick={handlePending}>Pending</MenuItem>
+                    <MenuItem onClick={handleRejected}>Rejected</MenuItem>
+                  </Menu>
                 </Grid>
               </Grid>
             </Box>
