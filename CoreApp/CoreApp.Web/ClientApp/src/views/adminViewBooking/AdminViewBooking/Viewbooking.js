@@ -11,6 +11,8 @@ import AdminApprovedForm from 'src/views/adminViewBooking/AdminViewBooking/Admin
 import AdminRejectedForm from 'src/views/adminViewBooking/AdminViewBooking/AdminRejectedForm';
 import AdminPendingForm from 'src/views/adminViewBooking/AdminViewBooking/AdminPendingForm';
 import Button from '@material-ui/core/Button';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
 
 
 import {
@@ -159,9 +161,9 @@ const Viewbooking = ({ className, ...rest }) => {
     setOpen(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  //const handleClose = () => {
+    //setOpen(false);
+  //};
 
   const handlePageChange = (event, newPage) => {
     setPage(newPage);
@@ -171,6 +173,51 @@ const Viewbooking = ({ className, ...rest }) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  const handleApproved = event => {
+    setAnchorEl(null);
+    const items = views.filter((data) => {
+      return data.cargoName.toLowerCase().includes("approved") || data.email.toLowerCase().includes("approved") || data.refNo.toLowerCase().includes("approved") || data.status.toLowerCase().includes("approved")
+    })
+
+    setSearch(items);
+  }
+
+  const handlePending = event => {
+    setAnchorEl(null);
+    const items = views.filter((data) => {
+      return data.cargoName.toLowerCase().includes("pending") || data.email.toLowerCase().includes("pending") || data.refNo.toLowerCase().includes("pending") || data.status.toLowerCase().includes("pending")
+    })
+
+    setSearch(items);
+  }
+
+  const handleTransit = event => {
+    setAnchorEl(null);
+    const items = views.filter((data) => {
+      return data.cargoName.toLowerCase().includes("in transit") || data.email.toLowerCase().includes("in transit") || data.refNo.toLowerCase().includes("in transit") || data.status.toLowerCase().includes("in transit")
+    })
+
+    setSearch(items);
+  }
+
+  const handleRejected = event => {
+    setAnchorEl(null);
+    const items = views.filter((data) => {
+      return data.cargoName.toLowerCase().includes("rejected") || data.email.toLowerCase().includes("rejected") || data.refNo.toLowerCase().includes("rejected") || data.status.toLowerCase().includes("rejected")
+    })
+
+    setSearch(items);
+  }
+
+  const handleAll = event => {
+    setAnchorEl(null);
+    const items = views.filter((data) => {
+      return data.cargoName.toLowerCase().includes(" ") || data.email.toLowerCase().includes(" ") || data.refNo.toLowerCase().includes(" ") || data.status.toLowerCase().includes(" ")
+    })
+
+    setSearch(items);
+  }
 
   //email, ref no, cargo name, status
   const handleSearch = event => {
@@ -188,6 +235,16 @@ const Viewbooking = ({ className, ...rest }) => {
       (a, b) => reversed * a[sorting.field].localeCompare(b[sorting.field])
     );
   }
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <>
@@ -214,7 +271,7 @@ const Viewbooking = ({ className, ...rest }) => {
               />
             </Grid>
             <Grid item >
-              <FilterButton variant="contained">
+              <FilterButton variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                 <SvgIcon
                   fontSize="small"
                   color="action"
@@ -222,6 +279,20 @@ const Viewbooking = ({ className, ...rest }) => {
                   <FilterIcon className={classes.filterButton} />
                 </SvgIcon>&nbsp;&nbsp;Filter
               </FilterButton>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+
+                <MenuItem onClick={handleAll}>All</MenuItem>
+                <MenuItem onClick={handleApproved}>Approved</MenuItem>
+                <MenuItem onClick={handleTransit}>In Transit</MenuItem>
+                <MenuItem onClick={handlePending}>Pending</MenuItem>
+                <MenuItem onClick={handleRejected}>Rejected</MenuItem>
+              </Menu>
             </Grid>
         </Grid>
       </Box>
