@@ -11,6 +11,8 @@ import AccConfi from './AccConfi';
 import IconButton from '@material-ui/core/IconButton';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import Popup from 'src/components/Popup';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
 
 import {
   Box,
@@ -189,6 +191,42 @@ const ViewAcc = ({ className, ...rest }) => {
     setSearch(items);
   }
 
+  const handleActive = event => {
+    setAnchorEl(null);
+    const items = views.filter((data) => {
+      return data.user.toLowerCase().includes("active") || data.role.toLowerCase().includes("active") || data.email.toLowerCase().includes("active") || data.company.toLowerCase().includes("active") || data.status.toLowerCase().includes("active")
+    })
+
+    setSearch(items);
+  }
+
+  const handlePending = event => {
+    setAnchorEl(null);
+    const items = views.filter((data) => {
+      return data.user.toLowerCase().includes("pending") || data.role.toLowerCase().includes("pending") || data.email.toLowerCase().includes("pending") || data.company.toLowerCase().includes("pending") || data.status.toLowerCase().includes("pending")
+    })
+
+    setSearch(items);
+  }
+
+  const handleSuspended = event => {
+    setAnchorEl(null);
+    const items = views.filter((data) => {
+      return data.user.toLowerCase().includes("suspended") || data.role.toLowerCase().includes("suspended") || data.email.toLowerCase().includes("suspended") || data.company.toLowerCase().includes("suspended") || data.status.toLowerCase().includes("suspended")
+    })
+
+    setSearch(items);
+  }
+
+  const handleAll = event => {
+    setAnchorEl(null);
+    const items = views.filter((data) => {
+      return data.user.toLowerCase().includes(" ") || data.role.toLowerCase().includes(" ") || data.email.toLowerCase().includes(" ") || data.company.toLowerCase().includes(" ") || data.status.toLowerCase().includes(" ")
+    })
+
+    setSearch(items);
+  }
+
   //sorting
   if (sorting.field) {
     const reversed = sorting.order === "asc" ? 1 : -1;
@@ -196,6 +234,16 @@ const ViewAcc = ({ className, ...rest }) => {
       (a, b) => reversed * a[sorting.field].localeCompare(b[sorting.field])
     );
   }
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <>
@@ -223,7 +271,7 @@ const ViewAcc = ({ className, ...rest }) => {
                 />
               </Grid>
               <Grid item >
-                <FilterButton variant="contained">
+                <FilterButton variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                   <SvgIcon
                     fontSize="small"
                     color="action"
@@ -231,6 +279,19 @@ const ViewAcc = ({ className, ...rest }) => {
                     <FilterIcon className={classes.filterButton} />
                   </SvgIcon>&nbsp;&nbsp;Filter
               </FilterButton>
+                <Menu
+                  id="simple-menu"
+                  anchorEl={anchorEl}
+                  keepMounted
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                >
+
+                  <MenuItem onClick={handleAll}>All</MenuItem>
+                  <MenuItem onClick={handleActive}>Active</MenuItem>
+                  <MenuItem onClick={handlePending}>Pending</MenuItem>
+                  <MenuItem onClick={handleSuspended}>Suspended</MenuItem>
+                </Menu>
               </Grid>
             </Grid>
           </Box>
