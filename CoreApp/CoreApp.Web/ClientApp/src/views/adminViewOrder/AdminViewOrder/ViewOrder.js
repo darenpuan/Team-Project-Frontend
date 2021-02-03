@@ -8,6 +8,8 @@ import IconButton from '@material-ui/core/IconButton';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import Popup from 'src/components/Popup'
 import OrderDetail from './OrderDetail'
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
 
 import {
   Box,
@@ -125,6 +127,42 @@ const Viewbooking = ({ className, ...rest }) => {
     setSearch(items);
   }
 
+  const handleApproved = event => {
+    setAnchorEl(null);
+    const items = views.filter((data) => {
+      return data.email.toLowerCase().includes("approved") || data.refNo.toLowerCase().includes("approved") || data.status.toLowerCase().includes("approved")
+    })
+
+    setSearch(items);
+  }
+
+  const handleProgress = event => {
+    setAnchorEl(null);
+    const items = views.filter((data) => {
+      return data.email.toLowerCase().includes("in progress") || data.refNo.toLowerCase().includes("in progress") || data.status.toLowerCase().includes("in progress")
+    })
+
+    setSearch(items);
+  }
+
+  const handleRejected = event => {
+    setAnchorEl(null);
+    const items = views.filter((data) => {
+      return data.email.toLowerCase().includes("rejected") || data.refNo.toLowerCase().includes("rejected") || data.status.toLowerCase().includes("rejected")
+    })
+
+    setSearch(items);
+  }
+
+  const handleAll = event => {
+    setAnchorEl(null);
+    const items = views.filter((data) => {
+      return data.email.toLowerCase().includes(" ") || data.refNo.toLowerCase().includes(" ") || data.status.toLowerCase().includes(" ")
+    })
+
+    setSearch(items);
+  }
+
 
   const handleCLick = (event) => {
     console.log("Working");
@@ -137,6 +175,16 @@ const Viewbooking = ({ className, ...rest }) => {
       (a, b) => reversed * a[sorting.field].localeCompare(b[sorting.field])
     );
   }
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
   <>
@@ -164,7 +212,7 @@ const Viewbooking = ({ className, ...rest }) => {
               />
             </Grid>
             <Grid item >
-              <FilterButton variant="contained">
+              <FilterButton variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                 <SvgIcon
                   fontSize="small"
                   color="action"
@@ -172,6 +220,19 @@ const Viewbooking = ({ className, ...rest }) => {
                   <FilterIcon className={classes.filterButton} />
                 </SvgIcon>&nbsp;&nbsp;Filter
               </FilterButton>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+
+                <MenuItem onClick={handleAll}>All</MenuItem>
+                <MenuItem onClick={handleApproved}>Approved</MenuItem>
+                <MenuItem onClick={handleProgress}>In Progress</MenuItem>
+                <MenuItem onClick={handleRejected}>Rejected</MenuItem>
+              </Menu>
             </Grid>
         </Grid>
       </Box>
