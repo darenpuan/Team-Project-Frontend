@@ -18,7 +18,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
-import { CompletedChip, PendingChip, UnCompletedChip } from 'src/components/StatusChips';
+import { CompletedChip, PendingChip, ProgressChip } from 'src/components/StatusChips';
 import OrderListDetailEdit from './OrderListDetailEdit';
 import Dialog from '@material-ui/core/Dialog';
 import ButtonOrderEdit from './ButtonOrderEdit';
@@ -51,7 +51,7 @@ function createData(orderid, orderdate, ordertime, status) {
 }
 
 const rows = [
-  createData('#19525', '28/12/2020', '13:00', 'In Progress'),
+  createData('#19525', '28/12/2020', '13:00', 'Pending'),
   createData('#19544', '30/12/2020', '21:00', 'Completed'),
   createData('#19876', '01/01/2021', '16:30', 'In Progress'),
   createData('#19533', '14/01/2021', '09:10', 'Completed'),
@@ -288,7 +288,7 @@ export default function EnhancedTable() {
   const handleProgress = event => {
     setAnchorEl(null);
     const items = rows.filter((data) => {
-      return data.orderid.toLowerCase().includes("In Progress") || data.status.toLowerCase().includes("In Progress")
+      return data.orderid.toLowerCase().includes("in p") || data.status.toLowerCase().includes("in p")
     })
 
     setSearch(items);
@@ -434,8 +434,19 @@ export default function EnhancedTable() {
                         )
                           : null}
                         {
-                          row.status === 'In Progress' ? (
+                          row.status === 'Pending' ? (
                             <PendingChip
+                              label={row.status}
+                              size="small"
+                              variant="outlined"
+                              component="a"
+                            />
+                          )
+                            : null
+                        }
+                        {
+                          row.status === 'In Progress' ? (
+                            <ProgressChip
                               label={row.status}
                               size="small"
                               variant="outlined"
@@ -451,6 +462,11 @@ export default function EnhancedTable() {
                         )
                           : null}
                         {row.status == 'In Progress' ? (
+                          < ButtonOrderEdit />
+                        )
+                          : null
+                        }
+                        {row.status == 'Pending' ? (
                           < ButtonOrderEdit />
                         )
                           : null

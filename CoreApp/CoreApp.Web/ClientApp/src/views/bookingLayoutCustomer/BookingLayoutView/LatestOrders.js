@@ -58,7 +58,7 @@ const data = [
     amount: 25.1,
     cargoName: 'Packet Drinks',
     createdAt: 1555016400000,
-    status: 'Completed'
+    status: 'In Transit'
   },
   {
     id: uuid(),
