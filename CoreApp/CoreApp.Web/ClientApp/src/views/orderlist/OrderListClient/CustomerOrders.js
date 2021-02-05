@@ -23,6 +23,9 @@ import OrderListDetailEdit from './OrderListDetailEdit';
 import Dialog from '@material-ui/core/Dialog';
 import ButtonOrderEdit from './ButtonOrderEdit';
 import ButtonOrderConfirm from './ButtonOrderConfirm'
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+
 import {
   Box,
   Button,
@@ -264,6 +267,61 @@ export default function EnhancedTable() {
     setSearch(items);
   }
 
+  const handleCompleted = event => {
+    setAnchorEl(null);
+    const items = rows.filter((data) => {
+      return data.orderid.toLowerCase().includes("completed") || data.status.toLowerCase().includes("completed")
+    })
+
+    setSearch(items);
+  }
+
+  const handlePending = event => {
+    setAnchorEl(null);
+    const items = rows.filter((data) => {
+      return data.orderid.toLowerCase().includes("pending") || data.status.toLowerCase().includes("pending")
+    })
+
+    setSearch(items);
+  }
+
+  const handleProgress = event => {
+    setAnchorEl(null);
+    const items = rows.filter((data) => {
+      return data.orderid.toLowerCase().includes("In Progress") || data.status.toLowerCase().includes("In Progress")
+    })
+
+    setSearch(items);
+  }
+
+  const handleRejected = event => {
+    setAnchorEl(null);
+    const items = rows.filter((data) => {
+      return data.orderid.toLowerCase().includes("rejected") || data.status.toLowerCase().includes("rejected")
+    })
+
+    setSearch(items);
+  }
+
+  const handleAll = event => {
+    setAnchorEl(null);
+    const items = rows.filter((data) => {
+      return data.orderid.toLowerCase().includes("") || data.status.toLowerCase().includes(" ")
+    })
+
+    setSearch(items);
+  }
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick2 = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const isSelected = (orderid) => selected.indexOf(orderid) !== -1;
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
@@ -299,7 +357,7 @@ export default function EnhancedTable() {
                 />
               </Grid>
               <Grid item mr={2}>
-                <FilterButton variant="contained">
+                    <FilterButton variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick2}>
                   <SvgIcon
                     fontSize="small"
                     color="action"
@@ -307,6 +365,20 @@ export default function EnhancedTable() {
                     <FilterIcon className={classes.filterButton} />
                   </SvgIcon>&nbsp;&nbsp;Filter
               </FilterButton>
+                    <Menu
+                      id="simple-menu"
+                      anchorEl={anchorEl}
+                      keepMounted
+                      open={Boolean(anchorEl)}
+                      onClose={handleClose}
+                    >
+
+                      <MenuItem onClick={handleAll}>All</MenuItem>
+                      <MenuItem onClick={handleCompleted}>Completed</MenuItem>
+                      <MenuItem onClick={handleProgress}>In Progress</MenuItem>
+                      <MenuItem onClick={handlePending}>Pending</MenuItem>
+                      <MenuItem onClick={handleRejected}>Rejected</MenuItem>
+                    </Menu>
               </Grid>
             </Grid>
             <Grid container display="flex" justify="flex-end" >

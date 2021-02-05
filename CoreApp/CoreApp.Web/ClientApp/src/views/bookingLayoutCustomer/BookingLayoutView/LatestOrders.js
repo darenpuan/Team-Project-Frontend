@@ -11,6 +11,9 @@ import Button from '@material-ui/core/Button';
 import ApproveForm from 'src/views/bookingLayoutCustomer/BookingLayoutView/ApprovedForm.js'
 import PendingForm from 'src/views/bookingLayoutCustomer/BookingLayoutView/PendingForm.js'
 import RejectedForm from 'src/views/bookingLayoutCustomer/BookingLayoutView/RejectedForm.js'
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+
 import {
   Box,
   Card,
@@ -38,7 +41,7 @@ import {
 } from 'react-feather';
 
 import { FilterButton } from 'src/components/Buttons';
-import { CompletedChip, PendingChip, RejectedChip } from 'src/components/StatusChips';
+import { CompletedChip, PendingChip, RejectedChip, TransitChip } from 'src/components/StatusChips';
 
 const data = [
   {
@@ -127,6 +130,61 @@ const LatestOrders = ({ className, ...rest }) => {
     setSearch(items);
   }
 
+  const handleCompleted = event => {
+    setAnchorEl(null);
+    const items = data.filter((data) => {
+      return data.cargoName.toLowerCase().includes("completed") || data.ref.toLowerCase().includes("completed") || data.status.toLowerCase().includes("completed")
+    })
+
+    setSearch(items);
+  }
+
+  const handlePending = event => {
+    setAnchorEl(null);
+    const items = data.filter((data) => {
+      return data.cargoName.toLowerCase().includes("pending") || data.ref.toLowerCase().includes("pending") || data.status.toLowerCase().includes("pending")
+    })
+
+    setSearch(items);
+  }
+
+  const handleTransit = event => {
+    setAnchorEl(null);
+    const items = data.filter((data) => {
+      return data.cargoName.toLowerCase().includes("in transit") || data.ref.toLowerCase().includes("in transit") || data.status.toLowerCase().includes("in transit")
+    })
+
+    setSearch(items);
+  }
+
+  const handleRejected = event => {
+    setAnchorEl(null);
+    const items = data.filter((data) => {
+      return data.cargoName.toLowerCase().includes("rejected") || data.ref.toLowerCase().includes("rejected") || data.status.toLowerCase().includes("rejected")
+    })
+
+    setSearch(items);
+  }
+
+  const handleAll = event => {
+    setAnchorEl(null);
+    const items = data.filter((data) => {
+      return data.cargoName.toLowerCase().includes(" ") || data.ref.toLowerCase().includes(" ") || data.status.toLowerCase().includes(" ")
+    })
+
+    setSearch(items);
+  }
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
 
   return (
     <Card
@@ -158,7 +216,7 @@ const LatestOrders = ({ className, ...rest }) => {
                   />
                 </Grid>
                 <Grid item >
-                  <FilterButton variant="contained">
+                  <FilterButton variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                     <SvgIcon
                       fontSize="small"
                       color="action"
@@ -166,6 +224,20 @@ const LatestOrders = ({ className, ...rest }) => {
                       <FilterIcon className={classes.filterButton} />
                     </SvgIcon>&nbsp;&nbsp;Filter
               </FilterButton>
+                  <Menu
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                  >
+
+                    <MenuItem onClick={handleAll}>All</MenuItem>
+                    <MenuItem onClick={handleCompleted}>Completed</MenuItem>
+                    <MenuItem onClick={handleTransit}>In Transit</MenuItem>
+                    <MenuItem onClick={handlePending}>Pending</MenuItem>
+                    <MenuItem onClick={handleRejected}>Rejected</MenuItem>
+                  </Menu>
                 </Grid>
               </Grid>
             </Box>
@@ -260,6 +332,16 @@ const LatestOrders = ({ className, ...rest }) => {
                       )
                         : null
                     }
+                    {
+                      order.status === 'In Transit' ? (
+                        <TransitChip
+                          label={order.status}
+                          size="small"
+                          variant="outlined"
+                        />
+                      )
+                        : null
+                    }
                   </TableCell>
 
 
@@ -273,6 +355,10 @@ const LatestOrders = ({ className, ...rest }) => {
                     )
                       : null
                     }
+                    {order.status === 'In Transit' ? (
+                      <ApproveForm />
+                    )
+                      : null}
                     {order.status == 'Rejected' ? (
                       < RejectedForm />
                     )

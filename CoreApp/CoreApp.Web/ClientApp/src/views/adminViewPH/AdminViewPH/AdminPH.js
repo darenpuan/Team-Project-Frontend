@@ -176,14 +176,7 @@ const AdminPH = ({ className, ...rest }) => {
                   />
                 </Grid>
                 <Grid item >
-                  <FilterButton variant="contained">
-                    <SvgIcon
-                      fontSize="small"
-                      color="action"
-                    >
-                      <FilterIcon className={classes.filterButton} />
-                    </SvgIcon>&nbsp;&nbsp;Filter
-              </FilterButton>
+
                 </Grid>
               </Grid>
             </Box>
